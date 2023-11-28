@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #212121;
+    background-image: url('./assets/images/folha.png'), url('./assets//images/folha2.png');
+    background-position: right top, left bottom;
+    background-size: 380px 380px;
+    background-repeat: no-repeat, no-repeat;
+}
+
+p, h1, h2, h3, h4, h5, label, input, span {
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+}

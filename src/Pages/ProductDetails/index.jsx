@@ -1,9 +1,10 @@
-const ProductDetail = () => {
+export default function ProductDetails () {
     return(
-        <>
-        <p>ProductDetail</p>
-        </>
+        <div className="w-full h-screen  flex">
+            <div>
+                
+            </div>
+        </div>
     )
 }
 
-export default ProductDetail

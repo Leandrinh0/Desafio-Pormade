@@ -2,7 +2,7 @@ import './style.css'
 
 const Modal = () => {
     return (
-        <div className="modal-container show">
+        <div className="modal-container show flex ">
             <div className="modal-body">
 
             </div>
@@ -10,4 +10,3 @@ const Modal = () => {
     )
 }
 
-export default Modal
