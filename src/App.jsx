@@ -5,6 +5,7 @@ import axios from 'axios'
 import ModalDelete from './ComponentsAdmin/ModalDelete/indes'
 import { styled } from 'styled-components'
 import ModalEditUSer from './ComponentsAdmin/ModalUserEdit'
+import MenuLateral from './ComponentsAdmin/MenuLateral'
 
 
 
@@ -23,6 +24,7 @@ function App() {
     <>
       <ModalDelete />
       <ModalEditUSer />
+      <MenuLateral />
       <Outlet/>  
       </>
   )

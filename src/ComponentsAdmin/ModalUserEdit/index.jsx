@@ -3,7 +3,7 @@ import { useState } from "react"
 
 const ModalEditUser = () => {
 
-    const [show, setShow] = useState(true)
+    const [show, setShow] = useState(false)
 
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0 bg-white bg-opacity-20 transition-all ease-in-out duration-500 justify-center items-center overflow-y-auto ${show ? 'flex' : "hidden"}`}>
