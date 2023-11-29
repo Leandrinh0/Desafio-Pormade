@@ -18,7 +18,8 @@ export default {
         black_modal: '#0A0A0A',
         yellow: '#FFC700',
         green_button: '#3D7736',
-        red_button: '#970000'
+        red_button: '#970000',
+        cinza_fonte: '#8C8C8C'
       },
     },
   },

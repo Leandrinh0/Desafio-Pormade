@@ -1,9 +1,10 @@
 import axios from "axios"
 import { useEffect, useState, useContext } from "react"
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { MdOutlineShoppingCart, MdOutlineWatchLater } from "react-icons/md";
+import { MdOutlineShoppingCart, MdOutlineWatchLater, MdOutlineRemoveShoppingCart } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+
 
 import logo from "../../assets/images/Vector.png"
 import adminLogo from "../../assets/images/adminlogo.png"
@@ -105,7 +106,14 @@ const Home = () => {
                     </>
                     :
                     <>
-                        <p>Não tem nada</p>
+                        <div className=" w-full h-1/12 text-center  text-white font-bold text-6xl">Ops...</div>
+                        <div className=" w-full h-1/6 text-center p-5 ">
+                            <p className="text-cinza_fonte text-3xl font-semibold">Nada foi adicionado no</p>
+                            <p className="text-cinza_fonte text-3xl font-semibold">seu carrinho ainda</p>
+                        </div>
+                        <div>Adicionar Produtos</div>
+                        <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6'/>
+                    
                     </>
                     
                 }
