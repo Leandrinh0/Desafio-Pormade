@@ -6,7 +6,6 @@ import { MenuContext } from "../../Contexts/MenuContext"
 const MenuLateral = () => {
 
     const {show, setShow} = useContext(MenuContext)
-
     const close = () => {
         setShow(false)
     }

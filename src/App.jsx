@@ -7,6 +7,8 @@ import ModalEditUSer from './ComponentsAdmin/ModalUserEdit'
 import MenuLateral from './ComponentsAdmin/MenuLateral'
 import { AdminContextProvider } from './Contexts/AdminContext'
 import { MenuContextProvider } from './Contexts/MenuContext'
+import ModalNewProduct from './ComponentsAdmin/ModalNewProduct'
+import ModalDeleteProduct from './Components/ModalDeleteProduct'
 
 
 
@@ -27,6 +29,8 @@ function App() {
         <MenuContextProvider>
           <ModalDelete />
           <ModalEditUSer />
+          <ModalNewProduct />
+          <ModalDeleteProduct />
           <MenuLateral />
           <Outlet/>  
         </MenuContextProvider>
