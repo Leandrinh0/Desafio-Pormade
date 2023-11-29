@@ -1,18 +1,34 @@
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { MdOutlineShoppingCart, MdOutlineWatchLater } from "react-icons/md";
 import { RxExit } from "react-icons/rx";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/images/Vector.png"
+import adminLogo from "../../assets/images/adminlogo.png"
 import { Link } from "react-router-dom";
 import CardProduct from "../../Components/CardProduct";
+import { AdminContext } from "../../Contexts/AdminContext";
+import { MenuContext } from "../../Contexts/MenuContext";
 
 
 const Home = () => {
 
     const [productData, setProductData] = useState([])
 
+    const{show} = useContext(AdminContext)
+    const{setShow} = useContext(MenuContext)
+
+    const showMenu = () => {
+        setShow(true)
+    }
+
+    const navigate = useNavigate()
+
+    const exit = () => {
+        return navigate('/login')
+    }
 
     useEffect(() => {
       axios.get('192.168.155.6:3002/produtos/lista')
@@ -29,8 +45,9 @@ const Home = () => {
                 <img src={logo} alt="Imagem do logo" className="w-14 h-12 my-3 cursor-pointer"/>
                 <MdOutlineShoppingCart className="w-12 h-12 text-white_pormade my-3 cursor-pointer"/>
                 <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer"/>
+                <img src={adminLogo} className={`mt-2 hover:cursor-pointer ${show ? "flex" : "hidden"}`} onClick={showMenu}></img>
             </div>
-                <RxExit className="w-12 h-12 text-white_pormade cursor-pointer"/>
+                <RxExit className="w-12 h-12 text-white_pormade cursor-pointer" onClick={exit}/>
             </div>
             <div className="w-11/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green mr-10">
                 <div className="flex w-3/6">

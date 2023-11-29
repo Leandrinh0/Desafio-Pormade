@@ -3,9 +3,10 @@ import './index.css'
 import { Outlet } from 'react-router-dom'
 import axios from 'axios'
 import ModalDelete from './ComponentsAdmin/ModalDelete/indes'
-import { styled } from 'styled-components'
 import ModalEditUSer from './ComponentsAdmin/ModalUserEdit'
 import MenuLateral from './ComponentsAdmin/MenuLateral'
+import { AdminContextProvider } from './Contexts/AdminContext'
+import { MenuContextProvider } from './Contexts/MenuContext'
 
 
 
@@ -22,11 +23,15 @@ function App() {
 
   return (
     <>
-      <ModalDelete />
-      <ModalEditUSer />
-      <MenuLateral />
-      <Outlet/>  
-      </>
+      <AdminContextProvider>
+        <MenuContextProvider>
+          <ModalDelete />
+          <ModalEditUSer />
+          <MenuLateral />
+          <Outlet/>  
+        </MenuContextProvider>
+      </AdminContextProvider>
+    </>
   )
 }
 

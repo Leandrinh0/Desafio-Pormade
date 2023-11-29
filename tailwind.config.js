@@ -16,7 +16,9 @@ export default {
         white_pormade: '#D9D9D9',
         black: '#000000;',
         black_modal: '#0A0A0A',
-        yellow: '#FFC700'
+        yellow: '#FFC700',
+        green_button: '#3D7736',
+        red_button: '#970000'
       },
     },
   },

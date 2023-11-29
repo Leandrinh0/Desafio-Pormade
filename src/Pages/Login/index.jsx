@@ -5,7 +5,6 @@ const Login = () => {
     return (
         <div className="w-full h-screen  flex">
             <div className='flex flex-col w-1/3 justify-end'>
-                {/* <img className='w-96 h-96' src={folha2} alt='Imagem da folha' /> */}
             </div>
             <div className='flex flex-col w-1/3 '>
                 <div className='flex flex-col items-center justify-start'>
@@ -28,7 +27,6 @@ const Login = () => {
                 </div>
             </div>
             <div className='flex flex-row-reverse w-1/3 align-bottom'>
-                {/* <img className='w-96 h-96 flex align-bottom' src={folha} alt='Imagem da outra folha' /> */}
             </div>
         </div>
     )
