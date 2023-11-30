@@ -14,9 +14,11 @@ export function MenuContextProvider({children}) {
 
     const [deletar, setDeletar] = useState(false)
 
+    const [historic, setHistoric] = useState(false)
+
     return (
 
-        <MenuContext.Provider value={{show, setShow, newUser, setNewUser, newProduct, setNewProduct, remove, setRemove, deletar, setDeletar}}>
+        <MenuContext.Provider value={{show, setShow, newUser, setNewUser, newProduct, setNewProduct, remove, setRemove, deletar, setDeletar, historic, setHistoric}}>
             {children}
         </MenuContext.Provider>
     )

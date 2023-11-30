@@ -24,11 +24,7 @@ const Home = () => {
 
 
     const { show } = useContext(AdminContext)
-    const { setShow } = useContext(MenuContext)
-    const { setNewProduct } = useContext(MenuContext)
-    const { setNewUser } = useContext(MenuContext)
-    const { setRemove } = useContext(MenuContext)
-    const { setDeletar } = useContext(MenuContext)
+    const { setShow, setNewProduct, setNewUser, setRemove, setDeletar, setHistoric } = useContext(MenuContext)
 
     const showMenu = () => {
         setShow(true)
@@ -36,6 +32,10 @@ const Home = () => {
         setNewUser(false)
         setRemove(false)
         setDeletar(false)
+    }
+
+    const showHistoric = () => {
+        setHistoric(true)
     }
 
     const navigate = useNavigate()
@@ -61,7 +61,7 @@ const Home = () => {
                         className="w-12 h-12 text-white_pormade my-3 cursor-pointer"
                         onClick={() => setOpenModal(!openModal)}
                     />
-                    <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" />
+                    <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" onClick={showHistoric}/>
                     <img src={adminLogo} className={`mt-2 hover:cursor-pointer ${show ? "flex" : "hidden"}`} onClick={showMenu}></img>
                 </div>
                 <RxExit className="w-12 h-12 text-white_pormade cursor-pointer" onClick={exit} />
@@ -99,22 +99,25 @@ const Home = () => {
                         <CartItem />
                         <CartItem />
                         <CartItem />
-                        <div className='flex w-10/12 mt-2 justify-end items-center'>
+                        <div className='flex w-4/5 mt-2 justify-end items-center'>
                             <h1 className='font-bold text-2xl'>Valor Total: R$ 302,58</h1>
                             <button className='text-white font-semibold text-xl w-44 rounded-xl h-10 bg-light_green mx-2'>Finalizar Compra</button>
                         </div>
                     </>
                     :
-                    <>
-                        <div className=" w-full h-1/12 text-center  text-white font-bold text-6xl">Ops...</div>
-                        <div className=" w-full h-1/6 text-center p-5 ">
+                    <div className=" w-11/12 h-5/6 bg-black_pormade rounded-xl">
+                        <div className=" w-full h-1/12 text-center  text-white font-semibold text-6xl">Ops...</div>
+                        <div className=" w-full h-1/5 text-center p-5 ">
                             <p className="text-cinza_fonte text-3xl font-semibold">Nada foi adicionado no</p>
                             <p className="text-cinza_fonte text-3xl font-semibold">seu carrinho ainda</p>
                         </div>
-                        <div>Adicionar Produtos</div>
-                        <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6'/>
+                        <div className="text-green_pormade underline text-medium font-bold w-full h-1/6 text-center cursor-pointer items-center" onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
+                        <div className="text-center justify-center items-center w-full flex">
+                        <MdOutlineRemoveShoppingCart className='text-white w-1/4 h-1/4'/>
+                        </div>
+                        
                     
-                    </>
+                    </div>
                     
                 }
             </Modal>

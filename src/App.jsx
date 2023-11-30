@@ -9,6 +9,7 @@ import { AdminContextProvider } from './Contexts/AdminContext'
 import { MenuContextProvider } from './Contexts/MenuContext'
 import ModalNewProduct from './ComponentsAdmin/ModalNewProduct'
 import ModalDeleteProduct from './Components/ModalDeleteProduct'
+import ModalHistoric from './Components/ModalHistoric'
 
 
 
@@ -32,6 +33,7 @@ function App() {
           <ModalNewProduct />
           <ModalDeleteProduct />
           <MenuLateral />
+          <ModalHistoric />
           <Outlet/>  
         </MenuContextProvider>
       </AdminContextProvider>
