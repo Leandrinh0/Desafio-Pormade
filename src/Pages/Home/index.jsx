@@ -74,6 +74,7 @@ const Home = () => {
                     <CardProduct />
                     <CardProduct />
                 </div>
+                <p>Teste kkkk</p>
                 <footer className='flex justify-center my-4'>
                     <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
                     <div>
