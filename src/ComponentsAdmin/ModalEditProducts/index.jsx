@@ -1,11 +1,10 @@
 import CheckBox from "../../Components/CheckBox"
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
-const ModalNewProduct = () => {
+const ModalEditProducts = ({newProduct, setNewProduct}) => {
 
-    const {newProduct, setNewProduct} = useContext(MenuContext)
 
     const close = () => {
         setNewProduct(false)
@@ -15,7 +14,7 @@ const ModalNewProduct = () => {
         <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${newProduct ? 'flex' : "hidden"}`}>
             <div className="w-1/2 h-2/5 bg-black_modal rounded-xl border-2 border-light_green flex flex-col items-center">
                 <div className='w-full flex justify-center '>
-                    <h1 className='my-6 text-3xl font-bold'>Novo Produto</h1>
+                    <h1 className='my-6 text-3xl font-bold'>Editar Produto</h1>
                 </div>
                 <div className='flex flex-row w-5/6 h-1/3 justify-between'>
                     <div className="flex flex-col w-3/6"> 
@@ -47,4 +46,4 @@ const ModalNewProduct = () => {
     )
 }
 
-export default ModalNewProduct
+export default ModalEditProducts

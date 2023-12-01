@@ -1,4 +1,3 @@
-import './style.css'
 import { AiOutlineClose } from "react-icons/ai";
 
 

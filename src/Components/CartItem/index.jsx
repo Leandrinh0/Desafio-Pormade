@@ -1,7 +1,12 @@
+import { useContext } from "react";
 import { TiPlus, TiMinus  } from "react-icons/ti";
+import { MenuContext } from "../../Contexts/MenuContext";
 
 
 export default function CartItem() {
+
+    const {setRemove} = useContext(MenuContext)
+
     return (
         <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2'>
 
@@ -11,7 +16,7 @@ export default function CartItem() {
                         <h1 className='font-bold text-2xl border-b-2 border-b-light_green mb-1'>Product Name</h1>
                         <div className='flex flex-col justify-between w-full h-full'>
                             <p className=''>Descricao</p>
-                            <button className='bg-red_button_cart text-white h-8 w-24 rounded-xl hover:bg-red_button'>Excluir</button>
+                            <button className='bg-red_button_cart text-white h-8 w-24 rounded-xl bg-red_button' onClick={() => setRemove(true)}>Excluir</button>
                         </div>
                     </div>
                 </div>
