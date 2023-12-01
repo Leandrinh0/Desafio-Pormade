@@ -10,7 +10,7 @@ body {
     background-repeat: no-repeat, no-repeat;
 }
 
-p, h1, h2, h3, h4, h5, label, input, span {
+p, h1, h2, h3, h4, h5, label, input, span, tr, td {
     font-family: 'Montserrat', sans-serif;
     color:white;
 }

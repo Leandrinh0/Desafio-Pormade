@@ -1,6 +1,6 @@
+import "./styles.css"
 
-
-export default function CardProductDetails () {
+function CardProductDetails () {
     return(
         <div className='w-5/12 h-2/5 bg-black_pormade border border-light_green rounded-2xl p-6 m-10'>
             <h1 className='font-bold text-2xl border-b border-light_green'>Product Name</h1>
@@ -24,3 +24,5 @@ export default function CardProductDetails () {
         </div>
     )
 }
+
+export default CardProductDetails

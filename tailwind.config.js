@@ -19,7 +19,8 @@ export default {
         yellow: '#FFC700',
         green_button: '#3D7736',
         red_button: '#970000',
-        cinza_fonte: '#8C8C8C'
+        cinza_fonte: '#8C8C8C',
+        red_pormade: '#C90000',
       },
     },
   },
