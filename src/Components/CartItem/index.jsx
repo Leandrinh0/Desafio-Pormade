@@ -33,7 +33,7 @@ export default function CartItem() {
                         </div>
                         <div className=''>
                             <h1 className='mb-8 font-semibold text-2xl'>Valor Total</h1>
-                            <h1 className='font-semibold text-2xl'>R$97,00</h1>
+                            <h1 className='font-semibold text-2xl almostCellphone:text-lg'>R$97,00</h1>
                         </div>
                     </div>
                 </div>

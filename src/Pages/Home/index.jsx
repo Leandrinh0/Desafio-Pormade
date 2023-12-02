@@ -15,6 +15,7 @@ import { MenuContext } from "../../Contexts/MenuContext";
 import Modal from "../../Components/Modal";
 import CartItem from "../../Components/CartItem";
 import { FaSearch } from "react-icons/fa";
+import { LuMenu } from "react-icons/lu";
 
 
 const Home = () => {
@@ -54,16 +55,19 @@ const Home = () => {
 
 
     return (
-        <div className="w-full h-full flex justify-center items-center py-10">
+        <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 
-            <div className="w-10/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green ml-14 tablet:w-10/12 tablet:ml-24">
-                <div className="flex justify-center w-3/6 h-full mt-8">
-                    <div className='w-10/12 h-12 flex justify-around items-center bg-black_modal border-2 border-light_green rounded-3xl'>
+            <div 
+                className="w-10/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green ml-14 
+                tablet:w-11/12 tablet:ml-24 almostCellphone:ml-0 almostCellphone:border-none"
+            >
+                <div className="flex justify-center w-3/6 h-full mt-8 almostCellphone:hidden">
+                    <div className='w-10/12 h-12 flex justify-around items-center bg-black_modal border-2 border-light_green rounded-3xl '>
                         <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg rounded-3xl' />
                         <FaSearch className='w-6 h-6 text-light_green' />
                     </div>
                 </div>
-                <div className='flex flex-row justify-center flex-wrap w-10/12'>
+                <div className='flex flex-row justify-center items-center flex-wrap w-10/12 almostCellphone:flex-col almostCellphone:w-full almostCellphone:p-2'>
                     <CardProduct />
                     <CardProduct />
                     <CardProduct />
@@ -74,7 +78,7 @@ const Home = () => {
                     <CardProduct />
                     <CardProduct />
                 </div>
-                <footer className='flex justify-center my-4'>
+                <footer className='flex justify-center my-4 almostCellphone:hidden'>
                     <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
                     <div>
                         <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
@@ -86,6 +90,23 @@ const Home = () => {
                     <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
                 </footer>
             </div>
+
+            <footer className=' justify-center mt-4 hidden almostCellphone:flex'>
+                    <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
+                    <div>
+                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
+                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>2</Link>
+                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>3</Link>
+                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>...</Link>
+                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>9</Link>
+                    </div>
+                    <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
+                </footer>
+
+
+
+
+            {/* Modal do carrinho */}
             <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
                 {array.length > 0 ?
                     <>
@@ -108,10 +129,7 @@ const Home = () => {
                         <div className="text-center justify-center items-center w-full flex">
                         <MdOutlineRemoveShoppingCart className='text-white w-1/4 h-1/4'/>
                         </div>
-                        
-                    
                     </div>
-                    
                 }
             </Modal>
         </div>

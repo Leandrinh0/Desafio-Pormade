@@ -6,8 +6,9 @@ export default {
   ],
   theme: {
     screens: {
-      'tablet': {'max' : '960px'},
-      'cellphone': {'max' : '530px'}
+      'tablet': {'max' : '1280px'},
+      'cellphone': {'max' : '530px'},
+      'almostCellphone': {'max' : '650px'}
     },
 
     extend: {
@@ -17,7 +18,7 @@ export default {
         grey_pormade: '#414141',
         light_green: '#509D45',
         transparent: '#61616180',
-        grey_text: 'cinzaLetra',
+        grey_text: '#9B9B9B',
         white_pormade: '#D9D9D9',
         black: '#000000;',
         black_modal: '#0A0A0A',
@@ -27,6 +28,9 @@ export default {
         cinza_fonte: '#8C8C8C',
         red_pormade: '#C90000', 
       },
+      spacing: {
+        '80px' : '80px'
+      }
     },
   },
   plugins: [],

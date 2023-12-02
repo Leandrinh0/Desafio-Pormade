@@ -8,12 +8,16 @@ import image from "../../assets/images/seta.png"
 import Modal from "../../Components/Modal"
 import CartItem from "../../Components/CartItem"
 import "./style.css"
+import { LuMenu } from "react-icons/lu"
+import { FaSearch } from "react-icons/fa"
+import { IoMdClose } from "react-icons/io";
 
 
 export default function LateralMenu() {
     const [openModal, setOpenModal] = useState(false)
     const { show, setShow } = useContext(MenuContext)
     const {setHistoric} = useContext(MenuContext)
+    const [lateralMenu, setLateralMenu] = useState(false)
     const navigate = useNavigate()
 
     const navigateAndCloseModal = (url) => {
@@ -23,11 +27,32 @@ export default function LateralMenu() {
 
 
     return (
+        <>
+            <div className={`hidden fixed top-0 h-20 w-full justify-between items-center bg-black_pormade almostCellphone:flex`}>
+                    <LuMenu
+                        className='text-white w-12 h-12 ml-3'
+                        onClick={() => setLateralMenu(!lateralMenu)}
+                    />
+                <div className='w-9/12 h-12 flex justify-around items-center bg-black_modal rounded-lg mr-4'>
+                    <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg rounded-3xl' />
+                    <FaSearch className='w-6 h-6 text-light_green' />
+                </div>
+            </div>
+
+
+
+
+
         <div 
             className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green ${show? 'h-full' : 'h-5/6'} 
-            tablet:h-full`}
+            tablet:h-full almostCellphone:border-t almostCellphone:border-light_green almostCellphone:w-20
+            ${lateralMenu? "almostCellphone:flex" : "almostCellphone:hidden"}`}
         >
             <div className='flex flex-col items-center justify-center'>
+            <IoMdClose
+                        className=' hidden text-white w-12 h-12 almostCellphone:flex'
+                        onClick={() => setLateralMenu(!lateralMenu)}
+                    /> :
                 <img src={logo} alt="Imagem do logo" className="w-14 h-12 my-3 cursor-pointer"
                 onClick={() => navigate('/')} />
                 <MdOutlineShoppingCart
@@ -37,7 +62,11 @@ export default function LateralMenu() {
                 <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" onClick={() => {setHistoric(true)}}/>
                 <MdOutlineAdminPanelSettings className="w-12 h-12 text-yellow my-3 cursor-pointer" onClick={() => setShow(!show)} />
             </div>
-            <RxExit className="w-12 h-12 text-white_pormade cursor-pointer" onClick={() => navigate('/login')} />
+            <RxExit 
+                className="w-12 h-12 text-white_pormade cursor-pointer almostCellphone:fixed almostCellphone:bottom-6"
+                onClick={() => navigate('/login')}
+            />
+
             <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
                 <CartItem/>
                 <CartItem />
@@ -53,8 +82,10 @@ export default function LateralMenu() {
                 </div>
                 <button className=" margin w-4/5 h-16 bg-light_green  rounded-lg font-bold text-2xl text-white mb-5" onClick={() => navigateAndCloseModal('/editarUsuarios')}>Usuários</button>
                 <button className=" margin w-4/5 h-16 bg-light_green  rounded-lg font-bold text-2xl text-white" onClick={() => navigateAndCloseModal('/editarProdutos')}>Produtos</button>
-
             </aside>
         </div>
+
+        </>
+
     )
 }
