@@ -5,6 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    screens: {
+      'tablet': {'max' : '960px'},
+      'cellphone': {'max' : '420px'}
+    },
+
     extend: {
       colors: {
         black_pormade: '#212121',
@@ -20,7 +25,7 @@ export default {
         green_button: '#3D7736',
         red_button: '#970000',
         cinza_fonte: '#8C8C8C',
-        red_pormade: '#C90000',
+        red_pormade: '#C90000', 
       },
     },
   },
