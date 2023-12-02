@@ -3,7 +3,6 @@ import { MdDeleteForever } from "react-icons/md";
 import { ImPencil } from "react-icons/im";
 import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
 import { useContext, useState } from "react";
-import ModalEditUser from "../../ComponentsAdmin/ModalNewUser";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { CgList } from "react-icons/cg";
 import ModalEditProducts from "../../ComponentsAdmin/ModalEditProducts";

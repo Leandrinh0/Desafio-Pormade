@@ -6,7 +6,7 @@ import '../../index.css'
 
 export default function CardProduct() {
     return(
-        <div className='w-80 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-8 mx-16'>
+        <div className='w-3/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 tablet:w-2/5 tablet:mx-2'>
             <div className="flex justify-between items-center border-b border-b-green_pormade mb-2">
                 <h1 className='font-bold text-2xl py-1'>Product Name</h1>
                 <FaStar className='w-7 h-7 text-yellow'/>

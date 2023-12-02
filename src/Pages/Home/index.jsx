@@ -54,12 +54,12 @@ const Home = () => {
 
 
     return (
-        <div className="w-full h-full flex justify-end items-center py-10">
+        <div className="w-full h-full flex justify-center items-center py-10">
 
-            <div className="w-11/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green mr-10">
+            <div className="w-10/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green ml-14 tablet:w-10/12 tablet:ml-24">
                 <div className="flex justify-center w-3/6 h-full mt-8">
                     <div className='w-10/12 h-12 flex justify-around items-center bg-black_modal border-2 border-light_green rounded-3xl'>
-                        <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg' />
+                        <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg rounded-3xl' />
                         <FaSearch className='w-6 h-6 text-light_green' />
                     </div>
                 </div>

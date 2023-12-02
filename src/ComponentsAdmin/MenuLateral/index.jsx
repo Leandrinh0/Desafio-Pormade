@@ -23,7 +23,10 @@ export default function LateralMenu() {
 
 
     return (
-        <div className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green ${show? 'h-full' : 'h-5/6'}`}>
+        <div 
+            className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green ${show? 'h-full' : 'h-5/6'} 
+            tablet:h-full`}
+        >
             <div className='flex flex-col items-center justify-center'>
                 <img src={logo} alt="Imagem do logo" className="w-14 h-12 my-3 cursor-pointer"
                 onClick={() => navigate('/')} />

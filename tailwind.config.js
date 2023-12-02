@@ -7,7 +7,7 @@ export default {
   theme: {
     screens: {
       'tablet': {'max' : '960px'},
-      'cellphone': {'max' : '420px'}
+      'cellphone': {'max' : '530px'}
     },
 
     extend: {
