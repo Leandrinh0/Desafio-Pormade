@@ -76,7 +76,7 @@ const Home = () => {
                     <CardProduct />
                     <CardProduct />
                 </div>
-                <footer className='flex justify-center my-4 almostCellphone:hidden'>
+                <footer className='flex justify-center my-4 tablet:hidden almostCellphone:hidden'>
                     <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
                     <div>
                         <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
@@ -89,7 +89,7 @@ const Home = () => {
                 </footer>
             </div>
 
-            <footer className=' justify-center mt-4 hidden almostCellphone:flex'>
+            <footer className=' justify-center mt-4 tablet:ml-16 hidden tablet:flex almostCellphone:flex almostCellphone:ml-0'>
                     <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
                     <div>
                         <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
