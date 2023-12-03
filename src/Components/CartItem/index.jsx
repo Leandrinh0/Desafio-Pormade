@@ -9,7 +9,6 @@ export default function CartItem() {
 
     return (
         <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2'>
-
             <div className='flex justify-between h-full'>
                 <div className='w-2/6 h-fullflex flex-col justify-between'>
                     <div className='w-full h-full flex flex-col '>
