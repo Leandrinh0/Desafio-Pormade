@@ -1,4 +1,4 @@
-import { MdOutlineAdminPanelSettings, MdOutlineShoppingCart, MdOutlineWatchLater } from "react-icons/md"
+import { MdOutlineAdminPanelSettings, MdOutlineRemoveShoppingCart, MdOutlineShoppingCart, MdOutlineWatchLater } from "react-icons/md"
 import logo from "../../assets/images/Vector.png"
 import { RxExit } from "react-icons/rx"
 import { useContext, useState } from "react"
@@ -19,6 +19,8 @@ export default function LateralMenu() {
     const {setHistoric} = useContext(MenuContext)
     const [lateralMenu, setLateralMenu] = useState(false)
     const navigate = useNavigate()
+
+    const array = [1]
 
     const navigateAndCloseModal = (url) => {
         setShow(!show)
@@ -67,16 +69,41 @@ export default function LateralMenu() {
                 onClick={() => navigate('/login')}
             />
 
-            <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-                <CartItem/>
-                <CartItem />
-                <CartItem />
-                <div className='flex w-10/12 mt-2 justify-end items-center'>
-                    <h1 className='font-bold text-2xl'>Valor Total: R$ 302,58</h1>
-                    <button className='text-white font-semibold text-xl w-44 rounded-xl h-10 bg-light_green mx-2'>Finalizar Compra</button>
-                </div>
-            </Modal>
-            <aside className={`h-full flex-col items-center bg-black_modal fixed top-0 left-20 overflow-hidden border-r-4 border-solid border-light_green duration-200 block ${show ? 'w-2/12' : "w-0 border-none"}`}>
+                {/* Modal do carrinho */}
+                <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
+                    {array.length > 0 ?
+                        <>
+                            <CartItem />
+                            <CartItem />
+                            <CartItem />
+                            <div className='flex w-4/5 mt-2 justify-end items-center tablet:justify-center tablet:flex-col tablet:mb-8 almostCellphone:justify-between'>
+                                <div className='flex flex-row w-full justify-end tablet:justify-center tablet:mb-2 almostCellphone:justify-between almostCellphone:px-3 almostCellphone:mb-2'>
+                                    <h1 className='font-bold text-2xl tablet:text-xl almostCellphone:text-2xl'>Valor Total:</h1>
+                                    <h1 className='font-semibold text-2xl tablet:text-xl almostCellphone:text-2xl'>R$ 302,58</h1>
+                                </div>
+                                <button className='text-white font-semibold text-xl w-1/3 rounded-xl h-10 bg-light_green mx-2 tablet:w-2/3 almostCellphone:w-2/3'>Finalizar Compra</button>
+                            </div>
+                        </>
+                        :
+                        <div className=" w-11/12 h-5/6 bg-black_pormade rounded-xl">
+                            <div className=" w-full h-1/12 text-center  text-white font-semibold text-6xl">Ops...</div>
+                            <div className=" w-full h-1/5 text-center p-5 ">
+                                <p className="text-cinza_fonte text-3xl font-semibold">Nada foi adicionado no</p>
+                                <p className="text-cinza_fonte text-3xl font-semibold">seu carrinho ainda</p>
+                            </div>
+                            <div className="text-green_pormade underline text-medium font-bold w-full h-1/6 text-center cursor-pointer items-center" onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
+                            <div className="text-center justify-center items-center w-full flex">
+                                <MdOutlineRemoveShoppingCart className='text-white w-1/4 h-1/4' />
+                            </div>
+                        </div>
+                    }
+                </Modal>
+
+            
+            <aside 
+                className={`h-full flex-col items-center bg-black_modal fixed top-0 left-20 overflow-hidden border-r-4 border-solid
+              border-light_green duration-200 block ${show ? 'w-2/12' : "w-0 border-none"} ${show ? 'tablet:w-5/12' : "w-0 border-none"} almostCellphone:text-sm`
+            }>
                 <div className="w-full h-1/6  ">
                     <img src={image} className=" margin w-14  hover:cursor-pointer hover:w-16" onClick={() => setShow(!show)} />
                 </div>

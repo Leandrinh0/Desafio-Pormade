@@ -21,8 +21,6 @@ import { LuMenu } from "react-icons/lu";
 const Home = () => {
 
     const [productData, setProductData] = useState([])
-    const [openModal, setOpenModal] = useState(false)
-    const array = [1]
 
 
     const { show } = useContext(AdminContext)
@@ -58,8 +56,8 @@ const Home = () => {
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 
             <div 
-                className="w-10/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green ml-14 
-                tablet:w-11/12 tablet:ml-24 almostCellphone:ml-0 almostCellphone:border-none"
+                className="w-11/12 flex items-center flex-col bg-black rounded-3xl border-4 border-light_green ml-20
+                tablet:w-9/12 tablet:ml-20 almostCellphone:ml-0 almostCellphone:border-none"
             >
                 <div className="flex justify-center w-3/6 h-full mt-8 almostCellphone:hidden">
                     <div className='w-10/12 h-12 flex justify-around items-center bg-black_modal border-2 border-light_green rounded-3xl '>
@@ -102,36 +100,6 @@ const Home = () => {
                     </div>
                     <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
                 </footer>
-
-
-
-
-            {/* Modal do carrinho */}
-            <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-                {array.length > 0 ?
-                    <>
-                        <CartItem />
-                        <CartItem />
-                        <CartItem />
-                        <div className='flex w-4/5 mt-2 justify-end items-center'>
-                            <h1 className='font-bold text-2xl'>Valor Total: R$ 302,58</h1>
-                            <button className='text-white font-semibold text-xl w-44 rounded-xl h-10 bg-light_green mx-2'>Finalizar Compra</button>
-                        </div>
-                    </>
-                    :
-                    <div className=" w-11/12 h-5/6 bg-black_pormade rounded-xl">
-                        <div className=" w-full h-1/12 text-center  text-white font-semibold text-6xl">Ops...</div>
-                        <div className=" w-full h-1/5 text-center p-5 ">
-                            <p className="text-cinza_fonte text-3xl font-semibold">Nada foi adicionado no</p>
-                            <p className="text-cinza_fonte text-3xl font-semibold">seu carrinho ainda</p>
-                        </div>
-                        <div className="text-green_pormade underline text-medium font-bold w-full h-1/6 text-center cursor-pointer items-center" onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
-                        <div className="text-center justify-center items-center w-full flex">
-                        <MdOutlineRemoveShoppingCart className='text-white w-1/4 h-1/4'/>
-                        </div>
-                    </div>
-                }
-            </Modal>
         </div>
 
     )

@@ -7,8 +7,9 @@ import '../../index.css'
 export default function CardProduct() {
     return(
         <div 
-            className='w-3/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 
-            tablet:w-2/5 tablet:mx-2 almostCellphone:w-full almostCellphone:p-2 almostCellphone:mx-0 almostCellphone:my-0 almostCellphone:mb-2 almostCellphone:border-none'
+            className='w-4/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 
+            tablet:w-5/12 tablet:mx-2
+            almostCellphone:w-full almostCellphone:p-2 almostCellphone:mx-0 almostCellphone:my-0 almostCellphone:mb-2 almostCellphone:border-none'
         >
             <div className="flex justify-between items-center border-b border-b-green_pormade mb-2">
                 <h1 className='font-bold text-2xl py-1 almostCellphone:text-xl'>Product Name</h1>
