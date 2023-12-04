@@ -10,9 +10,9 @@ export function MenuContextProvider({children}) {
 
     const [newProduct, setNewProduct] = useState(false)
 
-    const [remove, setRemove] = useState(true)
+    const [remove, setRemove] = useState(false)
 
-    const [deletar, setDeletar] = useState(false)
+    const [deletar, setDeletar] = useState(true)
 
     const [historic, setHistoric] = useState(false)
 
