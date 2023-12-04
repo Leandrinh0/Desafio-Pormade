@@ -15,7 +15,7 @@ export default function CardProduct() {
                 <h1 className='font-bold text-2xl py-1 almostCellphone:text-xl'>Product Name</h1>
                 <FaStar className='w-7 h-7 text-yellow'/>
             </div>
-            <div className='w-10/12 almostCellphone:w-11/12'>
+            <div className='w-10/12 almostCellphone:w-11/12 tablet:w-11/12'>
                 <p className='text-sm almostCellphone:text-xs almostCellphone:text-grey_text almostCellphone:h-12'>Description, description, description, description, Description, description, description</p>
             </div>
             <div className='flex justify-between items-center mt-3 almostCellphone:items-end'>

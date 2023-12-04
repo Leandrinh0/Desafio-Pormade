@@ -2,7 +2,7 @@ import "./styles.css"
 
 function CardProductDetails () {
     return(
-        <div className='w-5/12 h-2/5 bg-black_pormade border-2 border-light_green rounded-2xl mt-8 mx-8 p-3 px-5 tablet:w-11/12 tablet:mx-0 tablet:mt-6 tablet:h-1/3 almostCellphone:p-1'>
+        <div className='w-5/12 h-2/5 bg-black_pormade border-2 border-light_green rounded-2xl mt-8 mx-8 p-3 px-5 tablet:w-11/12 tablet:mx-0 tablet:mt-6 tablet:h-1/3 almostCellphone:p-1 almostCellphone:mt-2'>
             <h1 className='font-bold text-2xl border-b border-light_green almostCellphone:text-base'>Product Name</h1>
             <div className="flex justify-between">
                 <p className='font-bold text-xl m-0.5 tablet:mb-1.5 almostCellphone:text-sm'>ID do produto</p>
