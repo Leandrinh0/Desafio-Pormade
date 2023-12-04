@@ -102,7 +102,7 @@ export default function LateralMenu() {
             
             <aside 
                 className={`h-full flex-col items-center bg-black_modal fixed top-0 left-20 overflow-hidden border-r-4 border-solid
-              border-light_green duration-200 block ${show ? 'w-2/12' : "w-0 border-none"} ${show ? 'tablet:w-5/12' : "w-0 border-none"} almostCellphone:text-sm`
+              border-light_green duration-200 block ${show ? 'w-2/12' : "w-0 border-none"} ${show ? 'tablet:w-5/12' : "w-0 border-none"} almostCellphone:text-sm ${show ? 'almostCellphone:w-10/12' : "w-0 border-none"}`
             }>
                 <div className="w-full h-1/6  ">
                     <img src={image} className=" margin w-14  hover:cursor-pointer hover:w-16" onClick={() => setShow(!show)} />
