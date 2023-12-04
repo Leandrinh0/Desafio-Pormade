@@ -15,7 +15,7 @@ export default function ProductDetails () {
             </div>
             <div className="w-10/12 h-5/6 flex justify-center flex-wrap bg-black border-2 border-light_green rounded-3xl tablet:flex-col tablet:flex-nowrap tablet:items-center tablet:justify-start tablet:pb-10">
                 <div className='w-full h-6 justify-end mr-2 mt-1 hidden almostCellphone:flex'>
-                    <IoCloseSharp className='text-light_green w-10 h-10'/>
+                    <IoCloseSharp className='text-light_green w-10 h-10' onClick={() => navigate('/')}/>
                 </div>
                 <CardProductDetails/>
                 <CardProductDetails/>
