@@ -46,12 +46,12 @@ export default function LateralMenu() {
 
 
         <div 
-            className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green ${show? 'h-full' : 'h-5/6'} 
+            className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green h-full
             tablet:h-full almostCellphone:border-t almostCellphone:border-light_green almostCellphone:w-20
             ${lateralMenu? "almostCellphone:flex" : "almostCellphone:hidden"}`}
         >
             <div className='flex flex-col items-center justify-center'>
-            <IoMdClose
+                <IoMdClose
                         className=' hidden text-white w-12 h-12 almostCellphone:flex'
                         onClick={() => setLateralMenu(!lateralMenu)}
                     /> :
