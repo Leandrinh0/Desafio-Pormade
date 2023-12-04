@@ -5,9 +5,6 @@ import { useContext } from "react"
 
 const ModalEditUser = ({user, setUser}) => {
 
-
-    
-
     const close = () => {
         setUser(false)
     }

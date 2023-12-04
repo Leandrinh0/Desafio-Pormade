@@ -8,6 +8,7 @@ import { CgList } from "react-icons/cg";
 import ModalEditUser from "../../ComponentsAdmin/ModalEditUser";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link } from "react-router-dom";
+import ItemTable from "../../Components/ItemTable(cellphone)";
 
 
 
@@ -91,43 +92,20 @@ export default function EditUser() {
 
                 {/* Para mobile -> */}
                 <div className='hidden justify-center p-2 almostCellphone:flex'>
-                    <button
-                        className='text-white_pormade bg-light_green rounded-xl  h-10 text-2xl flex justify-center items-center w-full'
-                        onClick={() => setNewUser(!newUser)}
-                    >
-                        <div className='flex justify-center w-full items-center'>
-                            <FaPlus className='text-white mr-4' />
-                            <p>Cadastrar</p>
-                        </div>
-                    </button>
+                <button
+                    className='text-white_pormade bg-light_green rounded-xl  h-10 text-2xl flex justify-center items-center w-full'
+                    onClick={() => setNewUser(!newUser)}
+                >
+                    <div className='flex justify-center w-full items-center'>
+                        <FaPlus className='text-white mr-4' />
+                        <p>Cadastrar</p>
+                    </div>
+                </button>
                 </div>
-                <div className='w-full h-1/4 bg-black_pormade p-2 rounded-md hidden almostCellphone:flex almostCellphone:flex-col'>
-                    <div className='w-full flex justify-between items-center border-b-2 border-light_green mb-2'>
-                        <h1 className='font-bold text-xl'>Nome do peão</h1>
-                        <CgList className=' text-white w-8 h-8'/>
-                    </div>
-                    <div className='w-full flex justify-between'>
-                        <p className='font-semibold text-base mb-0.5'>ID</p>
-                        <p className='font-semibold text-base mb-0.5'>01</p>
-                    </div>
-                    <div className='w-full flex justify-between'>
-                        <p className='font-semibold text-base'>CPF</p>
-                        <p className='font-semibold text-base'>123.456.789-10</p>
-                    </div>
-                    <div className='w-full h-2/5 flex justify-between items-start'>
-                        <div className='flex '>
-                            <CgList className='w-7 h-7 text-white mr-2'/>
-                            <ImPencil 
-                                className='w-6 h-6 text-white cursor-pointer tablet:mr-1'
-                                onClick={() => setOpenEditModal(!openEditModal)}
-                            />
-                        </div>
-                        <MdDeleteForever 
-                            className='w-7 h-7 text-red-700 cursor-pointer'
-                            onClick={() => setDeletar(!deletar)}
-                        />
-                    </div>
-                </div>
+                <ItemTable/>
+                <ItemTable/>
+                <ItemTable/>
+                
             </div>
 
             {/* Celular -> */}
