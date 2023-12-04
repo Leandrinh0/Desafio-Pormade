@@ -37,6 +37,8 @@ export default function LateralMenu() {
     const goHome = () => {
         navigate('/')
         setShow(false)
+        setLateralMenu(!lateralMenu)
+
     }
 
     const openHitoric = () => {
