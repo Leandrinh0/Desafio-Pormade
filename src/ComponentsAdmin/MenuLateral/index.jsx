@@ -27,6 +27,21 @@ export default function LateralMenu() {
         navigate(url)
     }
 
+    const openCart = () => {
+        setShow(false)
+        setOpenModal(!openModal)
+    }
+
+    const goHome = () => {
+        navigate('/')
+        setShow(false)
+    }
+
+    const openHitoric = () => {
+        setHistoric(true)
+        setShow(false)
+    }
+
 
     return (
         <>
@@ -56,12 +71,12 @@ export default function LateralMenu() {
                         onClick={() => setLateralMenu(!lateralMenu)}
                     /> :
                 <img src={logo} alt="Imagem do logo" className="w-14 h-12 my-3 cursor-pointer"
-                onClick={() => navigate('/')} />
+                onClick={goHome} />
                 <MdOutlineShoppingCart
                     className="w-12 h-12 text-white_pormade my-3 cursor-pointer"
-                    onClick={() => setOpenModal(!openModal)}
+                    onClick={openCart}
                 />
-                <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" onClick={() => {setHistoric(true)}}/>
+                <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" onClick={openHitoric}/>
                 <MdOutlineAdminPanelSettings className="w-12 h-12 text-yellow my-3 cursor-pointer" onClick={() => setShow(!show)} />
             </div>
             <RxExit 
