@@ -102,10 +102,9 @@ export default function EditUser() {
                     </div>
                 </button>
                 </div>
-                <ItemTable/>
-                <ItemTable/>
-                <ItemTable/>
-                
+                <ItemTable secondRowItem={"Nome"} secondRowValue={"Usuário666"} openModalProp={openEditModal} setOpenModalProp={setOpenEditModal}/>
+                <ItemTable secondRowItem={"Nome"} secondRowValue={"Usuário666"}/>
+                <ItemTable secondRowItem={"Nome"} secondRowValue={"Usuário666"}/>
             </div>
 
             {/* Celular -> */}
@@ -122,9 +121,6 @@ export default function EditUser() {
             </div>
 
 
-
-
-            <ModalDelete word='usuário' />
             <ModalEditUser user={openEditModal} setUser={setOpenEditModal}/>
         </div>
     )

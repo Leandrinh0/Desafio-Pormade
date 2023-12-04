@@ -33,7 +33,7 @@ const ModalDelete = ({word}) => {
                     almostCellphone:text-4xl
                     almostCellphone:
                 '>
-                Tem certeza que deseja deletar este produto{word}?
+                <p>Tem certeza que deseja deletar este produto{word}?</p>
                 </div>
                 <div className='w-full h-1/3 itens-center flex justify-center text-white text-center text-2xl font-bold
                     tablet:flex-wrap

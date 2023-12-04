@@ -8,7 +8,7 @@ import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
 import ModalEditUser from "../../ComponentsAdmin/ModalEditUser";
 
 
-export default function ItemTable({secondRowItem, secondRowValue}) {
+export default function ItemTable({secondRowItem, secondRowValue, openModalProp, setOpenModalProp}) {
 
     const {newUser, setNewUser} = useContext(MenuContext)
     const {deletar, setDeletar} = useContext(MenuContext)
@@ -36,7 +36,7 @@ export default function ItemTable({secondRowItem, secondRowValue}) {
                         <CgList className='w-7 h-7 text-white mr-2' />
                         <ImPencil
                             className='w-6 h-6 text-white cursor-pointer tablet:mr-1'
-                            onClick={() => setOpenEditModal(!openEditModal)}
+                            onClick={() => setOpenModalProp(!openModalProp)}
                         />
                     </div>
                     <MdDeleteForever
