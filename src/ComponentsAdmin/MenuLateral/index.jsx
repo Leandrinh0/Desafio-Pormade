@@ -122,8 +122,8 @@ export default function LateralMenu() {
                 <div className="w-full h-1/6  ">
                     <img src={image} className=" margin w-14  hover:cursor-pointer hover:w-16" onClick={() => setShow(!show)} />
                 </div>
-                <button className=" margin w-4/5 h-16 bg-light_green  rounded-lg font-bold text-2xl text-white mb-5" onClick={() => navigateAndCloseModal('/editarUsuarios')}>Usuários</button>
-                <button className=" margin w-4/5 h-16 bg-light_green  rounded-lg font-bold text-2xl text-white" onClick={() => navigateAndCloseModal('/editarProdutos')}>Produtos</button>
+                <button className=" margin w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white mb-5" onClick={() => navigateAndCloseModal('/editarUsuarios')}>Usuários</button>
+                <button className=" margin w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white" onClick={() => navigateAndCloseModal('/editarProdutos')}>Produtos</button>
             </aside>
         </div>
 

@@ -25,7 +25,7 @@ export default function EditUser() {
         <div className='w-screen h-screen flex flex-col items-center'>
             <div className='flex w-full h-14 justify-around mt-6 '>
                 <button
-                    className='text-white_pormade bg-light_green rounded-lg w-1/6 h-9 text-2xl flex justify-center items-center tablet:w-1/5 tablet:ml-8'
+                    className='text-white_pormade bg-light_green  hover:bg-green_button rounded-lg w-1/6 h-9 text-2xl flex justify-center items-center tablet:w-1/5 tablet:ml-8'
                     onClick={() => setNewUser(!newUser)}
                 >
                     <div className='flex justify-center w-full items-center'>
