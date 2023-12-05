@@ -57,11 +57,11 @@ const ModalNewUser = () => {
                 tablet:flex-wrap tablet:justify-center tablet:mt-4
                 almostCellphone:h-2/6
                 '>
-                    <button className='flex w-2/5 h-4/5 bg-red_pormade  rounded-md text-center justify-center items-center text-white font-bold text-2xl hover:bg-red_button
+                    <button className='flex w-2/5 h-4/5 bg-red_pormade  rounded-xl text-center justify-center items-center text-white font-bold text-2xl hover:bg-red_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
                         almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
                     ' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-md text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
+                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
                         almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
 
