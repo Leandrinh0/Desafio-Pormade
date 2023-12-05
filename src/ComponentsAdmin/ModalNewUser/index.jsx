@@ -29,7 +29,9 @@ const ModalNewUser = () => {
                     <div className='w-full h-11/12'>
                         <label className="text-2xl font-semibold flex items-start mb-2">Nome Completo</label>
                     </div> 
-                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'/>
+                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
+                       tablet:h-12
+                    '/>
                 </div>
 
                 <div className='flex flex-row w-5/6 justify-between
@@ -41,6 +43,7 @@ const ModalNewUser = () => {
                         <label className="text-2xl font-semibold mb-2">CPF</label>
                         <input placeholder="Digite o CPF" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:w-full
+                            tablet:h-12
                         '/>
                     </div>
                     <div className='flex flex-col mr-14
