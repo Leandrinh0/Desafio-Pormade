@@ -2,13 +2,14 @@ import { FaSearch, FaPlus } from "react-icons/fa";
 import { MdDeleteForever } from "react-icons/md";
 import { ImPencil } from "react-icons/im";
 import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { CgList } from "react-icons/cg";
 import ModalEditProducts from "../../ComponentsAdmin/ModalEditProducts";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import ItemTable from "../../Components/ItemTable(cellphone)";
+import api from "../../http/api";
 
 
 
@@ -17,11 +18,72 @@ import ItemTable from "../../Components/ItemTable(cellphone)";
 
 export default function EditProducts() {
 
-    const { newUser, setNewUser } = useContext(MenuContext)
-    const [showDeleteModal, setShowDeleteModal] = useState(false)
+
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
     const [openEditForm, setOpenEditForm] = useState(false)
+    const params = useParams()
+    const [allProduts, setAllProducts] = useState([])
+
+    const [productData, setProductData] = useState([])
+    const navigate = useNavigate()
+
+    const fetchData = (async() => {
+        await api.get(`/produtos/lista?pagina=${params.id-1}&&itens=8`)
+            .then(response => setProductData(response.data.products))
+            
+        await api.get('/produtos/lista')
+        .then(response => setAllProducts(response.data.products))
+    })
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    const convertedParams = parseInt(params.id)
+    const [firstNav, setFirstNav] = useState(convertedParams)
+    const [secondNav, setSecondNav] = useState(convertedParams+1)
+    const [thirdNav, setThirdNav] = useState(convertedParams+2)
+    const lastPage = Math.round(allProduts.length/8)
+
+    const nextPage = () => {
+        if (parseInt(params.id) < Math.round(allProduts.length/8)) {
+            navigate(`/editarProdutos/${convertedParams+1}`)
+            api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
+            .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
+        }
+    }
+
+    const previousPage = () => {
+        if (parseInt(params.id) > 1) {
+            navigate(`/editarProdutos/${convertedParams-1}`)
+            api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
+            .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
+        }
+    }
+    const NavigateLastPage = () => {
+        if(convertedParams !== lastPage){
+            navigate(`/editarProdutos/${lastPage}`)
+            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
+            .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
+        }
+
+    }
+
+
+    const [editName, setEditName] = useState('')
+    const [editValue, setEditValue] = useState('')
+    const [editDescription, setEditDescription] = useState('')
+
+    function AddInfoEditForm(item) {
+        setOpenEditForm(!openEditForm)
+        setEditName(item.name)
+        setEditValue(item.value)
+        setEditDescription(item.description)
+    }
 
     return (
         <div className='w-screen h-screen flex flex-col items-center'>
@@ -52,40 +114,52 @@ export default function EditProducts() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className='border-r border-t border-b border-light_green text-2xl'>01</td>
-                            <td className='border border-light_green text-2xl py-2'>adsdsa</td>
-                            <td className='border border-light_green text-2xl py-2'>adsdasd</td>
-                            <td
-                                className='border border-light_green text-2xl py-2'
-                            >
-                                <div className='flex justify-between items-center mx-3'>
-                                    <div className='flex justify-around w-2/6 items-center tablet:w-3/5 tablet:justify-between'>
-                                        <CgList className='w-10 h-10'/>
-                                        <ImPencil 
-                                            className='w-8 h-8 cursor-pointer tablet:mr-1'
-                                            onClick={() => setOpenEditForm(!openEditForm)}
-                                        />
-                                    </div>
-                                    <MdDeleteForever 
-                                        className='w-10 h-10 text-red-700 cursor-pointer'
-                                        onClick={() => setDeletar(!deletar)}
-                                    />
-                                </div>
-                            </td>
-                        </tr>
+                            {productData.map((item) => {
+                                return (
+                                    <tr>
+                                        <td className='border-r border-t border-b border-light_green text-2xl'>{item.id}</td>
+                                        <td className='border border-light_green text-2xl py-2'>{item.name}</td>
+                                        <td className='border border-light_green text-2xl py-2'>R${item.value}</td>
+                                        <td
+                                            className='border border-light_green text-2xl py-2'
+                                        >
+                                            <div className='flex justify-between items-center mx-3'>
+                                                <div className='flex justify-around w-2/6 items-center tablet:w-3/5 tablet:justify-between'>
+                                                    <CgList className='w-10 h-10'/>
+                                                    <ImPencil 
+                                                        className='w-8 h-8 cursor-pointer tablet:mr-1'
+                                                        onClick={() => AddInfoEditForm(item)}
+                                                    />
+                                                </div>
+                                                <MdDeleteForever 
+                                                    className='w-10 h-10 text-red-700 cursor-pointer'
+                                                    onClick={() => setDeletar(!deletar)}
+                                                />
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    
+                                )
+                            })}
                     </tbody>
                 </table>
                 <div className=' justify-center mt-4 tablet:ml-16 flex items-center mb-10 almostCellphone:hidden'>
-                    <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
+                <IoIosArrowBack 
+                        className='w-9 h-9 text-white_pormade cursor-pointer' 
+                        onClick={() => previousPage()}
+                    />
                     <div>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>2</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>3</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>...</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>9</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allProduts.length/8)}</Link>
                     </div>
-                    <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
+                    <IoIosArrowForward 
+                        className='w-9 h-9 text-white_pormade cursor-pointer' 
+                        onClick={() => nextPage()}
+                    />
                 </div>
 
                 {/* Mobile */}
@@ -100,9 +174,9 @@ export default function EditProducts() {
                         </div>
                     </button>
                 </div>
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm}/>
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm}/>
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm}/>
+                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
+                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
+                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
             </div>
 
             {/* Celular -> */}
@@ -120,10 +194,8 @@ export default function EditProducts() {
 
 
 
-
-
+            <ModalEditProducts newProduct={openEditForm} setNewProduct={setOpenEditForm} name={editName} setName={setEditName} value={editValue} setValue={setEditValue} description={editDescription} setDescription={setEditDescription}/>
             <ModalDelete word='produto' />
-            <ModalEditProducts newProduct={openEditForm} setNewProduct={setOpenEditForm} />
 
         </div>
     )

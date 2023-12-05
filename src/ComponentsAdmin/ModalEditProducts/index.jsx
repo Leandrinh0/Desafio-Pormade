@@ -3,7 +3,7 @@ import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
 import { useContext, useState } from "react"
 
-const ModalEditProducts = ({newProduct, setNewProduct}) => {
+const ModalEditProducts = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription}) => {
 
 
     const close = () => {
@@ -19,7 +19,12 @@ const ModalEditProducts = ({newProduct, setNewProduct}) => {
                 <div className='flex flex-row w-5/6 h-1/3 justify-between'>
                     <div className="flex flex-col w-3/6"> 
                         <label className="text-xl font-semibold ">Nome do Produto</label>
-                        <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'/>
+                        <input 
+                            placeholder="Digite o Nome" 
+                            className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
                     </div>
                     <div className='flex flex-col justify-start items-center '>
                         <label className="text-2xl font-medium ">Favoritos</label>
@@ -27,12 +32,23 @@ const ModalEditProducts = ({newProduct, setNewProduct}) => {
                     </div>
                     <div className='flex flex-col '>
                         <label className="text-2xl font-medium ">Preço</label>
-                        <input type="text" placeholder='Digite o Preço' className="h-10 pl-2 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade"/>
+                        <input 
+                            type="text" 
+                            placeholder='Digite o Preço' 
+                            className="h-10 pl-2 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade"
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                        />
                     </div>
                 </div>
                 <div className="flex flex-col w-5/6 h-1/3">
                         <label className="text-xl font-semibold ">Descrição</label>
-                        <input placeholder="" className='w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'/>
+                        <input 
+                            placeholder="" 
+                            className='w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
                     </div>
                 <div className="w-5/6 h-1/3">
                 <div className='flex w-full h-5/6 items-center justify-between'>
