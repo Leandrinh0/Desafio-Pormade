@@ -22,7 +22,7 @@ const Login = () => {
                         <p className='text-white_pormade my-2'>Manter-me Conectado</p>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <Link to='/' className='text-white_pormade bg-light_green rounded-xl w-2/4 h-9 mt-2 text-2xl flex items-start justify-center tablet:w-2/3 cellphone:w-3/4'>Acessar</Link>
+                        <Link to='/home/1' className='text-white_pormade bg-light_green rounded-xl w-2/4 h-9 mt-2 text-2xl flex items-start justify-center tablet:w-2/3 cellphone:w-3/4'>Acessar</Link>
                         <button className='text-white_pormade mt-2'>Suporte</button>
                     </div>
                 </div>

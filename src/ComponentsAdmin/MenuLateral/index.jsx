@@ -35,7 +35,7 @@ export default function LateralMenu() {
     }
 
     const goHome = () => {
-        navigate('/')
+        navigate('/home/1')
         setShow(false)
         setLateralMenu(!lateralMenu)
 
