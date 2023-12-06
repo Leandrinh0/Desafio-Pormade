@@ -1,10 +1,12 @@
 import { FaStar } from "react-icons/fa6";
 import { FiPlusCircle } from "react-icons/fi";
-import '../../index.css'
+import '../../index.css';
+import star from "../../assets/images/star.png"
+import blackStar from "../../assets/images/starBlack.png"
 
 
 
-export default function CardProduct({name, price, description}) {
+export default function CardProduct({name, price, description, favorite}) {
     return(
         <div 
             className='w-4/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 
@@ -13,7 +15,7 @@ export default function CardProduct({name, price, description}) {
         >
             <div className="flex justify-between items-center border-b border-b-green_pormade mb-2">
                 <h1 className='font-bold text-2xl py-1 almostCellphone:text-xl'>{name}</h1>
-                <FaStar className='w-7 h-7 text-yellow'/>
+                <img src={favorite ? star : blackStar} className=" w-8 h-8"/>
             </div>
             <div className='w-10/12 almostCellphone:w-11/12 tablet:w-11/12'>
                 <p className='text-sm almostCellphone:text-xs almostCellphone:text-grey_text almostCellphone:h-12'>{description}</p>

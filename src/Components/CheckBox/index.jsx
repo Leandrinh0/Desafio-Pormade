@@ -25,8 +25,8 @@ export default function ({favorite, setFavorite}) {
   role="switch"
   id="flexSwitchCheckDefault"
   
-  checked={checkboxSelecionado}
-  onChange={() => setCheckboxSelecionado(!checkboxSelecionado)}
+  checked={favorite}
+  onChange={() => setFavorite(!favorite)}
   />
       </>
 

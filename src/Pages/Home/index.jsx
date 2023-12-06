@@ -106,7 +106,7 @@ const Home = () => {
                 </div>
                 <div className='flex flex-row justify-center items-center flex-wrap w-10/12 almostCellphone:flex-col almostCellphone:w-full almostCellphone:p-2'>
                     {productData.map((item) => {
-                        return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id}/>
+                        return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite}/>
                     })}
                 </div>
                 <footer className='flex justify-center my-4 tablet:hidden almostCellphone:hidden'>

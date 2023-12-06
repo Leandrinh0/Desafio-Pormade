@@ -13,7 +13,7 @@ import blackStar from "../../assets/images/starBlack.png"
 
 
 
-const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, fetchData}) => {
+const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, favorite, setFavorite, fetchData}) => {
     const {user} = useContext(AuthenticateContext)
     const {checkboxSelecionado, openEditForm, setOpenEditForm} = useContext(MenuContext)
 
@@ -29,7 +29,8 @@ const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description
             update: {
                 name: name,
                 value: parseInt(value),
-                description: description
+                description: description,
+                favorite: favorite
                 
             }
         })
@@ -83,8 +84,8 @@ const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description
                         <div className="flex justify-between w-1/2
                             almostCellphone:w-3/4
                         ">
-                        <CheckBox/>
-                        <img src={checkboxSelecionado ? star : blackStar} className=" w-6 h-6"/>
+                        <CheckBox favorite={favorite} setFavorite={setFavorite}/>
+                        <img src={favorite ? star : blackStar} className=" w-6 h-6"/>
                         </div>
                     </div>
 

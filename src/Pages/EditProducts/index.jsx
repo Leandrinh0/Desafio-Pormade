@@ -80,6 +80,7 @@ export default function EditProducts() {
     const [editName, setEditName] = useState('')
     const [editValue, setEditValue] = useState('')
     const [editDescription, setEditDescription] = useState('')
+    const [editFavorite, setEditFavorite] = useState('')
     const [id, setId] = useState()
 
 
@@ -88,11 +89,12 @@ export default function EditProducts() {
         setEditName(item.name)
         setEditValue(item.value)
         setEditDescription(item.description)
+        setEditFavorite(item.favorite)
         setId(item.id)
     }
 
-
-
+    console.log(editFavorite)
+    console.log(editDescription)
 
     return (
         <div className='w-screen h-screen flex flex-col items-center'>
@@ -207,6 +209,7 @@ export default function EditProducts() {
                 newProduct={openEditForm} setNewProduct={setOpenEditForm} 
                 name={editName} setName={setEditName} value={editValue} 
                 setValue={setEditValue} description={editDescription} 
+                favorite={editFavorite} setFavorite={setEditFavorite}
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
