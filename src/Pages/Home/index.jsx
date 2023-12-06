@@ -10,6 +10,7 @@ import { AdminContext } from "../../Contexts/AdminContext";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
+import { AuthenticateContext } from "../../Contexts/Authenticate";
 
 
 
@@ -18,7 +19,7 @@ const Home = () => {
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
 
-
+    const {user} = useContext(AuthenticateContext)
     const { show } = useContext(AdminContext)
     const { setShow, setNewProduct, setNewUser, setRemove, setDeletar, setHistoric } = useContext(MenuContext)
 
@@ -89,7 +90,7 @@ const Home = () => {
     }
     
 
-    console.log(Math.round(allProduts.length/8))
+    console.log(user)
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 

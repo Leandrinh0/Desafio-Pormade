@@ -11,6 +11,7 @@ import "./style.css"
 import { LuMenu } from "react-icons/lu"
 import { FaSearch } from "react-icons/fa"
 import { IoMdClose } from "react-icons/io";
+import { AuthenticateContext } from "../../Contexts/Authenticate"
 
 
 export default function LateralMenu() {
@@ -19,6 +20,7 @@ export default function LateralMenu() {
     const {setHistoric} = useContext(MenuContext)
     const [lateralMenu, setLateralMenu] = useState(false)
     const navigate = useNavigate()
+    const {user, logOut} = useContext(AuthenticateContext)
 
     const array = [1]
 
@@ -69,7 +71,7 @@ export default function LateralMenu() {
         <div 
             className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green h-full
             tablet:h-full almostCellphone:border-t almostCellphone:border-light_green almostCellphone:w-20
-            ${lateralMenu? "almostCellphone:flex" : "almostCellphone:hidden"}`}
+            ${lateralMenu? "almostCellphone:flex" : "almostCellphone:hidden"} ${user? "" : "hidden"}`}
         >
             <div className='flex flex-col items-center justify-center'>
                 <IoMdClose
@@ -83,11 +85,11 @@ export default function LateralMenu() {
                     onClick={openCart}
                 />
                 <MdOutlineWatchLater className="w-12 h-12 text-white_pormade my-3 cursor-pointer" onClick={openHitoric}/>
-                <MdOutlineAdminPanelSettings className="w-12 h-12 text-yellow my-3 cursor-pointer" onClick={() => setShow(!show)} />
+                <MdOutlineAdminPanelSettings className={`w-12 h-12 text-yellow my-3 cursor-pointer ${user && user.admin === true? "" : "hidden"}`} onClick={() => setShow(!show)} />
             </div>
             <RxExit 
                 className="w-12 h-12 text-white_pormade cursor-pointer almostCellphone:fixed almostCellphone:bottom-6"
-                onClick={() => navigate('/login')}
+                onClick={() => logOut()}
             />
 
                 {/* Modal do carrinho */}

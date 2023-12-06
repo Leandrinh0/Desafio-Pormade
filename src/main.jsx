@@ -7,6 +7,8 @@ import ProductDetail from './Pages/ProductDetails/index.jsx'
 import Login from './Pages/Login/index.jsx'
 import EditUser from './Pages/EditUsers/index.jsx'
 import EditProducts from './Pages/EditProducts'
+import { AuthenticateContextProvider } from './Contexts/Authenticate.jsx'
+import ProtectedComponent from './Pages/ProtectedComponent/index.jsx'
 
 const router = createBrowserRouter( [
   {
@@ -23,18 +25,26 @@ const router = createBrowserRouter( [
         },
         {
           path: '/editarProdutos/:id',
-          element: <EditProducts/>
+          element:
+              <EditProducts/>
         }
     ]
 
   },
   {
     path: '/login',
-    element: <Login />
+    element: 
+    <AuthenticateContextProvider>
+    <Login />
+    </AuthenticateContextProvider>
   },
   {
     path: '/detalhesProduto',
-    element: <ProductDetail/>
+    element:
+      <ProtectedComponent>
+        <ProductDetail/>
+      </ProtectedComponent>
+
   },
 ])
 
