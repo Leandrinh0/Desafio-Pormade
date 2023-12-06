@@ -1,5 +1,9 @@
+
 import CheckBox from "../../Components/CheckBoxUser"
 import "../../index.css"
+import { MenuContext } from "../../Contexts/MenuContext"
+import { useContext } from "react"
+
 
 const ModalEditUser = ({user, setUser}) => {
 
@@ -16,6 +20,7 @@ const ModalEditUser = ({user, setUser}) => {
                 <div className='w-full h-2/6 flex justify-center items-center
                     tablet:h-1/6
                 '>
+
                     <h1 className='my-6 text-3xl font-bold mb-4'>Editar Usuário</h1>
                 </div>
                 <div className="flex flex-col w-5/6 items-center justify-start
@@ -35,6 +40,7 @@ const ModalEditUser = ({user, setUser}) => {
                     <div className="flex flex-col w-3/6 
                         almostCellphone:w-full
                     ">
+
                         <label className="text-2xl font-semibold mb-2">CPF</label>
                         <input placeholder="Digite o CPF" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:w-full
@@ -61,9 +67,7 @@ const ModalEditUser = ({user, setUser}) => {
                     ' onClick={close}>Cancelar</button>
                     <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
-                        almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
-
-                    ' onClick={close}> Confirmar</button>
+                        almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0' onClick={close}> Confirmar</button>
                 </div>
             </div>
             

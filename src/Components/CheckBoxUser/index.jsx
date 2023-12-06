@@ -1,4 +1,3 @@
-import './checkbox.css'
 
 export default function () {
 

@@ -24,8 +24,6 @@ export default function EditProducts() {
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
     const [openEditForm, setOpenEditForm] = useState(false)
-        const { deletar, setDeletar } = useContext(MenuContext)
-    const { newProduct, setNewProduct } = useContext(MenuContext)
     
     const params = useParams()
     const [allProduts, setAllProducts] = useState([])

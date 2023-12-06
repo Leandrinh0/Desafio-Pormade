@@ -108,8 +108,10 @@ const ModalNewProduct = ({fetchData}) => {
                             almostCellphone:text-xl
                         ">Descrição</label>
                         <textarea placeholder="Digite uma descrição" className='resize-none w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
-                            almostCellphone:h-1/2
-                        '/>
+                            almostCellphone:h-1/2'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
                     </div>
                 <div className="w-5/6 h-1/3">
                 <div className='flex w-full h-5/6 items-center justify-between
