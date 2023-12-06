@@ -1,11 +1,15 @@
 import CheckBox from "../../Components/CheckBox"
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
+import star from "../../assets/images/star.png"
+import blackStar from "../../assets/images/starBlack.png"
 
 const ModalNewProduct = () => {
 
     const {newProduct, setNewProduct} = useContext(MenuContext)
+
+    const {checkboxSelecionado} = useContext(MenuContext)
 
     const close = () => {
         setNewProduct(false)
@@ -49,7 +53,12 @@ const ModalNewProduct = () => {
                         <label className="text-2xl font-medium 
                             almostCellphone:text-xl
                         ">Favoritos</label>
+                        <div className="flex justify-between w-1/2
+                            almostCellphone:w-3/4
+                        ">
                         <CheckBox/>
+                        <img src={checkboxSelecionado ? star : blackStar} className=" w-6 h-6"/>
+                        </div>
                     </div>
                     <div className='flex flex-col w-3/5'>
                         <label className="text-2xl font-medium 
@@ -66,7 +75,7 @@ const ModalNewProduct = () => {
                         <label className="text-xl font-semibold 
                             almostCellphone:text-xl
                         ">Descrição</label>
-                        <textarea placeholder="kyuily" className='resize-none w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
+                        <textarea placeholder="Digite uma descrição" className='resize-none w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:h-1/2
                         '/>
                     </div>
