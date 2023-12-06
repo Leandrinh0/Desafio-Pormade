@@ -2,11 +2,27 @@ import CheckBox from "../../Components/CheckBox"
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
 import { useContext, useState } from "react"
+import api from "../../http/api"
+import { AuthenticateContext } from "../../Contexts/Authenticate"
 
-const ModalEditProducts = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription}) => {
-
+const ModalEditProducts = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, fetchData}) => {
+const {user} = useContext(AuthenticateContext)
 
     const close = () => {
+        setNewProduct(false)
+    }
+
+    const editProduct = () => {
+        api.put("produtos", {
+            id: id,
+            updatorCpf: user.cpf,
+            update: {
+                name: name,
+                value: parseInt(value),
+                description: description
+            }
+        })
+        .then(() => fetchData())
         setNewProduct(false)
     }
 
@@ -21,7 +37,7 @@ const ModalEditProducts = ({newProduct, setNewProduct, name, value, description,
                         <label className="text-xl font-semibold ">Nome do Produto</label>
                         <input 
                             placeholder="Digite o Nome" 
-                            className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'
+                            className='w-full h-10 bg-transparent text-white outline-none rounded-lg mb-5 border border-green_pormade pl-2'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                         />
@@ -33,9 +49,9 @@ const ModalEditProducts = ({newProduct, setNewProduct, name, value, description,
                     <div className='flex flex-col '>
                         <label className="text-2xl font-medium ">Preço</label>
                         <input 
-                            type="text" 
+                            type="text"
                             placeholder='Digite o Preço' 
-                            className="h-10 pl-2 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade"
+                            className="h-10 pl-2 bg-transparent text-white outline-none rounded-lg mb-5 border border-green_pormade"
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
                         />
@@ -45,7 +61,7 @@ const ModalEditProducts = ({newProduct, setNewProduct, name, value, description,
                         <label className="text-xl font-semibold ">Descrição</label>
                         <input 
                             placeholder="" 
-                            className='w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'
+                            className='w-full h-20 bg-transparent text-white outline-none rounded-lg mb-5 border border-green_pormade pl-2'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />
@@ -53,7 +69,7 @@ const ModalEditProducts = ({newProduct, setNewProduct, name, value, description,
                 <div className="w-5/6 h-1/3">
                 <div className='flex w-full h-5/6 items-center justify-between'>
                     <button className='flex w-2/5 h-5/6 bg-red-700  rounded-md text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-5/6 bg-light_green rounded-md text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button' onClick={close}> Confirmar</button>
+                    <button className='flex w-2/5 h-5/6 bg-light_green rounded-md text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button' onClick={() => editProduct()}> Confirmar</button>
                 </div>
                 </div>
             </div>

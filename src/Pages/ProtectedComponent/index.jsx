@@ -10,6 +10,7 @@ export default function ProtectedComponent ({children}) {
        return children
     }
 
+
     return (
         <div className='w-full h-96 flex justify-center items-center flex-col'>
             <p>Você não tem acesso para acessar essa página</p>

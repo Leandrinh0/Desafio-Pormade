@@ -77,12 +77,14 @@ export default function EditProducts() {
     const [editName, setEditName] = useState('')
     const [editValue, setEditValue] = useState('')
     const [editDescription, setEditDescription] = useState('')
+    const [id, setId] = useState()
 
     function AddInfoEditForm(item) {
         setOpenEditForm(!openEditForm)
         setEditName(item.name)
         setEditValue(item.value)
         setEditDescription(item.description)
+        setId(item.id)
     }
 
     return (
@@ -194,7 +196,13 @@ export default function EditProducts() {
 
 
 
-            <ModalEditProducts newProduct={openEditForm} setNewProduct={setOpenEditForm} name={editName} setName={setEditName} value={editValue} setValue={setEditValue} description={editDescription} setDescription={setEditDescription}/>
+            <ModalEditProducts 
+                newProduct={openEditForm} setNewProduct={setOpenEditForm} 
+                name={editName} setName={setEditName} value={editValue} 
+                setValue={setEditValue} description={editDescription} 
+                setDescription={setEditDescription} id={parseInt(id)}
+                fetchData={fetchData}
+            />
             <ModalDelete word='produto' />
 
         </div>
