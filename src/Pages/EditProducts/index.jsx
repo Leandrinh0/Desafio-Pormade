@@ -20,9 +20,13 @@ import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
 export default function EditProducts() {
 
 
+
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
     const [openEditForm, setOpenEditForm] = useState(false)
+        const { deletar, setDeletar } = useContext(MenuContext)
+    const { newProduct, setNewProduct } = useContext(MenuContext)
+    
     const params = useParams()
     const [allProduts, setAllProducts] = useState([])
 
@@ -88,6 +92,9 @@ export default function EditProducts() {
         setEditDescription(item.description)
         setId(item.id)
     }
+
+
+
 
     return (
         <div className='w-screen h-screen flex flex-col items-center'>

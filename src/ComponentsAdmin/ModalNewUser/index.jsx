@@ -1,4 +1,4 @@
-import CheckBox from "../../Components/CheckBox"
+import CheckBox from "../../Components/CheckBoxUser"
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
 import { useContext } from "react"
@@ -29,7 +29,9 @@ const ModalNewUser = () => {
                     <div className='w-full h-11/12'>
                         <label className="text-2xl font-semibold flex items-start mb-2">Nome Completo</label>
                     </div> 
-                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2'/>
+                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
+                       tablet:h-12
+                    '/>
                 </div>
 
                 <div className='flex flex-row w-5/6 justify-between
@@ -41,6 +43,7 @@ const ModalNewUser = () => {
                         <label className="text-2xl font-semibold mb-2">CPF</label>
                         <input placeholder="Digite o CPF" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:w-full
+                            tablet:h-12
                         '/>
                     </div>
                     <div className='flex flex-col mr-14
@@ -57,11 +60,11 @@ const ModalNewUser = () => {
                 tablet:flex-wrap tablet:justify-center tablet:mt-4
                 almostCellphone:h-2/6
                 '>
-                    <button className='flex w-2/5 h-4/5 bg-red_pormade  rounded-md text-center justify-center items-center text-white font-bold text-2xl hover:bg-red_button
+                    <button className='flex w-2/5 h-4/5 bg-red_pormade  rounded-xl text-center justify-center items-center text-white font-bold text-2xl hover:bg-red_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
                         almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
                     ' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-md text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
+                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
                         almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
 
