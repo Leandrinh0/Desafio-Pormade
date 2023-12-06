@@ -10,6 +10,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ItemTable from "../../Components/ItemTable(cellphone)";
 import api from "../../http/api";
+import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
 
 
 
@@ -78,6 +79,7 @@ export default function EditProducts() {
     const [editValue, setEditValue] = useState('')
     const [editDescription, setEditDescription] = useState('')
     const [id, setId] = useState()
+
 
     function AddInfoEditForm(item) {
         setOpenEditForm(!openEditForm)
@@ -203,7 +205,9 @@ export default function EditProducts() {
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
-            <ModalDelete word='produto' />
+            <ModalDelete word='produto'/>
+
+            <ModalNewProduct fetchData={fetchData}/>
 
         </div>
     )

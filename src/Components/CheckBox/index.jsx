@@ -1,6 +1,8 @@
 import './checkbox.css'
 
-export default function () {
+export default function ({favorite, setFavorite}) {
+
+  console.log(favorite)
     return (
         <>
 <input
@@ -17,7 +19,10 @@ export default function () {
     dark:bg-neutral-600 dark:after:bg-neutral-400 dark:checked:bg-primary dark:checked:after:bg-primary dark:focus:before:shadow-[3px_-1px_0px_13px_rgba(255,255,255,0.4)] dark:checked:focus:before:shadow-[3px_-1px_0px_13px_#3b71ca]"
   type="checkbox"
   role="switch"
-  id="flexSwitchCheckDefault" />
+  id="flexSwitchCheckDefault"
+  checked={favorite}
+  onChange={(e) => setFavorite(e.target.checked)}
+  />
         </>
 
     )
