@@ -28,10 +28,6 @@ export default function ({favorite, setFavorite}) {
   checked={favorite}
   onChange={(e) => setFavorite(e.target.checked)}
   />
-  
-  checked={checkboxSelecionado}
-  onChange={() => {setCheckboxSelecionado(!checkboxSelecionado)}}
-   />
 
         </>
 

@@ -10,19 +10,16 @@ import star from "../../assets/images/star.png"
 import blackStar from "../../assets/images/starBlack.png"
 
 
-const ModalEditProducts = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, fetchData}) => {
-const {user} = useContext(AuthenticateContext)
 
 
 
-
-const ModalEditProducts = ({newProduct, setNewProduct}) => {
-
+const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, fetchData}) => {
+    const {user} = useContext(AuthenticateContext)
     const {checkboxSelecionado, openEditForm, setOpenEditForm} = useContext(MenuContext)
 
 
     const close = () => {
-        setOpenEditForm(false)
+        setNewProduct(false)
     }
 
     const editProduct = () => {
@@ -39,8 +36,9 @@ const ModalEditProducts = ({newProduct, setNewProduct}) => {
         setNewProduct(false)
     }
 
+
     return (
-        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${openEditForm ? 'flex' : "hidden"}`}>
+        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${newProduct ? 'flex' : "hidden"}`}>
             <div className="w-1/2 h-2/5 bg-black_modal rounded-xl border-2 border-light_green flex flex-col items-center
                 tablet:w-3/5 tablet:h-3/5
                 almostCellphone:w-5/6 almostCellphone:h-5/6
@@ -104,19 +102,6 @@ const ModalEditProducts = ({newProduct, setNewProduct}) => {
                 <div className="flex flex-col w-5/6 h-1/3">
 
                         <label className="text-xl font-semibold ">Descrição</label>
-                        <input 
-                            placeholder="" 
-                            className='w-full h-20 bg-transparent text-white outline-none rounded-lg mb-5 border border-green_pormade pl-2'
-                        />
-                    </div>
-                <div className="w-5/6 h-1/3">
-                <div className='flex w-full h-5/6 items-center justify-between'>
-                    <button className='flex w-2/5 h-5/6 bg-red-700  rounded-md text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-5/6 bg-light_green rounded-md text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button' onClick={() => editProduct()}> Confirmar</button>
-
-                        <label className="text-xl font-semibold 
-                            almostCellphone:text-xl
-                        ">Descrição</label>
                         <textarea placeholder="Digite uma descrição" className='resize-none w-full h-20 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:h-1/2'
                             value={description}
@@ -124,22 +109,16 @@ const ModalEditProducts = ({newProduct, setNewProduct}) => {
                         />
                     </div>
                 <div className="w-5/6 h-1/3">
-                <div className='flex w-full h-5/6 items-center justify-between
-                    tablet:flex-wrap tablet:justify-center
-                    almostCellphone:h-5/6
-                '>
-                    <button className='flex w-2/5 h-4/5 bg-red-700  rounded-xl text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button
-                        tablet:w-80 tablet:h-2/5
-                    ' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button
-                        tablet:w-80 tablet:h-2/5
-                    ' onClick={close}> Confirmar</button>
-                </div>
-                </div>
-            </div>
-            
-        </div>
-    )
-}
+                <div className='flex w-full h-5/6 items-center justify-between'>
+                    <button className='flex w-2/5 h-5/6 bg-red-700  rounded-md text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button' onClick={close}>Cancelar</button>
+                    <button className='flex w-2/5 h-5/6 bg-light_green rounded-md text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button' onClick={() => editProduct()}> Confirmar</button>
 
-export default ModalEditProducts
+                        
+                    </div>
+            </div>
+        </div>
+        </div>
+        )
+    }
+
+    export default ModalEditProducts
