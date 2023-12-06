@@ -43,6 +43,7 @@ export default function EditProducts() {
         fetchData()
     }, [])
 
+    
     const convertedParams = parseInt(params.id)
     const [firstNav, setFirstNav] = useState(convertedParams)
     const [secondNav, setSecondNav] = useState(convertedParams+1)

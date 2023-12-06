@@ -1,5 +1,5 @@
 
-export default function () {
+export default function ({admin, setAdmin}) {
 
 
     return (
@@ -19,6 +19,8 @@ export default function () {
   type="checkbox"
   role="switch"
   id="flexSwitchCheckDefault"
+  checked={admin}
+  onChange={() => setAdmin(!admin)}
    />
         </>
 

@@ -1,15 +1,33 @@
 
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import CheckBox from "../../Components/CheckBoxUser"
+import api from "../../http/api"
+import { AuthenticateContext } from "../../Contexts/Authenticate"
 
-const ModalNewUser = () => {
+const ModalNewUser = ({fetchData}) => {
 
     const {newUser, setNewUser} = useContext(MenuContext)
-    
+    const {user} = useContext(AuthenticateContext)
+
+    const [createUser, setCreateUser] = useState("")
+    const [inputCpf, setInputCpf] = useState("")
+    const [admin, setAdmin] = useState(false)
+
+    console.log(admin)
 
     const close = () => {
+        setNewUser(false)
+    }
+
+    const createNewUser = () => {
+        api.post("pessoas", {
+            cpf: inputCpf,
+            name:createUser
+
+        })
+        .then(() => fetchData())
         setNewUser(false)
     }
    
@@ -30,9 +48,13 @@ const ModalNewUser = () => {
                     <div className='w-full h-11/12'>
                         <label className="text-2xl font-semibold flex items-start mb-2">Nome Completo</label>
                     </div> 
-                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
-                       tablet:h-12
-                    '/>
+                    <input 
+                    placeholder="Digite o Nome" 
+                    className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
+                    tablet:h-12'
+                    value={createUser}
+                    onChange={(e) => setCreateUser(e.target.value)}
+                    />
                 </div>
 
                 <div className='flex flex-row w-5/6 justify-between
@@ -44,8 +66,10 @@ const ModalNewUser = () => {
                         <label className="text-2xl font-semibold mb-2">CPF</label>
                         <input placeholder="Digite o CPF" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:w-full
-                            tablet:h-12
-                        '/>
+                            tablet:h-12'
+                            value={inputCpf}
+                            onChange={(e) => setInputCpf(e.target.value)}
+                            />
                     </div>
                     <div className='flex flex-col mr-14
                         tablet:mr-0
@@ -54,7 +78,7 @@ const ModalNewUser = () => {
                         <label className="text-2xl font-medium mb-2 
                             almostCellphone:font-semibold
                         ">Administrador</label>
-                        <CheckBox/>
+                        <CheckBox admin={admin} setAdmin={setAdmin}/>
                     </div>
                 </div>
                 <div className='flex w-5/6 h-2/6 items-center justify-between py-2
@@ -69,7 +93,7 @@ const ModalNewUser = () => {
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
                         almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0
 
-                    ' onClick={close}> Confirmar</button>
+                    ' onClick={() => createNewUser()}> Confirmar</button>
                 </div>
             </div>
             

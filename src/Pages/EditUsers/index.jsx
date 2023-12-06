@@ -1,14 +1,18 @@
 import { FaSearch, FaPlus } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
+import { MdDeleteForever, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { ImPencil } from "react-icons/im";
 import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { CgList } from "react-icons/cg";
 import ModalEditUser from "../../ComponentsAdmin/ModalEditUser";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ItemTable from "../../Components/ItemTable(cellphone)";
+import api from "../../http/api";
+import { AuthenticateContext } from "../../Contexts/Authenticate";
+import ModalNewUser from "../../ComponentsAdmin/ModalNewUser";
+
 
 
 
@@ -18,9 +22,24 @@ import ItemTable from "../../Components/ItemTable(cellphone)";
 export default function EditUser() {
 
     const {newUser, setNewUser} = useContext(MenuContext)
+    const [productData, setProductData] = useState([])
+    const [allProduts, setAllProducts] = useState([])
     const {deletar, setDeletar} = useContext(MenuContext)
     const [openEditModal, setOpenEditModal] = useState(false)
+    const {user} = useContext(AuthenticateContext)
+    const params = useParams()
 
+    const fetchData = (async() => {
+        await api.post(`pessoas/lista/?pagina=${parseInt(params.id)-1}&&itens=8`,{
+            cpf:user.cpf
+        })
+            .then(response => setProductData(response.data.persons))
+            
+    })
+    
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     return (
         <div className='w-screen h-screen flex flex-col items-center'>
@@ -53,10 +72,20 @@ export default function EditUser() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className='border-r border-t border-b px-2 border-light_green text-xl'>01</td>
-                            <td className='border border-light_green text-xl py-2'>adsdsa</td>
-                            <td className='border border-light_green text-xl py-2'>adsdasd</td>
+                        
+                            {productData.map((item) => {
+                                return(
+                                    <tr>
+                                    <td className='border-r border-t border-b px-2 border-light_green text-xl'>01</td>
+                            <td 
+                                className='border border-light_green text-xl py-2'
+                                >
+                                <div className='flex items-center justify-between px-2 h-2'>
+                                {item.name}
+                                <MdOutlineAdminPanelSettings className={`w-10 h-10 text-yellow my-3 cursor-pointer ${item.admin? "" : "hidden"}`} />
+                                </div>
+                            </td>
+                            <td className='border border-light_green text-xl py-2'>{item.cpf}</td>
                             <td
                                 className='border border-light_green text-xl py-2'
                             >
@@ -74,7 +103,10 @@ export default function EditUser() {
                                     />
                                 </div>
                             </td>
-                        </tr>
+                            </tr>
+                                )
+                            })}
+                        
                     </tbody>
                 </table>
                 <div className=' justify-center mt-4 tablet:ml-16 flex items-center mb-10 almostCellphone:hidden'>
@@ -122,6 +154,7 @@ export default function EditUser() {
 
 
             <ModalEditUser user={openEditModal} setUser={setOpenEditModal}/>
+            <ModalNewUser fetchData={fetchData}/>
         </div>
     )
 }
