@@ -10,6 +10,7 @@ import { AdminContext } from "../../Contexts/AdminContext";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
+import { AuthenticateContext } from "../../Contexts/Authenticate";
 
 
 
@@ -18,7 +19,7 @@ const Home = () => {
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
 
-
+    const {user} = useContext(AuthenticateContext)
     const { show } = useContext(AdminContext)
     const { setShow, setNewProduct, setNewUser, setRemove, setDeletar, setHistoric } = useContext(MenuContext)
 
@@ -59,13 +60,14 @@ const Home = () => {
     const [firstNav, setFirstNav] = useState(convertedParams)
     const [secondNav, setSecondNav] = useState(convertedParams+1)
     const [thirdNav, setThirdNav] = useState(convertedParams+2)
-
+    const lastPage = Math.round(allProduts.length/8)
 
     const nextPage = () => {
         if (parseInt(params.id) < Math.round(allProduts.length/8)) {
             navigate(`/home/${convertedParams+1}`)
             api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
             .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
         }
     }
 
@@ -74,10 +76,21 @@ const Home = () => {
             navigate(`/home/${convertedParams-1}`)
             api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
             .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
         }
     }
+    const NavigateLastPage = () => {
+        if(convertedParams !== lastPage){
+            navigate(`/home/${lastPage}`)
+            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
+            .then(response => setProductData(response.data.products))
+            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
+        }
 
-    console.log(productData)
+    }
+    
+
+    console.log(user)
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 
@@ -103,10 +116,10 @@ const Home = () => {
                     />
                     <div>
                         <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""}`}>{thirdNav}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
                         <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 `}>{Math.round(allProduts.length/8)}</Link>
+                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allProduts.length/8)}</Link>
                     </div>
                     <IoIosArrowForward 
                         className='w-9 h-9 text-white_pormade cursor-pointer' 

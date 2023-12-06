@@ -12,6 +12,8 @@ import ModalDeleteProduct from './Components/ModalDeleteProduct'
 import ModalHistoric from './Components/ModalHistoric'
 import Alert from './Components/Alert'
 import ModalNewUser from './ComponentsAdmin/ModalNewUser'
+import { AuthenticateContextProvider } from './Contexts/Authenticate'
+import ProtectedComponent from './Pages/ProtectedComponent'
 
 
 
@@ -28,18 +30,20 @@ function App() {
 
   return (
     <>
-      <AdminContextProvider>
-        <MenuContextProvider>
-          <MenuLateral />
-          <Outlet/>  
-          <ModalDelete />
-          <ModalEditUSer />
-          <ModalNewUser />
-          <ModalNewProduct />
-          <ModalDeleteProduct />
-          <ModalHistoric />
-        </MenuContextProvider>
-      </AdminContextProvider>
+      <AuthenticateContextProvider>
+        <AdminContextProvider>
+          <MenuContextProvider>
+            <MenuLateral />
+            <ProtectedComponent>
+              <Outlet/>  
+            </ProtectedComponent>
+            <ModalEditUSer />
+            <ModalNewUser />
+            <ModalDeleteProduct />
+            <ModalHistoric />
+          </MenuContextProvider>
+        </AdminContextProvider>
+      </AuthenticateContextProvider>
     </>
   )
 }

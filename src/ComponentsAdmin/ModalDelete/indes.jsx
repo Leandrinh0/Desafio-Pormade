@@ -1,5 +1,4 @@
 import "../../index.css"
-import imagem from "../../imagens/imagem.png"
 import { useContext, useState } from 'react'
 import { RiAlertLine } from "react-icons/ri";
 import { MenuContext } from "../../Contexts/MenuContext";
@@ -13,7 +12,6 @@ const ModalDelete = ({word}) => {
     const close = () => {
         setDeletar(false)
     }
-
 
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0  bg-white bg-opacity-20 transition-all ease-in-out duration-500 justify-center items-center overflow-y-auto ${deletar ? 'flex' : "hidden"}`}>
@@ -33,7 +31,7 @@ const ModalDelete = ({word}) => {
                     almostCellphone:text-4xl
                     almostCellphone:
                 '>
-                <p>Tem certeza que deseja deletar este produto{word}?</p>
+                <p>Tem certeza que deseja deletar este {word}?</p>
                 </div>
                 <div className='w-full h-1/3 itens-center flex justify-center text-white text-center text-2xl font-bold
                     tablet:flex-wrap
