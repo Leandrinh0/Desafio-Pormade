@@ -41,6 +41,24 @@ export default function EditUser() {
         fetchData()
     }, [])
 
+    const [editName, setEditName] = useState('')
+    const [editCpf, setEditCpf] = useState('')
+    const [editAdmin, setEditAdmin] = useState('')
+
+
+    function AddInfoEditForm(item) {
+        setEditName(item.name)
+        setEditCpf(item.cpf)
+        setEditAdmin(item.admin)
+
+        setOpenEditModal(!openEditModal)
+
+
+    }
+
+console.log(productData)
+
+
     return (
         <div className='w-screen h-screen flex flex-col items-center'>
             <div className='flex w-full h-14 justify-around mt-6 '>
@@ -94,7 +112,7 @@ export default function EditUser() {
                                         <CgList className='w-10 h-10'/>
                                         <ImPencil 
                                             className='w-8 h-8 cursor-pointer tablet:mr-1'
-                                            onClick={() => setOpenEditModal(!openEditModal)}
+                                            onClick={() => AddInfoEditForm(item)}
                                         />
                                     </div>
                                     <MdDeleteForever 
@@ -153,8 +171,17 @@ export default function EditUser() {
             </div>
 
 
-            <ModalEditUser user={openEditModal} setUser={setOpenEditModal}/>
+            <ModalEditUser 
+                modal={openEditModal} setModal={setOpenEditModal}
+                name={editName} setName={setEditName} 
+                cpf={editCpf} setCpf={setEditCpf} 
+                Admin={editAdmin} setAdmin={setEditAdmin}
+                fetchData={fetchData}
+            
+            
+            />
             <ModalNewUser fetchData={fetchData}/>
+
         </div>
     )
 }

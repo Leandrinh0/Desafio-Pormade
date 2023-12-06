@@ -207,7 +207,7 @@ export default function EditProducts() {
 
 
             <ModalEditProducts 
-                newProduct={openEditForm} setNewProduct={setOpenEditForm} 
+                modal={openEditForm} setModal={setOpenEditForm} 
                 name={editName} setName={setEditName} value={editValue} 
                 setValue={setEditValue} description={editDescription} 
                 favorite={editFavorite} setFavorite={setEditFavorite}

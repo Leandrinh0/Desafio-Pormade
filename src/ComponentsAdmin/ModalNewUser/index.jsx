@@ -24,7 +24,8 @@ const ModalNewUser = ({fetchData}) => {
     const createNewUser = () => {
         api.post("pessoas", {
             cpf: inputCpf,
-            name:createUser
+            name:createUser,
+            admin:admin
 
         })
         .then(() => fetchData())

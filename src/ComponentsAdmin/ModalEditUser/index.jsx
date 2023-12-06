@@ -3,16 +3,32 @@ import CheckBox from "../../Components/CheckBoxUser"
 import "../../index.css"
 import { MenuContext } from "../../Contexts/MenuContext"
 import { useContext } from "react"
+import api from "../../http/api"
+import { AuthenticateContext } from "../../Contexts/Authenticate"
 
 
-const ModalEditUser = ({user, setUser}) => {
+const ModalEditUser = ({modal, setModal, name, setName, cpf, setCpf, admin, setAdmin, fetchData}) => {
+    const {user} = useContext(AuthenticateContext)
 
     const close = () => {
-        setUser(false)
+        setModal(false)
+    }
+
+    const editUser = () => {
+        api.put("pessoas",{
+            updatorCpf: user.cpf,
+            targetCpf: cpf,
+            update:{
+                name: name,
+                admin: admin
+            },
+        })
+        .then(() => fetchData())
+        setModal(!modal)
     }
    
     return (
-        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${user ? 'flex' : "hidden"}`}>
+        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${modal ? 'flex' : "hidden"}`}>
             <div className="w-2/4 h-2/5 bg-black_modal rounded-xl border-2 border-light_green flex flex-col items-center p-2 
                 tablet:w-3/5 tablet:h-2/4
                 almostCellphone:w-5/6 almostCellphone:h-5/6
@@ -29,9 +45,13 @@ const ModalEditUser = ({user, setUser}) => {
                     <div className='w-full h-11/12'>
                         <label className="text-2xl font-semibold flex items-start mb-2">Nome Completo</label>
                     </div> 
-                    <input placeholder="Digite o Nome" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
-                       tablet:h-12
-                    '/>
+                    <input 
+                        placeholder="Digite o Nome" 
+                        className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
+                        tablet:h-12'
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </div>
 
                 <div className='flex flex-row w-5/6 justify-between
@@ -44,8 +64,10 @@ const ModalEditUser = ({user, setUser}) => {
                         <label className="text-2xl font-semibold mb-2">CPF</label>
                         <input placeholder="Digite o CPF" className='w-full h-10 bg-transparent text-grey_text outline-none rounded-lg mb-5 border border-green_pormade pl-2
                             almostCellphone:w-full
-                            tablet:h-12
-                        '/>
+                            tablet:h-12'
+                            value={cpf}
+                            onChange={(e) => setCpf(e.target.value)}
+                            />
                     </div>
                     <div className='flex flex-col mr-14
                         tablet:mr-0
@@ -54,7 +76,7 @@ const ModalEditUser = ({user, setUser}) => {
                         <label className="text-2xl font-medium mb-2 
                             almostCellphone:font-semibold
                         ">Administrador</label>
-                        <CheckBox/>
+                        <CheckBox admin={admin} setAdmin={setAdmin}/>
                     </div>
                 </div>
                 <div className='flex w-5/6 h-2/6 items-center justify-between py-2
@@ -67,7 +89,7 @@ const ModalEditUser = ({user, setUser}) => {
                     ' onClick={close}>Cancelar</button>
                     <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center hover  text-white font-bold text-2xl hover:bg-green_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-80
-                        almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0' onClick={close}> Confirmar</button>
+                        almostCellphone:w-full almostCellphone:h-2/6 almostCellphone:mx-0' onClick={() => editUser()}> Confirmar</button>
                 </div>
             </div>
             
