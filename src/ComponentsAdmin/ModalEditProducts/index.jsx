@@ -30,12 +30,14 @@ const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description
                 name: name,
                 value: parseInt(value),
                 description: description
+                
             }
         })
         .then(() => fetchData())
         setNewProduct(false)
     }
 
+    console.log(description)
 
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${newProduct ? 'flex' : "hidden"}`}>
