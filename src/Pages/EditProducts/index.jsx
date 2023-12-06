@@ -17,11 +17,9 @@ import ItemTable from "../../Components/ItemTable(cellphone)";
 
 export default function EditProducts() {
 
-    const { newUser, setNewUser } = useContext(MenuContext)
-    const [showDeleteModal, setShowDeleteModal] = useState(false)
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
-    const [openEditForm, setOpenEditForm] = useState(false)
+    const {openEditForm, setOpenEditForm} = useContext(MenuContext)
 
     return (
         <div className='w-screen h-screen flex flex-col items-center'>

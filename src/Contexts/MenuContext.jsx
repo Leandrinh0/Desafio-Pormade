@@ -25,10 +25,13 @@ export function MenuContextProvider({children}) {
     //Estrela Favoritos
     const [checkboxSelecionado, setCheckboxSelecionado] = useState(false)
 
+    //Modal editar produto
+    const [openEditForm, setOpenEditForm] = useState(false)
+
     return (
 
         <MenuContext.Provider value={{show, setShow, newUser, setNewUser, newProduct, setNewProduct, remove, setRemove, deletar, setDeletar, historic, setHistoric,
-        checkboxSelecionado, setCheckboxSelecionado}}>
+        checkboxSelecionado, setCheckboxSelecionado, openEditForm, setOpenEditForm}}>
             {children}
         </MenuContext.Provider>
     )
