@@ -23,7 +23,8 @@ export default function () {
   type="checkbox"
   role="switch"
   id="flexSwitchCheckDefault"
-  onClick={() => {setCheckboxSelecionado(!checkboxSelecionado)}}
+  checked={checkboxSelecionado}
+  onChange={() => {setCheckboxSelecionado(!checkboxSelecionado)}}
    />
         </>
 
