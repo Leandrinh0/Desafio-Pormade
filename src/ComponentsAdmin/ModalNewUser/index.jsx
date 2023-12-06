@@ -1,4 +1,4 @@
-import CheckBox from "../../Components/CheckBox"
+import CheckBox from "../../Components/CheckBoxUser"
 import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
 import { useContext } from "react"

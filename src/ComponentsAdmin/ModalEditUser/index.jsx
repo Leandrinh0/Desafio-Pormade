@@ -1,4 +1,4 @@
-import CheckBox from "../../Components/CheckBox"
+import CheckBox from "../../Components/CheckBoxUser"
 import "../../index.css"
 
 const ModalEditUser = ({user, setUser}) => {
