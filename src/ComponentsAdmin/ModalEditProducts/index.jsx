@@ -13,13 +13,13 @@ import blackStar from "../../assets/images/starBlack.png"
 
 
 
-const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description, setName, setValue, setDescription, id, favorite, setFavorite, fetchData}) => {
+const ModalEditProducts  = ({modal, setModal, name, value, description, setName, setValue, setDescription, id, favorite, setFavorite, fetchData}) => {
     const {user} = useContext(AuthenticateContext)
     const {checkboxSelecionado, openEditForm, setOpenEditForm} = useContext(MenuContext)
 
 
     const close = () => {
-        setNewProduct(false)
+        setModal(false)
     }
 
     const editProduct = () => {
@@ -35,13 +35,13 @@ const ModalEditProducts  = ({newProduct, setNewProduct, name, value, description
             }
         })
         .then(() => fetchData())
-        setNewProduct(false)
+        setModal(false)
     }
 
     console.log(description)
 
     return (
-        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${newProduct ? 'flex' : "hidden"}`}>
+        <div className={`fixed left-0 top-0 bottom-0 right-0 bg-black duration-200 justify-center items-center overflow-y-auto ${modal ? 'flex' : "hidden"}`}>
             <div className="w-1/2 h-2/5 bg-black_modal rounded-xl border-2 border-light_green flex flex-col items-center
                 tablet:w-3/5 tablet:h-3/5
                 almostCellphone:w-5/6 almostCellphone:h-5/6
