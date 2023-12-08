@@ -23,7 +23,6 @@ export default function LateralMenu() {
     const navigate = useNavigate()
     const {user, logOut} = useContext(AuthenticateContext)
     const {itensCart} = useContext(ItensCartContext)
-    const array = [1]
 
     const navigateAndCloseModal = (url, array, setArray) => {
         setArray(!array)
@@ -94,7 +93,7 @@ export default function LateralMenu() {
                         <>
                             {itensCart.map((item) => {
                                 return (
-                                    <CartItem name={item.name} description={item.description} value={item.value}/>
+                                    <CartItem name={item.name} description={item.description} value={item.value} id={item.id}/>
                                 )
                             })}
                             <div className='flex w-4/5 mt-2 justify-end items-center tablet:justify-center tablet:flex-col tablet:mb-8 almostCellphone:justify-between'>

@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { TiPlus, TiMinus  } from "react-icons/ti";
 import { MenuContext } from "../../Contexts/MenuContext";
+import ModalDeleteProduct from "../ModalDeleteProduct";
 
 console.log(window.screen.width)
 
-export default function CartItem({name, description, value}) {
+export default function CartItem({name, description, value, id}) {
 
     const {setRemove} = useContext(MenuContext)
+
 
     return (
         <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2 tablet:p- almostCellphone:border-none almostCellphone:w-11/12 almostCellphone:p-2 almostCellphone:h-1/5 almostCellphone:my-1'>
@@ -41,6 +43,7 @@ export default function CartItem({name, description, value}) {
                     </div>
                 </div>
             </div>
+            <ModalDeleteProduct id={id}/>
         </div>
     )
 }

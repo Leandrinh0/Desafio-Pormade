@@ -1,13 +1,17 @@
 import { useContext } from "react"
 import { MenuContext } from "../../Contexts/MenuContext"
+import { ItensCartContext } from "../../Contexts/ItensCartContex"
 
-const ModalDeleteProduct = () => {
+const ModalDeleteProduct = ({id}) => {
 
     const {remove, setRemove} = useContext(MenuContext)
+    const {deleteItem} = useContext(ItensCartContext)
 
     const close = () => {
         setRemove(false)
     }
+
+
 
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0 bg-white bg-opacity-20 duration-200 justify-center items-center overflow-y-auto ${remove ? "flex" : "hidden"}`}>
@@ -27,7 +31,7 @@ const ModalDeleteProduct = () => {
                     ' onClick={close}>Cancelar</button>
                     <button className='flex w-2/5 h-4/6 bg-light_green rounded-md text-center justify-center items-center mx-3 hover  text-white font-semibold text-xl hover:bg-green_button
                         tablet:w-11/12 tablet:h-2/6 tablet:mb-2
-                    ' onClick={close}> Confirmar</button>
+                    ' onClick={() => close()}> Confirmar</button>
                 </div>
             </div>
             

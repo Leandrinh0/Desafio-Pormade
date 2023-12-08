@@ -36,7 +36,6 @@ function App() {
                 <Outlet/>  
               </ProtectedComponent>
               <ModalEditUSer />
-              <ModalDeleteProduct />
               <ModalHistoric />
             </MenuContextProvider>
           </AdminContextProvider>
