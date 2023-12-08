@@ -10,7 +10,6 @@ import CardProduct from "../../Components/CardProduct";
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
-import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 

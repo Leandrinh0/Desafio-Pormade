@@ -1,8 +1,7 @@
 import CheckBox from "../../Components/CheckBox"
 import "../../index.css"
-import { MenuContext } from "../../Contexts/MenuContext"
 import "../../index.css"
-import { useContext, useState } from "react"
+import { useContext } from "react"
 
 import api from "../../http/api"
 import { AuthenticateContext } from "../../Contexts/Authenticate"
@@ -15,7 +14,6 @@ import blackStar from "../../assets/images/starBlack.png"
 
 const ModalEditProducts  = ({modal, setModal, name, value, description, setName, setValue, setDescription, id, favorite, setFavorite, fetchData}) => {
     const {user} = useContext(AuthenticateContext)
-    const {checkboxSelecionado, openEditForm, setOpenEditForm} = useContext(MenuContext)
 
 
     const close = () => {

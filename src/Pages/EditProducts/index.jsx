@@ -214,6 +214,7 @@ export default function EditProducts() {
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
+            
             <ModalDelete word='produto'/>
 
             <ModalNewProduct fetchData={fetchData}/>

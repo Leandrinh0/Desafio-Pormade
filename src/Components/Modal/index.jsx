@@ -1,6 +1,5 @@
 import { AiOutlineClose } from "react-icons/ai";
 
-
 export default function Modal ({isOpen, closeModal, children}) {
     if (isOpen) return (
 
@@ -12,7 +11,11 @@ export default function Modal ({isOpen, closeModal, children}) {
                         onClick={closeModal}
                     />
                 </div>
-                <div className='w-full h-full flex flex-col items-center'>
+                <div className='h-full pt-3 flex flex-col items-center
+                    tablet:pb-0 tablet:pt-5
+                    almostCellphone:pt-0 almostCellphone:pb-8
+                '
+                >
                     {children}
                 </div>
                 </div>

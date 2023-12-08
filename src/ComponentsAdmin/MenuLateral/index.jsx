@@ -106,15 +106,38 @@ export default function LateralMenu() {
                             </div>
                         </>
                         :
-                        <div className=" w-11/12 h-5/6 bg-black_pormade rounded-xl">
-                            <div className=" w-full h-1/12 text-center  text-white font-semibold text-6xl">Ops...</div>
-                            <div className=" w-full h-1/5 text-center p-5 ">
-                                <p className="text-cinza_fonte text-3xl font-semibold">Nada foi adicionado no</p>
-                                <p className="text-cinza_fonte text-3xl font-semibold">seu carrinho ainda</p>
+                        <div className=" w-11/12 height p-3 bg-black_pormade rounded-xl
+                            tablet:w-10/12
+                            almostCellphone:p-0
+
+                            "
+                            >
+                            <div className=" w-full text-center  text-white font-semibold text-6xl mb-3
+                                tablet:h-1/4 tablet:items-center tablet:flex tablet:justify-center
+                                almostCellphone:h-1/6 almostCellphone:text-4xl almostCellphone:mb-0
+                            "
+                            >Ops...</div>
+                            <div className=" w-full h-1/5 text-center p-5 
+                                almostCellphone:p-0
+                            "
+                            >
+                                <p className="text-cinza_fonte text-3xl font-semibold
+                                    almostCellphone:text-lg
+                                "
+                                >Nada foi adicionado no</p>
+                                <p className="text-cinza_fonte text-3xl font-semibold
+                                    almostCellphone:text-lg
+                                "
+                                >seu carrinho ainda</p>
                             </div>
-                            <div className="text-green_pormade underline text-medium font-bold w-full h-1/6 text-center cursor-pointer items-center" onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
-                            <div className="text-center justify-center items-center w-full flex">
-                                <MdOutlineRemoveShoppingCart className='text-white w-1/4 h-1/4' />
+                            <div className="text-green_pormade underline text-xl font-bold w-full h-1/6 text-center cursor-pointer items-center
+                                almostCellphone:hidden
+                            " onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
+                            <div className="text-center justify-center items-center w-full flex ">
+                                <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6
+                                    tablet:w-1/2 tablet:h-1/2
+                                '
+                                 />
                             </div>
                         </div>
                     }
