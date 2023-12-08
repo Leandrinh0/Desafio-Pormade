@@ -1,7 +1,7 @@
 
-export default function ({admin, setAdmin}) {
+export default function ({admin, setAdmin, newAdmin, setNewAdmin,  modalStatus}) {
 
-
+  console.log(`edição:${admin}`)
     return (
         <>
 <input
@@ -19,8 +19,8 @@ export default function ({admin, setAdmin}) {
   type="checkbox"
   role="switch"
   id="flexSwitchCheckDefault"
-  checked={admin}
-  onChange={() => setAdmin(!admin)}
+  checked={modalStatus? newAdmin : admin}
+  onChange={modalStatus?() => setNewAdmin(!newAdmin)  : () => setAdmin(!admin)}
    />
         </>
 

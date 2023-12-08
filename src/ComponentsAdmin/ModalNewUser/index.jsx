@@ -15,7 +15,6 @@ const ModalNewUser = ({fetchData}) => {
     const [inputCpf, setInputCpf] = useState("")
     const [admin, setAdmin] = useState(false)
 
-    console.log(admin)
 
     const close = () => {
         setNewUser(false)
@@ -79,7 +78,7 @@ const ModalNewUser = ({fetchData}) => {
                         <label className="text-2xl font-medium mb-2 
                             almostCellphone:font-semibold
                         ">Administrador</label>
-                        <CheckBox admin={admin} setAdmin={setAdmin}/>
+                        <CheckBox newAdmin={admin} setNewAdmin={setAdmin} modalStatus={newUser}/>
                     </div>
                 </div>
                 <div className='flex w-5/6 h-2/6 items-center justify-between py-2

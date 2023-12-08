@@ -43,7 +43,7 @@ export default function EditUser() {
 
     const [editName, setEditName] = useState('')
     const [editCpf, setEditCpf] = useState('')
-    const [editAdmin, setEditAdmin] = useState('')
+    const [editAdmin, setEditAdmin] = useState(false)
 
 
     function AddInfoEditForm(item) {
@@ -53,10 +53,8 @@ export default function EditUser() {
 
         setOpenEditModal(!openEditModal)
 
-
     }
 
-console.log(productData)
 
 
     return (
@@ -91,10 +89,10 @@ console.log(productData)
                     </thead>
                     <tbody>
                         
-                            {productData.map((item) => {
+                            {productData.map((item, index) => {
                                 return(
                                     <tr>
-                                    <td className='border-r border-t border-b px-2 border-light_green text-xl'>01</td>
+                                    <td className='border-r border-t border-b px-2 border-light_green text-xl'>{index+1}</td>
                             <td 
                                 className='border border-light_green text-xl py-2'
                                 >
@@ -175,7 +173,7 @@ console.log(productData)
                 modal={openEditModal} setModal={setOpenEditModal}
                 name={editName} setName={setEditName} 
                 cpf={editCpf} setCpf={setEditCpf} 
-                Admin={editAdmin} setAdmin={setEditAdmin}
+                admin={editAdmin} setAdmin={setEditAdmin}
                 fetchData={fetchData}
             
             

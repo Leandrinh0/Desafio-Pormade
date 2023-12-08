@@ -1,4 +1,4 @@
-import axios from "axios"
+
 import { useEffect, useState, useContext } from "react"
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,11 +6,11 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import CardProduct from "../../Components/CardProduct";
-import { AdminContext } from "../../Contexts/AdminContext";
-import { MenuContext } from "../../Contexts/MenuContext";
+
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
+import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 
@@ -18,29 +18,11 @@ const Home = () => {
 
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
-
     const {user} = useContext(AuthenticateContext)
-    const { show } = useContext(AdminContext)
-    const { setShow, setNewProduct, setNewUser, setRemove, setDeletar, setHistoric } = useContext(MenuContext)
-
-    const showMenu = () => {
-        setShow(true)
-        setNewProduct(false)
-        setNewUser(false)
-        setRemove(false)
-        setDeletar(false)
-    }
-
-    const showHistoric = () => {
-        setHistoric(true)
-    }
 
     const navigate = useNavigate()
     const params = useParams()
 
-    const exit = () => {
-        return navigate('/login')
-    }
 
     const fetchData = async () => {
         await api.get(`/produtos/lista?pagina=${(convertedParams-1)}&&itens=8`)
