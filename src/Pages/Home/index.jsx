@@ -1,15 +1,14 @@
 
 import { useEffect, useState, useContext } from "react"
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-
-import { Link } from "react-router-dom";
 import CardProduct from "../../Components/CardProduct";
 
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
+import Pagination from "../../Components/pagination";
+import PaginationMobile from "../../Components/paginationMobile";
 
 
 
@@ -18,8 +17,6 @@ const Home = () => {
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
     const {user} = useContext(AuthenticateContext)
-
-    const navigate = useNavigate()
     const params = useParams()
 
 
@@ -38,37 +35,7 @@ const Home = () => {
     console.log(productData)
 
     const convertedParams = parseInt(params.id)
-    const [firstNav, setFirstNav] = useState(convertedParams)
-    const [secondNav, setSecondNav] = useState(convertedParams+1)
-    const [thirdNav, setThirdNav] = useState(convertedParams+2)
-    const lastPage = Math.round(allProduts.length/8)
 
-    const nextPage = () => {
-        if (parseInt(params.id) < Math.round(allProduts.length/8)) {
-            navigate(`/home/${convertedParams+1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
-        }
-    }
-
-    const previousPage = () => {
-        if (parseInt(params.id) > 1) {
-            navigate(`/home/${convertedParams-1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
-        }
-    }
-    const NavigateLastPage = () => {
-        if(convertedParams !== lastPage){
-            navigate(`/home/${lastPage}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
-        }
-
-    }
     
 
     console.log(user)
@@ -90,36 +57,22 @@ const Home = () => {
                         return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite}/>
                     })}
                 </div>
-                <footer className='flex justify-center my-4 tablet:hidden almostCellphone:hidden'>
-                    <IoIosArrowBack 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => previousPage()}
-                    />
-                    <div>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allProduts.length/8)}</Link>
-                    </div>
-                    <IoIosArrowForward 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => nextPage()}
-                    />
-                </footer>
+                <Pagination 
+                    convertedParams={convertedParams} params={params} 
+                    fetchData={fetchData} 
+                    ItemData={productData} setItemData={setProductData} 
+                    allItems={allProduts} setAllItems={setAllProducts}
+                    urlNavigate={"home"} urlRequest={"produtos"}
+                />
             </div>
+            <PaginationMobile
+                convertedParams={convertedParams} params={params} 
+                fetchData={fetchData} 
+                ItemData={productData} setItemData={setProductData} 
+                allItems={allProduts} setAllItems={setAllProducts}
+                urlNavigate={"home"} urlRequest={"produtos"}
+            />
 
-            <footer className=' justify-center mt-4 tablet:ml-16 hidden tablet:flex almostCellphone:flex almostCellphone:ml-0'>
-                    <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
-                    <div>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>1</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>2</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>3</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>...</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>9</Link>
-                    </div>
-                    <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
-                </footer>
         </div>
 
     )

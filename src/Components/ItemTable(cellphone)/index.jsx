@@ -8,7 +8,7 @@ import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
 import ModalEditUser from "../../ComponentsAdmin/ModalEditUser";
 
 
-export default function ItemTable({secondRowItem, secondRowValue, openModalProp, setOpenModalProp}) {
+export default function ItemTable({secondRowItem, secondRowValue, openModalProp, setOpenModalProp, name, value, id, editItem}) {
 
     const {newUser, setNewUser} = useContext(MenuContext)
     const {deletar, setDeletar} = useContext(MenuContext)
@@ -20,23 +20,23 @@ export default function ItemTable({secondRowItem, secondRowValue, openModalProp,
         <>
             <div className='w-full h-1/3 bg-black_pormade p-2 rounded-md hidden almostCellphone:flex almostCellphone:flex-col mb-2'>
                 <div className='w-full flex justify-between items-center border-b-2 border-light_green mb-2'>
-                    <h1 className='font-bold text-xl'>Nome do peão</h1>
+                    <h1 className='font-bold text-xl'>{name}</h1>
                     <CgList className=' text-white w-8 h-8' />
                 </div>
                 <div className='w-full flex justify-between'>
                     <p className='font-semibold text-base mb-0.5'>ID</p>
-                    <p className='font-semibold text-base mb-0.5'>01</p>
+                    <p className='font-semibold text-base mb-0.5'>{id}</p>
                 </div>
                 <div className='w-full flex justify-between'>
                     <p className='font-semibold text-base'>{secondRowItem}</p>
-                    <p className='font-semibold text-base'>{secondRowValue}</p>
+                    <p className='font-semibold text-base'>R${value}</p>
                 </div>
                 <div className='w-full h-2/5 flex justify-between items-center'>
                     <div className='flex '>
                         <CgList className='w-7 h-7 text-white mr-2' />
                         <ImPencil
                             className='w-6 h-6 text-white cursor-pointer tablet:mr-1'
-                            onClick={() => setOpenModalProp(!openModalProp)}
+                            onClick={editItem}
                         />
                     </div>
                     <MdDeleteForever

@@ -1,4 +1,5 @@
 import { FaSearch, FaPlus } from "react-icons/fa";
+import '../../index.css'
 import { MdDeleteForever } from "react-icons/md";
 import { ImPencil } from "react-icons/im";
 import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
@@ -7,19 +8,14 @@ import { MenuContext } from "../../Contexts/MenuContext";
 import { CgList } from "react-icons/cg";
 import ModalEditProducts from "../../ComponentsAdmin/ModalEditProducts";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ItemTable from "../../Components/ItemTable(cellphone)";
 import api from "../../http/api";
 import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
-
-
-
-
-
+import Pagination from "../../Components/pagination";
+import PaginationMobile from "../../Components/paginationMobile";
 
 export default function EditProducts() {
-
-
 
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
@@ -29,7 +25,6 @@ export default function EditProducts() {
     const [allProduts, setAllProducts] = useState([])
 
     const [productData, setProductData] = useState([])
-    const navigate = useNavigate()
 
     const fetchData = (async() => {
         await api.get(`/produtos/lista?pagina=${params.id-1}&&itens=8`)
@@ -43,39 +38,7 @@ export default function EditProducts() {
         fetchData()
     }, [])
 
-    
     const convertedParams = parseInt(params.id)
-    const [firstNav, setFirstNav] = useState(convertedParams)
-    const [secondNav, setSecondNav] = useState(convertedParams+1)
-    const [thirdNav, setThirdNav] = useState(convertedParams+2)
-    const lastPage = Math.round(allProduts.length/8)
-
-    const nextPage = () => {
-        if (parseInt(params.id) < Math.round(allProduts.length/8)) {
-            navigate(`/editarProdutos/${convertedParams+1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
-        }
-    }
-
-    const previousPage = () => {
-        if (parseInt(params.id) > 1) {
-            navigate(`/editarProdutos/${convertedParams-1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
-        }
-    }
-    const NavigateLastPage = () => {
-        if(convertedParams !== lastPage){
-            navigate(`/editarProdutos/${lastPage}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
-        }
-
-    }
 
 
     const [editName, setEditName] = useState('')
@@ -98,7 +61,7 @@ export default function EditProducts() {
     console.log(editDescription)
 
     return (
-        <div className='w-screen h-screen flex flex-col items-center'>
+        <div className='w-full h-full flex flex-col items-center'>
             <div className='flex w-full h-14 justify-around mt-6 '>
                 <button
                     className='text-white_pormade bg-light_green  hover:bg-green_button rounded-lg w-1/6 h-9 text-2xl flex justify-center items-center tablet:w-1/5 tablet:ml-8'
@@ -115,7 +78,7 @@ export default function EditProducts() {
                 </div>
             </div>
             <div className='w-10/12 bg-black h-5/6 border-2 border-light_green rounded-2xl flex flex-col justify-between tablet:ml-14 almostCellphone:ml-0 
-                almostCellphone:w-11/12 almostCellphone:border-none almostCellphone:p-2 almostCellphone:justify-normal'>
+                almostCellphone:w-11/12 almostCellphone:border-none almostCellphone:p-2 almostCellphone:justify-start almostCellphone:h-5/6'>
                 <table className='w-full text-center almostCellphone:hidden'>
                     <thead className='bg-light_green rounded-tl-lg rounded-tr-3xl'>
                         <tr>
@@ -156,26 +119,16 @@ export default function EditProducts() {
                             })}
                     </tbody>
                 </table>
-                <div className=' justify-center mt-4 tablet:ml-16 flex items-center mb-10 almostCellphone:hidden'>
-                <IoIosArrowBack 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => previousPage()}
-                    />
-                    <div>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allProduts.length/8)}</Link>
-                    </div>
-                    <IoIosArrowForward 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => nextPage()}
-                    />
-                </div>
+                <Pagination 
+                    convertedParams={convertedParams} params={params} 
+                    fetchData={fetchData} 
+                    ItemData={productData} setItemData={setProductData} 
+                    allItems={allProduts} setAllItems={setAllProducts}
+                    urlNavigate={"editarProdutos"} urlRequest={"produtos"}
+                />
 
                 {/* Mobile */}
-                <div className='hidden justify-center p-2 almostCellphone:flex'>
+                <div className='hidden justify-center p-2 almostCellphone:flex almostCellphone:h-10/12'>
                     <button
                         className='text-white_pormade bg-light_green rounded-xl  h-10 text-2xl flex justify-center items-center w-full'
                         onClick={() => setNewProduct(!newProduct)}
@@ -186,23 +139,27 @@ export default function EditProducts() {
                         </div>
                     </button>
                 </div>
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
-                <ItemTable secondRowItem={"Preço"} secondRowValue={"R$10,00"} openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} />
+                {productData.map((item) => {
+                    return(
+                        <ItemTable 
+                            secondRowItem={"Preço"} secondRowValue={"R$10,00"} 
+                            openModalProp={openEditForm} setOpenModalProp={setOpenEditForm} 
+                            name={item.name} value={item.value} id={item.id}
+                            item={item}
+                            editItem={() => AddInfoEditForm(item)}
+                        />
+                    )
+                })}
             </div>
 
             {/* Celular -> */}
-            <div className=' justify-center hidden mt-2 items-center mb-2 almostCellphone:flex'>
-                <IoIosArrowBack className='w-6 h-6 text-white_pormade cursor-pointer' />
-                <div>
-                    <Link className='text-2xl text-white_pormade hover:bg-green_pormade px-2'>1</Link>
-                    <Link className='text-2xl text-white_pormade hover:bg-green_pormade px-2'>2</Link>
-                    <Link className='text-2xl text-white_pormade hover:bg-green_pormade px-2'>3</Link>
-                    <Link className='text-2xl text-white_pormade hover:bg-green_pormade px-2'>...</Link>
-                    <Link className='text-2xl text-white_pormade hover:bg-green_pormade px-2'>9</Link>
-                </div>
-                <IoIosArrowForward className='w-6 h-6 text-white_pormade cursor-pointer' />
-            </div>
+            <PaginationMobile
+                convertedParams={convertedParams} params={params} 
+                fetchData={fetchData} 
+                ItemData={productData} setItemData={setProductData} 
+                allItems={allProduts} setAllItems={setAllProducts}
+                urlNavigate={"editarProdutos"} urlRequest={"produtos"}
+            />
 
 
 
@@ -214,7 +171,6 @@ export default function EditProducts() {
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
-            
             <ModalDelete word='produto'/>
 
             <ModalNewProduct fetchData={fetchData}/>
