@@ -107,16 +107,23 @@ const ModalEditProducts  = ({modal, setModal, name, value, description, setName,
                             almostCellphone:h-1/2'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
+                            
                         />
                     </div>
-                <div className="w-5/6 h-1/3">
-                <div className='flex w-full h-5/6 items-center justify-between'>
-                    <button className='flex w-2/5 h-5/6 bg-red-700  rounded-md text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button' onClick={close}>Cancelar</button>
-                    <button className='flex w-2/5 h-5/6 bg-light_green rounded-md text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button' onClick={() => editProduct()}> Confirmar</button>
-
-                        
-                    </div>
-            </div>
+                    <div className="w-5/6 h-1/3">
+                <div className='flex w-full h-5/6 items-center justify-between
+                    tablet:flex-wrap tablet:justify-center
+                    almostCellphone:h-5/6
+                '>
+                    <button className='flex w-2/5 h-4/5 bg-red-700  rounded-xl text-center justify-center items-center  text-white font-semibold text-xl hover:bg-red_button
+                        tablet:w-80 tablet:h-2/5
+                    ' onClick={close}>Cancelar</button>
+                    <button className='flex w-2/5 h-4/5 bg-light_green rounded-xl text-center justify-center items-center  hover  text-white font-semibold text-xl hover:bg-green_button
+                        tablet:w-80 tablet:h-2/5
+                    '
+                    onClick={() => editProduct()}> Confirmar</button>
+                </div>
+                </div>
         </div>
         </div>
         )
