@@ -11,6 +11,8 @@ import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
 import { ItensCartContext } from "../../Contexts/ItensCartContex";
+import Pagination from "../../Components/pagination";
+import PaginationMobile from "../../Components/paginationMobile";
 
 
 
@@ -91,36 +93,20 @@ const Home = () => {
                         return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite}/>
                     })}
                 </div>
-                <footer className='flex justify-center my-4 tablet:hidden almostCellphone:hidden'>
-                    <IoIosArrowBack 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => previousPage()}
-                    />
-                    <div>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allProduts.length/8)}</Link>
-                    </div>
-                    <IoIosArrowForward 
-                        className='w-9 h-9 text-white_pormade cursor-pointer' 
-                        onClick={() => nextPage()}
-                    />
-                </footer>
+                <Pagination 
+                    convertedParams={convertedParams} params={params} 
+                    fetchData={fetchData} 
+                    ItemData={productData} setItemData={setProductData} 
+                    allItems={allProduts} setAllItems={setAllProducts}
+                />
             </div>
+            <PaginationMobile
+                convertedParams={convertedParams} params={params} 
+                fetchData={fetchData} 
+                ItemData={productData} setItemData={setProductData} 
+                allItems={allProduts} setAllItems={setAllProducts}
+            />
 
-            <footer className=' justify-center mt-4 tablet:ml-16 hidden tablet:flex almostCellphone:flex almostCellphone:ml-0'>
-                    <IoIosArrowBack className='w-9 h-9 text-white_pormade cursor-pointer' />
-                    <div>
-                        <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>1</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>2</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>3</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>...</Link>
-                        <Link className='text-4xl text-white_pormade hover:bg-green_pormade px-2'>9</Link>
-                    </div>
-                    <IoIosArrowForward className='w-9 h-9 text-white_pormade cursor-pointer' />
-                </footer>
         </div>
 
     )

@@ -12,14 +12,7 @@ import ItemTable from "../../Components/ItemTable(cellphone)";
 import api from "../../http/api";
 import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
 
-
-
-
-
-
 export default function EditProducts() {
-
-
 
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
