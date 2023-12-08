@@ -8,7 +8,7 @@ import ModalDelete from "../../ComponentsAdmin/ModalDelete/indes";
 import ModalEditUser from "../../ComponentsAdmin/ModalEditUser";
 
 
-export default function ItemTable({secondRowItem, secondRowValue, openModalProp, setOpenModalProp, name, value, id, editItem}) {
+export default function ItemTable({secondRowItem, secondRowValue, openModalProp, setOpenModalProp, name, value, id, editItem, cpf}) {
 
     const {newUser, setNewUser} = useContext(MenuContext)
     const {deletar, setDeletar} = useContext(MenuContext)
@@ -29,7 +29,7 @@ export default function ItemTable({secondRowItem, secondRowValue, openModalProp,
                 </div>
                 <div className='w-full flex justify-between'>
                     <p className='font-semibold text-base'>{secondRowItem}</p>
-                    <p className='font-semibold text-base'>R${value}</p>
+                    <p className='font-semibold text-base'>{cpf? cpf : "R$"+ value}</p>
                 </div>
                 <div className='w-full h-2/5 flex justify-between items-center'>
                     <div className='flex '>

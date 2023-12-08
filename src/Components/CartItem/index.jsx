@@ -11,13 +11,13 @@ export default function CartItem({name, description, value, id}) {
 
 
     return (
-        <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2 tablet:p- almostCellphone:border-none almostCellphone:w-11/12 almostCellphone:p-2 almostCellphone:h-1/4 almostCellphone:my-1]'>
+        <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2 tablet:p- almostCellphone:border-none almostCellphone:w-11/12 almostCellphone:p-2 almostCellphone:h-[30%] almostCellphone:my-1]'>
             <div className='flex justify-between h-full'>
                 <div className='w-2/6 h-fullflex flex-col justify-between tablet:w-3/5 almostCellphone:w-5/12'>
                     <div className='w-full h-full flex flex-col '>
                         <h1 className='font-bold text-2xl border-b-2 border-b-light_green mb-1 tablet:text-xl almostCellphone:text-base almostCellphone:border-none'>{name}</h1>
                         <div className='flex flex-col justify-between w-full h-full'>
-                            <p className='tablet:text-base almostCellphone:text-sm almostCellphone:text-grey_text'>{description}</p>
+                            <p className='tablet:text-base almostCellphone:text-sm almostCellphone:text-grey_text'>{window.screen.width > 650? description : ""}</p>
                             <button className='bg-red_button_cart text-white h-8 w-24 rounded-xl bg-red_button' onClick={() => setRemove(true)}>Excluir</button>
                         </div>
                     </div>

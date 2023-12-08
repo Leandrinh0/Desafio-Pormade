@@ -7,8 +7,7 @@ import { useContext, useEffect, useState } from "react";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { CgList } from "react-icons/cg";
 import ModalEditProducts from "../../ComponentsAdmin/ModalEditProducts";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ItemTable from "../../Components/ItemTable(cellphone)";
 import api from "../../http/api";
 import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
@@ -78,7 +77,7 @@ export default function EditProducts() {
                 </div>
             </div>
             <div className='w-10/12 bg-black h-5/6 border-2 border-light_green rounded-2xl flex flex-col justify-between tablet:ml-14 almostCellphone:ml-0 
-                almostCellphone:w-11/12 almostCellphone:border-none almostCellphone:p-2 almostCellphone:justify-start almostCellphone:h-5/6'>
+                almostCellphone:w-11/12 almostCellphone:border-none almostCellphone:p-2 almostCellphone:justify-start almostCellphone:h-full'>
                 <table className='w-full text-center almostCellphone:hidden'>
                     <thead className='bg-light_green rounded-tl-lg rounded-tr-3xl'>
                         <tr>
@@ -128,7 +127,7 @@ export default function EditProducts() {
                 />
 
                 {/* Mobile */}
-                <div className='hidden justify-center p-2 almostCellphone:flex almostCellphone:h-10/12'>
+                <div className='hidden justify-center p-2 almostCellphone:flex almostCellphone:h-full'>
                     <button
                         className='text-white_pormade bg-light_green rounded-xl  h-10 text-2xl flex justify-center items-center w-full'
                         onClick={() => setNewProduct(!newProduct)}

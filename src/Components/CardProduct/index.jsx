@@ -37,7 +37,7 @@ export default function CardProduct({name, price, description, favorite}) {
             almostCellphone:w-full almostCellphone:p-2 almostCellphone:mx-0 almostCellphone:my-0 almostCellphone:mb-2 almostCellphone:border-none'
         >
             <div className="flex justify-between items-center border-b border-b-green_pormade mb-2">
-                <h1 className='font-bold text-2xl py-1 almostCellphone:text-xl'>{name}</h1>
+                <h1 className='font-bold text-2xl py-1 tablet:text-xl almostCellphone:text-xl'>{name}</h1>
                 <img src={favorite ? star : blackStar} className=" w-8 h-8"/>
             </div>
             <div className='w-10/12 almostCellphone:w-11/12 tablet:w-11/12'>

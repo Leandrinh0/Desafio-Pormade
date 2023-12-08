@@ -29,6 +29,9 @@ const ModalNewUser = ({fetchData}) => {
         })
         .then(() => fetchData())
         setNewUser(false)
+        setCreateUser("")
+        setInputCpf("")
+        setAdmin("")
     }
    
     return (
