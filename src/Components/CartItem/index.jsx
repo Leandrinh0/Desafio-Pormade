@@ -11,7 +11,7 @@ export default function CartItem({name, description, value, id}) {
 
 
     return (
-        <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2 tablet:p- almostCellphone:border-none almostCellphone:w-11/12 almostCellphone:p-2 almostCellphone:h-1/5 almostCellphone:my-1'>
+        <div className='w-5/6 h-1/4 bg-black_pormade border-2 border-light_green rounded-xl p-5 m-2 tablet:p- almostCellphone:border-none almostCellphone:w-11/12 almostCellphone:p-2 almostCellphone:h-1/4 almostCellphone:my-1]'>
             <div className='flex justify-between h-full'>
                 <div className='w-2/6 h-fullflex flex-col justify-between tablet:w-3/5 almostCellphone:w-5/12'>
                     <div className='w-full h-full flex flex-col '>

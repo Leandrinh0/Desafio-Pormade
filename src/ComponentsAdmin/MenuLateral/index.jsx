@@ -96,13 +96,7 @@ export default function LateralMenu() {
                                     <CartItem name={item.name} description={item.description} value={item.value} id={item.id}/>
                                 )
                             })}
-                            <div className='flex w-4/5 mt-2 justify-end items-center tablet:justify-center tablet:flex-col tablet:mb-8 almostCellphone:justify-between'>
-                                <div className='flex flex-row w-full justify-end tablet:justify-center tablet:mb-2 almostCellphone:justify-between almostCellphone:px-3 almostCellphone:mb-2'>
-                                    <h1 className='font-bold text-2xl tablet:text-xl almostCellphone:text-2xl'>Valor Total:</h1>
-                                    <h1 className='font-semibold text-2xl tablet:text-xl almostCellphone:text-2xl'>R$ 302,58</h1>
-                                </div>
-                                <button className='text-white font-semibold text-xl w-1/3 rounded-xl h-10 bg-light_green mx-2 tablet:w-2/3 almostCellphone:w-2/3'>Finalizar Compra</button>
-                            </div>
+                            
                         </>
                         :
                         <div className=" w-11/12 height p-3 bg-black_pormade rounded-xl
