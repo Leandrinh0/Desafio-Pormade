@@ -22,7 +22,7 @@ export default function LateralMenu() {
     const [lateralMenu, setLateralMenu] = useState(false)
     const navigate = useNavigate()
     const {user, logOut} = useContext(AuthenticateContext)
-    const {fetchItens} = useContext(ItensCartContext)
+    const {itensCart} = useContext(ItensCartContext)
     const array = [1]
 
     const navigateAndCloseModal = (url, array, setArray) => {
@@ -90,9 +90,9 @@ export default function LateralMenu() {
 
                 {/* Modal do carrinho */}
                 <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
-                    {array.length > 0 ?
+                    {itensCart.length > 0 ?
                         <>
-                            {fetchItens() && fetchItens().map((item) => {
+                            {itensCart.map((item) => {
                                 return (
                                     <CartItem name={item.name} description={item.description} value={item.value}/>
                                 )

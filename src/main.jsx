@@ -41,9 +41,11 @@ const router = createBrowserRouter( [
   {
     path: '/detalhesProduto',
     element:
-      <ProtectedComponent>
-        <ProductDetail/>
-      </ProtectedComponent>
+      <AuthenticateContextProvider>
+        <ProtectedComponent>
+          <ProductDetail/>
+        </ProtectedComponent>
+      </AuthenticateContextProvider>
 
   },
 ])
