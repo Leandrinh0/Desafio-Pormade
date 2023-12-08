@@ -80,7 +80,7 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
             <div>
                 <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${firstNav === parseInt(params.id)? "bg-light_green" : ""}`}>{firstNav}</Link>
                 <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()} >{secondNav}</Link>
-                <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
+                <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} ${secondNav > lastPage -1? "hidden" : ""}`} onClick={() => nextPage()}>{thirdNav}</Link>
                 <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</Link>
                 <Link className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allItems.length/8)}</Link>
             </div>
