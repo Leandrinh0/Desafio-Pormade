@@ -84,7 +84,7 @@ export default function EditUser() {
                 className='w-10/12 bg-black h-5/6 border-2 border-light_green rounded-2xl flex flex-col justify-between tablet:ml-14 almostCellphone:ml-0 
                 almostCellphone:w-11/12 almostCellphone:border-none almostCellphone:p-2 almostCellphone:justify-start almostCellphone:h-full'
             >
-                <table className='w-full text-center almostCellphone:hidden'>
+                <table className='w-full text-center mb-48 almostCellphone:hidden'>
                     <thead className='bg-light_green rounded-tl-lg rounded-tr-3xl'>
                         <tr>
                             <td className='rounded-tl-lg border-r-2 border-black text-bold text-2xl'>ID</td>
