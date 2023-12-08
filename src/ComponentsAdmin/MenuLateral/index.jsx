@@ -12,6 +12,7 @@ import { LuMenu } from "react-icons/lu"
 import { FaSearch } from "react-icons/fa"
 import { IoMdClose } from "react-icons/io";
 import { AuthenticateContext } from "../../Contexts/Authenticate"
+import { ItensCartContext } from "../../Contexts/ItensCartContex"
 
 
 export default function LateralMenu() {
@@ -21,7 +22,7 @@ export default function LateralMenu() {
     const [lateralMenu, setLateralMenu] = useState(false)
     const navigate = useNavigate()
     const {user, logOut} = useContext(AuthenticateContext)
-
+    const {fetchItens} = useContext(ItensCartContext)
     const array = [1]
 
     const navigateAndCloseModal = (url, array, setArray) => {
@@ -48,8 +49,7 @@ export default function LateralMenu() {
         setShow(false)
     }
 
-
-
+    
 
     return (
         <>
@@ -63,10 +63,6 @@ export default function LateralMenu() {
                     <FaSearch className='w-6 h-6 text-light_green' />
                 </div>
             </div>
-
-
-
-
 
         <div 
             className={`bg-black_modal fixed top-0 left-0 p-3 flex flex-col justify-between border-r-2 border-r-light_green h-full
@@ -96,9 +92,11 @@ export default function LateralMenu() {
                 <Modal isOpen={openModal} closeModal={() => setOpenModal(!openModal)}>
                     {array.length > 0 ?
                         <>
-                            <CartItem />
-                            <CartItem />
-                            <CartItem />
+                            {fetchItens() && fetchItens().map((item) => {
+                                return (
+                                    <CartItem name={item.name} description={item.description} value={item.value}/>
+                                )
+                            })}
                             <div className='flex w-4/5 mt-2 justify-end items-center tablet:justify-center tablet:flex-col tablet:mb-8 almostCellphone:justify-between'>
                                 <div className='flex flex-row w-full justify-end tablet:justify-center tablet:mb-2 almostCellphone:justify-between almostCellphone:px-3 almostCellphone:mb-2'>
                                     <h1 className='font-bold text-2xl tablet:text-xl almostCellphone:text-2xl'>Valor Total:</h1>

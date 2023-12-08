@@ -4,7 +4,7 @@ import { MenuContext } from "../../Contexts/MenuContext";
 
 console.log(window.screen.width)
 
-export default function CartItem() {
+export default function CartItem({name, description, value}) {
 
     const {setRemove} = useContext(MenuContext)
 
@@ -13,9 +13,9 @@ export default function CartItem() {
             <div className='flex justify-between h-full'>
                 <div className='w-2/6 h-fullflex flex-col justify-between tablet:w-3/5 almostCellphone:w-5/12'>
                     <div className='w-full h-full flex flex-col '>
-                        <h1 className='font-bold text-2xl border-b-2 border-b-light_green mb-1 tablet:text-xl almostCellphone:text-base almostCellphone:border-none'>Produto</h1>
+                        <h1 className='font-bold text-2xl border-b-2 border-b-light_green mb-1 tablet:text-xl almostCellphone:text-base almostCellphone:border-none'>{name}</h1>
                         <div className='flex flex-col justify-between w-full h-full'>
-                            <p className='tablet:text-base almostCellphone:text-sm almostCellphone:text-grey_text'>Descricao</p>
+                            <p className='tablet:text-base almostCellphone:text-sm almostCellphone:text-grey_text'>{description}</p>
                             <button className='bg-red_button_cart text-white h-8 w-24 rounded-xl bg-red_button' onClick={() => setRemove(true)}>Excluir</button>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ export default function CartItem() {
                         </div>
                         <div className=''>
                             <h1 className='mb-8 font-semibold text-2xl tablet:text-lg tablet:mb-0.5 almostCellphone:text-base almostCellphone:mb-5'>{window.screen.width < 530? "Valor": "Valor Total"}</h1>
-                            <h1 className='font-bold text-2xl almostCellphone:text-base tablet:text-lg tablet:text-center'>R$97,00</h1>
+                            <h1 className='font-bold text-2xl almostCellphone:text-base tablet:text-lg tablet:text-center'>R${value}</h1>
                         </div>
                     </div>
                 </div>

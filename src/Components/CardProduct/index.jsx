@@ -13,10 +13,9 @@ import { AuthenticateContext } from "../../Contexts/Authenticate";
 export default function CardProduct({name, price, description, favorite}) {
 
     const [selectedItem, setSelectedItem] = useState(false)
-    const {addItem, itensCart, setItensCart} = useContext(ItensCartContext)
-    const {user, itensOnLocalStorage} = useContext(AuthenticateContext)
-    console.log(itensOnLocalStorage)
-    
+    const {addItem, itensCart, setItensCart, fetchItens, removeLocalStorageItem} = useContext(ItensCartContext)
+    const {user} = useContext(AuthenticateContext)
+
     const addItemAndCheck = () => {
         if (!selectedItem) {
             addItem(name, price, description, user.cpf)
@@ -28,9 +27,11 @@ export default function CardProduct({name, price, description, favorite}) {
             })
             setItensCart([...filter])
             setSelectedItem(!selectedItem)
+            removeLocalStorageItem()
         }
     }
 
+    console.log(fetchItens())
     return(
         <div 
             className='w-4/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 
