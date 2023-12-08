@@ -1,16 +1,12 @@
 
 import { useEffect, useState, useContext } from "react"
-import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-
-import { Link } from "react-router-dom";
 import CardProduct from "../../Components/CardProduct";
 
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
-import { ItensCartContext } from "../../Contexts/ItensCartContex";
 import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
 
@@ -21,8 +17,6 @@ const Home = () => {
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
     const {user} = useContext(AuthenticateContext)
-
-    const navigate = useNavigate()
     const params = useParams()
 
 
@@ -41,37 +35,7 @@ const Home = () => {
     console.log(productData)
 
     const convertedParams = parseInt(params.id)
-    const [firstNav, setFirstNav] = useState(convertedParams)
-    const [secondNav, setSecondNav] = useState(convertedParams+1)
-    const [thirdNav, setThirdNav] = useState(convertedParams+2)
-    const lastPage = Math.round(allProduts.length/8)
 
-    const nextPage = () => {
-        if (parseInt(params.id) < Math.round(allProduts.length/8)) {
-            navigate(`/home/${convertedParams+1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
-        }
-    }
-
-    const previousPage = () => {
-        if (parseInt(params.id) > 1) {
-            navigate(`/home/${convertedParams-1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
-        }
-    }
-    const NavigateLastPage = () => {
-        if(convertedParams !== lastPage){
-            navigate(`/home/${lastPage}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
-            .then(response => setProductData(response.data.products))
-            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
-        }
-
-    }
     
 
     console.log(user)
@@ -98,6 +62,7 @@ const Home = () => {
                     fetchData={fetchData} 
                     ItemData={productData} setItemData={setProductData} 
                     allItems={allProduts} setAllItems={setAllProducts}
+                    urlNavigate={"home"} urlRequest={"produtos"}
                 />
             </div>
             <PaginationMobile
@@ -105,6 +70,7 @@ const Home = () => {
                 fetchData={fetchData} 
                 ItemData={productData} setItemData={setProductData} 
                 allItems={allProduts} setAllItems={setAllProducts}
+                urlNavigate={"home"} urlRequest={"produtos"}
             />
 
         </div>

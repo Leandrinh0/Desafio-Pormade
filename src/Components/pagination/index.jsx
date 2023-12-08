@@ -3,7 +3,7 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Link, useNavigate} from "react-router-dom";
 import api from "../../http/api";
 
-export default function Pagination ({convertedParams, params, allItems, ItemData, setItemData, fetchData, forCellphone}) {
+export default function Pagination ({convertedParams, params, allItems, ItemData, setItemData, fetchData, forCellphone, urlNavigate, urlRequest}) {
     const navigate = useNavigate()
 
     const [firstNav, setFirstNav] = useState(convertedParams)
@@ -18,8 +18,8 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
 
     const nextPage = () => {
         if (parseInt(params.id) < Math.round(allItems.length/8)) {
-            navigate(`/home/${convertedParams+1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams)}&&itens=8`)
+            navigate(`/${urlNavigate}/${convertedParams+1}`)
+            api.get(`/${urlRequest}/lista?pagina=${(convertedParams)}&&itens=8`)
             .then(response => setItemData(response.data.products))
             .then(setFirstNav(convertedParams+1), setSecondNav(convertedParams+2), setThirdNav(convertedParams+3))
             console.log("foi")
@@ -28,16 +28,16 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
 
     const previousPage = () => {
         if (parseInt(params.id) > 1) {
-            navigate(`/home/${convertedParams-1}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams-2)}&&itens=8`)
+            navigate(`/${urlNavigate}/${convertedParams-1}`)
+            api.get(`/${urlRequest}/lista?pagina=${(convertedParams-2)}&&itens=8`)
             .then(response => setItemData(response.data.products))
             .then(setFirstNav(convertedParams-1), setSecondNav(convertedParams), setThirdNav(convertedParams+1))
         }
     }
     const NavigateLastPage = () => {
         if(convertedParams !== lastPage){
-            navigate(`/home/${lastPage}`)
-            api.get(`/produtos/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
+            navigate(`/${urlNavigate}/${lastPage}`)
+            api.get(`/${urlRequest}/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
             .then(response => setItemData(response.data.products))
             .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
         }
