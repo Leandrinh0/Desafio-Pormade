@@ -10,7 +10,7 @@ import { AuthenticateContext } from "../../Contexts/Authenticate";
 
 
 
-export default function CardProduct({name, price, description, favorite}) {
+export default function CardProduct({name, price, description, favorite, id, cartActive}) {
 
     const [selectedItem, setSelectedItem] = useState(false)
     const {addItem, itensCart, setItensCart} = useContext(ItensCartContext)
@@ -18,7 +18,7 @@ export default function CardProduct({name, price, description, favorite}) {
 
     const addItemAndCheck = () => {
         if (!selectedItem) {
-            addItem(name, price, description, user.cpf)
+            addItem(name, price, description, user.cpf, id)
             setSelectedItem(!selectedItem)
         }
         else {
@@ -29,6 +29,7 @@ export default function CardProduct({name, price, description, favorite}) {
             setSelectedItem(!selectedItem)
         }
     }
+
 
     return(
         <div 
@@ -45,7 +46,7 @@ export default function CardProduct({name, price, description, favorite}) {
             </div>
             <div className='flex justify-between items-center mt-3 almostCellphone:items-end'>
                 <p className='font-bold	text-2xl almostCellphone:text-lg'>R${price}</p>
-                {selectedItem  ? 
+                {cartActive  ? 
                     <FiMinusCircle 
                         className='w-10 h-10 mr-3 text-red_pormade cursor-pointer almostCellphone:w-8 almostCellphone:h-8 almostCellphone:mr-0'
                         onClick={() => addItemAndCheck()}

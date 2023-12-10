@@ -8,14 +8,17 @@ export function ItensCartProvider({children}) {
 
     const [itensCart, setItensCart] = useState([])
 
-    const addItem = (name, price, description, userCpf) => {
+
+
+    const addItem = (name, price, description, userCpf, id) => {
         const itens = {
             name: name,
             description: description,
             value: price,
-            cpfUser: userCpf
+            cpfUser: userCpf,
+            id: id
         }
-
+        
         setItensCart([...itensCart, itens])
     }
 

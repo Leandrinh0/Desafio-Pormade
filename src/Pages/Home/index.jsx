@@ -9,6 +9,8 @@ import api from "../../http/api";
 import { AuthenticateContext } from "../../Contexts/Authenticate";
 import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
+import ModalDeleteProduct from "../../Components/ModalDeleteProduct";
+import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 
@@ -18,6 +20,7 @@ const Home = () => {
     const [allProduts, setAllProducts] = useState([])
     const {user} = useContext(AuthenticateContext)
     const params = useParams()
+    const {itensCart, setItensCart} = useContext(ItensCartContext)
 
 
     const fetchData = async () => {
@@ -32,13 +35,23 @@ const Home = () => {
         fetchData()
     }, [])
 
-    console.log(productData)
-
     const convertedParams = parseInt(params.id)
-
     
 
-    console.log(user)
+
+    // Filtro para manter os itens ativos ou não.
+    var filterArray = []
+    productData.forEach((i) => {
+        itensCart.forEach((j) => {
+            if(i.id === j.id){
+                filterArray = [...filterArray, j]
+            }
+        })
+    })
+    
+
+
+    console.log(filterArray)
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 
@@ -54,7 +67,14 @@ const Home = () => {
                 </div>
                 <div className='flex flex-row justify-center items-center flex-wrap w-10/12 almostCellphone:flex-col almostCellphone:w-full almostCellphone:p-2'>
                     {productData.map((item) => {
-                        return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite}/>
+                        var filter = filterArray.filter((i) => {
+                            return i.id === item.id
+                        })
+                        if(filter.length === 1 ){
+                            return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite} id={item.id} cartActive={true}/>
+                        } else {
+                            return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite} id={item.id} cartActive={false}/>
+                        }
                     })}
                 </div>
                 <Pagination 
@@ -72,10 +92,10 @@ const Home = () => {
                 allItems={allProduts} setAllItems={setAllProducts}
                 urlNavigate={"home"} urlRequest={"produtos"}
             />
-
         </div>
 
     )
 }
+
 
 export default Home
