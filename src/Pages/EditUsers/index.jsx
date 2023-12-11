@@ -163,6 +163,7 @@ export default function EditUser() {
                 {userData.map((item) => {
                     return <ItemTable secondRowItem={"CPF"} secondRowValue={"Usuário666"} 
                                 openModalProp={openEditModal} setOpenModalProp={setOpenEditModal}
+                                addInfo = {() => AddInfoEditForm(item)}
                                 id={item.id}
                                 name={item.name}
                                 cpf={item.cpf}
