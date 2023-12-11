@@ -31,7 +31,7 @@ const ModalHistoric = () => {
                     {pedidos.map((item, index) => {
                         var sum = 0;
                         item.pedido.forEach((i) => sum += parseInt(i.value))
-                        return <CardHistoric qtd={item.pedido.length} total={sum} numeroPedido={index+1} item={item}/>
+                        return <CardHistoric qtd={item.pedido.length} total={sum} numeroPedido={index+1} item={item} key={item.id}/>
                     })}
 
    

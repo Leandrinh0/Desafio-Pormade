@@ -11,7 +11,6 @@ export function ItensCartProvider({children}) {
     const [historicItens, setHistoricItens] = useState([])
 
 
-
     const addItem = (name, price, description, userCpf, id) => {
         const itens = {
             name: name,

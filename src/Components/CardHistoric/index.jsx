@@ -8,10 +8,11 @@ import { ItensCartContext } from "../../Contexts/ItensCartContex"
 const CardHistoric = ({qtd, total, numeroPedido, item}) => {
     const navigate = useNavigate()
     const {setHistoric} = useContext(MenuContext)
-    const {historicItens, setHistoricItens, cartItens} = useState(ItensCartContext)
+    const {historicItens, setHistoricItens, cartItens} = useContext(ItensCartContext)
 
     const redirect = () => {
-        setHistoricItens([...item.pedido])
+        setHistoric(false)
+        localStorage.setItem("p", item)
         navigate('/detalhesproduto')
         
     }

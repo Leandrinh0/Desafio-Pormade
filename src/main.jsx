@@ -9,6 +9,7 @@ import EditUser from './Pages/EditUsers/index.jsx'
 import EditProducts from './Pages/EditProducts'
 import { AuthenticateContextProvider } from './Contexts/Authenticate.jsx'
 import ProtectedComponent from './Pages/ProtectedComponent/index.jsx'
+import { ItensCartProvider } from './Contexts/ItensCartContex.jsx'
 
 const router = createBrowserRouter( [
   {
@@ -43,7 +44,9 @@ const router = createBrowserRouter( [
     element:
       <AuthenticateContextProvider>
         <ProtectedComponent>
-          <ProductDetail/>
+          <ItensCartProvider>
+            <ProductDetail/>
+          </ItensCartProvider>
         </ProtectedComponent>
       </AuthenticateContextProvider>
 

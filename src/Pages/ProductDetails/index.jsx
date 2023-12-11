@@ -8,6 +8,8 @@ import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 export default function ProductDetails () {
     const navigate = useNavigate()
+    const {historicItens} = useContext(ItensCartContext)
+    console.log(historicItens);
 
     return(
         <div className="w-full h-screen  flex flex-col justify-center items-center almostCellphone:bg-black almostCellphone:py-8">
