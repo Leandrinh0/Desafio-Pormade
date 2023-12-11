@@ -14,10 +14,12 @@ export default function Modal ({isOpen, closeModal, children}) {
     })
 
     const finalizePurchase = () => {
+
         setPedidos([...pedidos, {
             pedido: [...itensCart]
         }])
         setItensCart([])
+        closeModal()
     }
 
     if (isOpen) return (
