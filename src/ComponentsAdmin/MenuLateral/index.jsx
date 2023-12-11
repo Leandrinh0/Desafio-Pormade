@@ -7,7 +7,6 @@ import { MenuContext } from "../../Contexts/MenuContext"
 import image from "../../assets/images/seta.png"
 import Modal from "../../Components/Modal"
 import CartItem from "../../Components/CartItem"
-import "./style.css"
 import { LuMenu } from "react-icons/lu"
 import { FaSearch } from "react-icons/fa"
 import { IoMdClose } from "react-icons/io";
@@ -98,7 +97,7 @@ export default function LateralMenu() {
                             
                         </>
                         :
-                        <div className=" w-11/12 height p-3 bg-black_pormade rounded-xl
+                        <div className=" w-11/12 h-[93%] p-3 bg-black_pormade rounded-xl
                             tablet:w-10/12
                             almostCellphone:p-0
 
@@ -141,10 +140,10 @@ export default function LateralMenu() {
               border-light_green duration-200 block ${show ? 'w-2/12' : "w-0 border-none"} ${show ? 'tablet:w-5/12' : "w-0 border-none"} almostCellphone:text-sm ${show ? 'almostCellphone:w-10/12' : "w-0 border-none"}`
             }>
                 <div className="w-full h-1/6  ">
-                    <img src={image} className=" margin w-14  hover:cursor-pointer hover:w-16" onClick={() => setShow(!show)} />
+                    <img src={image} className=" ml-[9%] w-14  hover:cursor-pointer hover:w-16" onClick={() => setShow(!show)} />
                 </div>
-                <button className=" margin w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white mb-5" onClick={() => navigateAndCloseModal('/editarUsuarios/1', show, setShow)}>Usuários</button>
-                <button className=" margin w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white" onClick={() => navigateAndCloseModal('/editarProdutos/1',show, setShow)}>Produtos</button>
+                <button className=" ml-[9%] w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white mb-5" onClick={() => navigateAndCloseModal('/editarUsuarios/1', show, setShow)}>Usuários</button>
+                <button className=" ml-[9%] w-4/5 h-16 bg-light_green  hover:bg-green_button rounded-lg font-bold text-2xl text-white" onClick={() => navigateAndCloseModal('/editarProdutos/1',show, setShow)}>Produtos</button>
             </aside>
         </div>
 
