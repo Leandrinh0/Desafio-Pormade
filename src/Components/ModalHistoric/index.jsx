@@ -19,7 +19,7 @@ const ModalHistoric = () => {
     return (
         <>
         <div className={`fixed top-0 left-0 right-0 bottom-0 bg-black bg-opacity-20 duration-200 justify-center items-center ${historic ? "flex" : "hidden"}`}>
-                <div className="w-10/12 h-5/6 bg-black_modal rounded-3xl p-4 border-2 border-light_green tablet:h-5/6 almostCellphone:w-5/6">
+                <div className="w-10/12 h-5/6 bg-black_modal rounded-3xl p-4 border-2 border-light_green tablet:h-5/6 almostCellphone:w-5/6 almostCellphone:p-2">
                     <div className='w-full h-8 flex justify-end items-start'>
                         <AiOutlineClose
                             className='text-light_green w-8 h-8 cursor-pointer'
@@ -39,14 +39,12 @@ const ModalHistoric = () => {
                         </>
                         : 
                         <div className=" w-full h-full p-3 bg-black_pormade rounded-xl
-                        tablet:w-10/12
                         almostCellphone:p-0
-
                         "
                         >
-                        <div className=" w-full text-center  text-white font-semibold text-6xl mb-3
+                        <div className=" w-full text-center  text-white font-semibold text-6xl mb-3 mt-3
                             tablet:h-1/4 tablet:items-center tablet:flex tablet:justify-center
-                            almostCellphone:h-1/6 almostCellphone:text-4xl almostCellphone:mb-0
+                            almostCellphone:h-1/4 almostCellphone:text-4xl almostCellphone:mb-0
                         "
                         >Ops...</div>
                         <div className=" w-full h-1/5 text-center p-5 
@@ -63,8 +61,10 @@ const ModalHistoric = () => {
                             >nenhuma compra</p>
                         </div>
                         <div className="text-center justify-center items-center w-full flex ">
-                            <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6
+                            <MdOutlineRemoveShoppingCart className='text-white w-[29%] h-[29%]
                                 tablet:w-1/2 tablet:h-1/2
+                                almostCellphone:w-2/3 almostCellphone:h-2/3
+                                
                             '
                              />
                         </div>
