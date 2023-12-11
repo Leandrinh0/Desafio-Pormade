@@ -55,6 +55,11 @@ export default function EditProducts() {
         setEditFavorite(item.favorite)
         setId(item.id)
     }
+    
+    function addIdAndDelete(item) {
+        setId(item.id)
+        setDeletar(!deletar)
+    }
 
     const filterProducts = productData.filter((item) => item.name.startsWith(search))
 
@@ -111,7 +116,7 @@ export default function EditProducts() {
                                                 </div>
                                                 <MdDeleteForever 
                                                     className='w-10 h-10 text-red-700 cursor-pointer'
-                                                    onClick={() => setDeletar(!deletar)}
+                                                    onClick={() => addIdAndDelete(item)}
                                                 />
                                             </div>
                                         </td>
@@ -174,7 +179,7 @@ export default function EditProducts() {
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
-            <ModalDelete word='produto'/>
+            <ModalDelete word='produto' id={id} fetchData={fetchData}/>
 
             <ModalNewProduct fetchData={fetchData}/>
 

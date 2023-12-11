@@ -15,15 +15,6 @@ import { ItensCartProvider } from './Contexts/ItensCartContex'
 
 
 function App() {
-  const [productData, setProductData] = useState([])
-
-
-  useEffect(() => {
-    axios.get('192.168.155.6:3001/produtos/lista')
-    .then(response => setProductData(response))
-  },[])
-
-  console.log(productData)
 
   return (
     <>
