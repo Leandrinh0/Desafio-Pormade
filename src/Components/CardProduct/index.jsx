@@ -17,13 +17,13 @@ export default function CardProduct({name, price, description, favorite, id, car
     const {user} = useContext(AuthenticateContext)
 
     const addItemAndCheck = () => {
-        if (!selectedItem) {
+        if (!cartActive) {
             addItem(name, price, description, user.cpf, id)
             setSelectedItem(!selectedItem)
         }
         else {
             const filter = itensCart.filter((i) => {
-                return name !== i.name
+                return id !== i.id
             })
             setItensCart([...filter])
             setSelectedItem(!selectedItem)
