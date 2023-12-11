@@ -38,7 +38,7 @@ export default function EditProducts() {
     }, [])
 
     const convertedParams = parseInt(params.id)
-
+    const [search, setSearch] = useState('')
 
     const [editName, setEditName] = useState('')
     const [editValue, setEditValue] = useState('')
@@ -56,8 +56,7 @@ export default function EditProducts() {
         setId(item.id)
     }
 
-    console.log(editFavorite)
-    console.log(editDescription)
+    const filterProducts = productData.filter((item) => item.name.startsWith(search))
 
     return (
         <div className='w-full h-full flex flex-col items-center'>
@@ -72,7 +71,12 @@ export default function EditProducts() {
                     </div>
                 </button>
                 <div className='w-2/6 h-2/3 flex justify-evenly items-center bg-black_modal border-2 border-light_green rounded-md tablet:w-2/5'>
-                    <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg' />
+                    <input 
+                        placeholder='Pesquisar...' 
+                        className='w-10/12 h-full outline-none text-white bg-black_modal text-lg' 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
                     <FaSearch className='w-6 h-6 text-light_green' />
                 </div>
             </div>
@@ -88,7 +92,7 @@ export default function EditProducts() {
                         </tr>
                     </thead>
                     <tbody>
-                            {productData.map((item) => {
+                            {filterProducts.map((item) => {
                                 return (
                                     <tr>
                                         <td className='border-r border-t border-b border-light_green text-2xl'>{item.id}</td>

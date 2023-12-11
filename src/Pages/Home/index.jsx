@@ -6,10 +6,8 @@ import CardProduct from "../../Components/CardProduct";
 
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
-import { AuthenticateContext } from "../../Contexts/Authenticate";
 import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
-import ModalDeleteProduct from "../../Components/ModalDeleteProduct";
 import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
@@ -18,9 +16,9 @@ const Home = () => {
 
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
-    const {user} = useContext(AuthenticateContext)
     const params = useParams()
-    const {itensCart, setItensCart} = useContext(ItensCartContext)
+    const {itensCart} = useContext(ItensCartContext)
+    const [search, setSearch] = useState('')
 
 
     const fetchData = async () => {
@@ -48,10 +46,9 @@ const Home = () => {
             }
         })
     })
-    
 
+    const productsFilter = productData.filter((item) => item.name.startsWith(search))
 
-    console.log(filterArray)
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
 
@@ -61,12 +58,17 @@ const Home = () => {
             >
                 <div className="flex justify-center w-3/6 h-full mt-8 almostCellphone:hidden">
                     <div className='w-10/12 h-12 flex justify-around items-center bg-black_modal border-2 border-light_green rounded-3xl '>
-                        <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg rounded-3xl' />
+                        <input 
+                            placeholder='Pesquisar...' 
+                            className='w-10/12 h-full outline-none text-white bg-black_modal text-lg rounded-3xl' 
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
                         <FaSearch className='w-6 h-6 text-light_green' />
                     </div>
                 </div>
                 <div className='flex flex-row justify-center items-center flex-wrap w-10/12 almostCellphone:flex-col almostCellphone:w-full almostCellphone:p-2'>
-                    {productData.map((item) => {
+                    {productsFilter.map((item) => {
                         var filter = filterArray.filter((i) => {
                             return i.id === item.id
                         })

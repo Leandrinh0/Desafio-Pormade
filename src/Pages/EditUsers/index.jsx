@@ -30,6 +30,7 @@ export default function EditUser() {
     const {user} = useContext(AuthenticateContext)
     const params = useParams()
     const convertedParams = parseInt(params.id)
+    const [search, setSearch] = useState('')
 
     const fetchData = (async() => {
         await api.post(`pessoas/lista/?pagina=${parseInt(params.id)-1}&&itens=8`,{
@@ -62,6 +63,7 @@ export default function EditUser() {
     }
 
 
+    const filterUser = userData.filter((user) => user.name.startsWith(search))
 
     return (
         <div className='w-full h-full flex flex-col items-center'>
@@ -76,7 +78,12 @@ export default function EditUser() {
                     </div>
                 </button>
                 <div className='w-2/6 h-2/3 flex justify-evenly items-center bg-black_modal border-2 border-light_green rounded-md tablet:w-2/5'>
-                    <input placeholder='Pesquisar...' className='w-10/12 h-full outline-none text-white bg-black_modal text-lg' />
+                    <input 
+                        placeholder='Pesquisar...' 
+                        className='w-10/12 h-full outline-none text-white bg-black_modal text-lg' 
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
                     <FaSearch className='w-6 h-6 text-light_green' />
                 </div>
             </div>
@@ -95,7 +102,7 @@ export default function EditUser() {
                     </thead>
                     <tbody>
                         
-                            {userData.map((item, index) => {
+                            {filterUser.map((item, index) => {
                                 return(
                                     <tr>
                                     <td className='border-r border-t border-b px-2 border-light_green text-xl'>{index+1}</td>

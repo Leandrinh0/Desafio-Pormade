@@ -30,7 +30,6 @@ export default function CardProduct({name, price, description, favorite, id, car
         }
     }
 
-
     return(
         <div 
             className='w-4/12 bg-black_pormade border border-green_pormade rounded-2xl flex flex-col p-5 my-4 mx-10 
