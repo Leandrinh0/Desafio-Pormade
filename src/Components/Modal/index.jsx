@@ -29,7 +29,7 @@ export default function Modal ({isOpen, closeModal, children}) {
                         onClick={closeModal}
                     />
                 </div>
-                <div className={`pt-3 flex flex-col items-center tablet:pb-0 tablet:pt-5  almostCellphone:pt-0 almostCellphone:pb-8 ${itensCart.length > 0 ? "h-[90%] tablet:h-[87%] almostCellphone:h-3/4" : "h-full"}`}
+                <div className={`pt-3 flex flex-col items-center tablet:pb-0 tablet:pt-5  almostCellphone:pt-0 almostCellphone:pb-8 ${itensCart.length > 0 ? "h-[90%] tablet:h-[87%] almostCellphone:h-3/4" : "h-full"} overflow-y-scroll`}
                 >
                     {children}
                 </div>
