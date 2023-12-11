@@ -32,8 +32,11 @@ const Login = () => {
                     <input 
                         className='w-full h-9 rounded-lg bg-grey_pormade outline-none text-white_pormade border border-green_pormade text-base ps-3' 
                         placeholder='Digite seu CPF' 
-                        type="number"
+                        type="text"
+                        maxLength="11"
+                        pattern="([0-9]{11})"
                         value={cpfInput}
+
                         onChange={(e) => setCpfInput(e.target.value)}
                     />
                     <div className='flex'>

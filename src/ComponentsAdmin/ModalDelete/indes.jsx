@@ -12,7 +12,6 @@ const ModalDelete = ({word, id, close}) => {
     const {deletar, setDeletar} = useContext(MenuContext)
 
 
-
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0  bg-white bg-opacity-20 transition-all ease-in-out duration-500 justify-center items-center overflow-y-auto ${deletar ? 'flex' : "hidden"}`}>
             <div className=" w-2/6 h-1/3 rounded-xl border-2 border-solid border-green_pormade bg-black_modal 
