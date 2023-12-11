@@ -27,7 +27,7 @@ const ModalHistoric = () => {
                 </div>
                 <div className='w-full h-full flex flex-col items-center '>
 
-                    <div className="flex flex-row justify-between flex-wrap w-5/6 h-5/6 almostCellphone:flex-col almostCellphone:flex-nowrap almostCellphone:w-full almostCellphone:px-2">
+                    <div className="flex flex-row justify-between flex-wrap w-5/6 h-5/6 almostCellphone:flex-col almostCellphone:flex-nowrap almostCellphone:w-full almostCellphone:px-2 overflow-y-scroll">
                     {pedidos.map((item, index) => {
                         var sum = 0;
                         item.pedido.forEach((i) => sum += parseInt(i.value))
