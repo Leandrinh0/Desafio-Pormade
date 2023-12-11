@@ -12,7 +12,7 @@ const CardHistoric = ({qtd, total, numeroPedido, item}) => {
 
     const redirect = () => {
         setHistoric(false)
-        localStorage.setItem("p", item)
+        localStorage.setItem("p", JSON.stringify(item))
         navigate('/detalhesproduto')
         
     }

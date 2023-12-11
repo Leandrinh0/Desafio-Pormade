@@ -2,15 +2,17 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import CardProductDetails from "../../Components/cardProductDetails";
 import {useNavigate} from 'react-router-dom'
 import { IoCloseSharp } from "react-icons/io5";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 export default function ProductDetails () {
     const navigate = useNavigate()
-    const {historicItens} = useContext(ItensCartContext)
-    console.log(historicItens);
-
+    const {historicItens, refreshData} = useContext(ItensCartContext)
+    console.log(historicItens)
+    useEffect(() => {
+        refreshData()
+    },[])
     return(
         <div className="w-full h-screen  flex flex-col justify-center items-center almostCellphone:bg-black almostCellphone:py-8">
             <div className='flex items-center w-10/12 m-3 almostCellphone:hidden'>
@@ -21,9 +23,10 @@ export default function ProductDetails () {
                 <div className='w-full h-6 justify-end mr-2 mt-1 hidden almostCellphone:flex almostCellphone:mb-2'>
                     <IoCloseSharp className='text-light_green w-10 h-10'  onClick={() => navigate(-1)}/>
                 </div>
-                <CardProductDetails/>
-                <CardProductDetails/>
-                <CardProductDetails/>
+                {historicItens.pedido !== undefined && historicItens.pedido.map((item) => {
+                    return <CardProductDetails id={item.id} value={item.value} name={item.name} description={item.description}/>
+                })}
+                
             </div>
         </div>
     )

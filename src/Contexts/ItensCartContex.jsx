@@ -10,6 +10,18 @@ export function ItensCartProvider({children}) {
     const [pedidos, setPedidos] = useState([])
     const [historicItens, setHistoricItens] = useState([])
 
+    const refreshData = () => {
+        const historic = localStorage.getItem("p")
+        if(!historic){
+            return null
+        }
+        const convertedHistoric = JSON.parse(historic)
+        setHistoricItens(convertedHistoric)
+    }
+
+    useEffect(() => {
+        refreshData()
+},[])
 
     const addItem = (name, price, description, userCpf, id) => {
         const itens = {
@@ -25,7 +37,7 @@ export function ItensCartProvider({children}) {
 
 
     return (
-        <ItensCartContext.Provider value={{addItem, itensCart, setItensCart, pedidos, setPedidos, historicItens, setHistoricItens}}>
+        <ItensCartContext.Provider value={{addItem, itensCart, setItensCart, pedidos, setPedidos, historicItens, setHistoricItens, refreshData}}>
             {children}
         </ItensCartContext.Provider>
     )
