@@ -82,7 +82,7 @@ const ModalEditProducts  = ({modal, setModal, name, value, description, setName,
                         <div className="flex justify-between w-1/2
                             almostCellphone:w-3/4
                         ">
-                        <CheckBox favorite={favorite} setFavorite={setFavorite}/>
+                        <CheckBox favorite={favorite} setFavorite={setFavorite} statusModal={modal}/>
                         <img src={favorite ? star : blackStar} className=" w-6 h-6"/>
                         </div>
                     </div>

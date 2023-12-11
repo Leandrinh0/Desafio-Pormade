@@ -84,8 +84,8 @@ const ModalNewProduct = ({fetchData}) => {
                         <div className="flex justify-between w-1/2
                             almostCellphone:w-3/4
                         ">
-                        <CheckBox/>
-                        <img src={checkboxSelecionado ? star : blackStar} className=" w-6 h-6"/>
+                        <CheckBox newFavorite={favorite} setNewFavorite={setFavorite}/>
+                        <img src={favorite ? star : blackStar} className=" w-6 h-6"/>
                         </div>
                     </div>
                     <div className='flex flex-col w-3/5'>

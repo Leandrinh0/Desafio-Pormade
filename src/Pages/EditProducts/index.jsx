@@ -77,7 +77,7 @@ export default function EditProducts() {
     const lowerSearch = search.toLowerCase()
     const filterProducts = productData.filter((item) => item.name.toLowerCase().startsWith(lowerSearch))
 
-    return (
+    if(user.admin) return (
         <div className='w-full h-full flex flex-col items-center'>
             <div className='flex w-full h-14 justify-around mt-6 '>
                 <button
@@ -199,4 +199,5 @@ export default function EditProducts() {
 
         </div>
     )
+    return null
 }

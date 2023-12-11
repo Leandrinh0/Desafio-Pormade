@@ -2,10 +2,9 @@ import { MenuContext } from '../../Contexts/MenuContext'
 import './checkbox.css'
 import { useContext } from 'react'
 
-export default function ({favorite, setFavorite}) {
+export default function ({favorite, setFavorite, newFavorite, setNewFavorite, statusModal}) {
 
   const {checkboxSelecionado, setCheckboxSelecionado} = useContext(MenuContext)
-  console.log(checkboxSelecionado)
 
     return (
         <>
@@ -25,8 +24,8 @@ export default function ({favorite, setFavorite}) {
   role="switch"
   id="flexSwitchCheckDefault"
   
-  checked={favorite}
-  onChange={() => setFavorite(!favorite)}
+  checked={statusModal? favorite : newFavorite}
+  onChange={statusModal? () => setFavorite(!favorite) : () => setNewFavorite(!newFavorite)}
   />
       </>
 
