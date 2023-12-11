@@ -1,4 +1,3 @@
-import "./styles.css"
 
 function CardProductDetails ({id, description, value, name}) {
     return(
