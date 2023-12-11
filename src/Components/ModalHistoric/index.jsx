@@ -4,6 +4,7 @@ import CardHistoric from "../CardHistoric";
 import { useContext } from "react";
 import { MenuContext } from "../../Contexts/MenuContext";
 import { ItensCartContext } from "../../Contexts/ItensCartContex";
+import { MdOutlineRemoveShoppingCart } from "react-icons/md";
 
 
 const ModalHistoric = () => {
@@ -27,13 +28,49 @@ const ModalHistoric = () => {
                 </div>
                 <div className='w-full h-full flex flex-col items-center '>
 
-                    <div className="flex flex-row justify-between flex-wrap w-5/6 h-5/6 almostCellphone:flex-col almostCellphone:flex-nowrap almostCellphone:w-full almostCellphone:px-2 overflow-y-scroll">
-                    {pedidos.map((item, index) => {
+                    <div className={`flex flex-row justify-between flex-wrap  almostCellphone:flex-col almostCellphone:flex-nowrap almostCellphone:w-full almostCellphone:px-2 overflow-y-scroll ${pedidos.length > 0 ? "w-5/6 h-5/6" : "w-[95%] h-[93%]"}`}>
+                        {pedidos.length > 0 ? 
+                        <>
+                        {pedidos.map((item, index) => {
                         var sum = 0;
                         item.pedido.forEach((i) => sum += parseInt(i.value))
                         return <CardHistoric qtd={item.pedido.length} total={sum} numeroPedido={index+1} item={item} key={item.id}/>
-                    })}
+                        })}
+                        </>
+                        : 
+                        <div className=" w-full h-full p-3 bg-black_pormade rounded-xl
+                        tablet:w-10/12
+                        almostCellphone:p-0
 
+                        "
+                        >
+                        <div className=" w-full text-center  text-white font-semibold text-6xl mb-3
+                            tablet:h-1/4 tablet:items-center tablet:flex tablet:justify-center
+                            almostCellphone:h-1/6 almostCellphone:text-4xl almostCellphone:mb-0
+                        "
+                        >Ops...</div>
+                        <div className=" w-full h-1/5 text-center p-5 
+                            almostCellphone:p-0
+                        "
+                        >
+                            <p className="text-cinza_fonte text-3xl font-semibold
+                                almostCellphone:text-lg
+                            "
+                            >Você ainda não realizou</p>
+                            <p className="text-cinza_fonte text-3xl font-semibold
+                                almostCellphone:text-lg
+                            "
+                            >nenhuma compra</p>
+                        </div>
+                        <div className="text-center justify-center items-center w-full flex ">
+                            <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6
+                                tablet:w-1/2 tablet:h-1/2
+                            '
+                             />
+                        </div>
+                    </div>
+                        }
+                    
    
                     </div>
 
