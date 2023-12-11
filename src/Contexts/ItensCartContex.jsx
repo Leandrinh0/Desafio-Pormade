@@ -7,6 +7,8 @@ export const ItensCartContext = createContext()
 export function ItensCartProvider({children}) {
 
     const [itensCart, setItensCart] = useState([])
+    const [pedidos, setPedidos] = useState([])
+    const [historicItens, setHistoricItens] = useState([])
 
 
 
@@ -24,7 +26,7 @@ export function ItensCartProvider({children}) {
 
 
     return (
-        <ItensCartContext.Provider value={{addItem, itensCart, setItensCart}}>
+        <ItensCartContext.Provider value={{addItem, itensCart, setItensCart, pedidos, setPedidos, historicItens, setHistoricItens}}>
             {children}
         </ItensCartContext.Provider>
     )

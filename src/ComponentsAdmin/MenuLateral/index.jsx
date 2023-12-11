@@ -92,7 +92,7 @@ export default function LateralMenu() {
                         <>
                             {itensCart.map((item) => {
                                 return (
-                                    <CartItem name={item.name} description={item.description} value={item.value} id={item.id}/>
+                                    <CartItem name={item.name} description={item.description} value={item.value} id={item.id} key={item.id}/>
                                 )
                             })}
                             

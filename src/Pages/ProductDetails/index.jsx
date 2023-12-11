@@ -2,6 +2,8 @@ import { FiArrowLeftCircle } from "react-icons/fi";
 import CardProductDetails from "../../Components/cardProductDetails";
 import {useNavigate} from 'react-router-dom'
 import { IoCloseSharp } from "react-icons/io5";
+import { useContext } from "react";
+import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 export default function ProductDetails () {

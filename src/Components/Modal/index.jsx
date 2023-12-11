@@ -5,7 +5,19 @@ import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 export default function Modal ({isOpen, closeModal, children}) {
 
-    const {itensCart} = useContext(ItensCartContext)
+    const {itensCart, setItensCart, pedidos, setPedidos} = useContext(ItensCartContext)
+
+    var totalSum = 0
+    itensCart.forEach((item) => {
+        totalSum += parseInt(item.value)
+    })
+
+    const finalizePurchase = () => {
+        setPedidos([...pedidos, {
+            pedido: [...itensCart]
+        }])
+        setItensCart([])
+    }
 
     if (isOpen) return (
 
@@ -28,9 +40,13 @@ export default function Modal ({isOpen, closeModal, children}) {
                             
                         '
                         >Valor Total:</h1>
-                        <h1 className='font-semibold text-2xl tablet:text-xl almostCellphone:text-xl'>R$ 302,58</h1>
+                        <h1 className='font-semibold text-2xl tablet:text-xl almostCellphone:text-xl'>R$ {totalSum.toFixed(2)}</h1>
                     </div>
-                        <button className='text-white font-semibold text-xl w-1/3 rounded-xl h-10 bg-light_green mx-2 tablet:w-1/2 almostCellphone:w-2/3'>Finalizar Compra</button>
+                        <button 
+                            className='text-white font-semibold text-xl w-1/3 rounded-xl h-10 bg-light_green mx-2 tablet:w-1/2 almostCellphone:w-2/3'
+                            onClick={() => finalizePurchase()}
+                            >Finalizar Compra
+                        </button>
                     </div>
                 </div>
                 

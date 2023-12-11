@@ -43,7 +43,7 @@ export default function CartItem({name, description, value, id}) {
                             </h1>
                             <div className='flex justify-center items-center tablet:mb-2'>
                                 <TiMinus className='w-8 h-8 text-white tablet:w-5 tablet:h-5 almostCellphone:w-4 almostCellphone:h-4 cursor-pointer'/>
-                                <p className='px-4 py-1 rounded-lg border border-light_green bg-black font-semibold text-2xl tablet:px-2 tablet:py-0 tablet:mx-1 tablet:text-lg almostCellphone:text-base almostCellphone:border-none'>4</p>
+                                <p className='px-4 py-1 rounded-lg border border-light_green bg-black font-semibold text-2xl tablet:px-2 tablet:py-0 tablet:mx-1 tablet:text-lg almostCellphone:text-base almostCellphone:border-none'>1</p>
                                 <TiPlus className='w-8 h-8 text-white tablet:w-5 tablet:h-5 almostCellphone:w-4 almostCellphone:h-4 cursor-pointer'/>
                             </div>
                         </div>

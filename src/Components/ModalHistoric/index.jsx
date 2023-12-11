@@ -3,11 +3,13 @@ import { AiOutlineClose } from "react-icons/ai";
 import CardHistoric from "../CardHistoric";
 import { useContext } from "react";
 import { MenuContext } from "../../Contexts/MenuContext";
+import { ItensCartContext } from "../../Contexts/ItensCartContex";
 
 
 const ModalHistoric = () => {
 
     const{historic, setHistoric} = useContext(MenuContext)
+    const {user, setUser, pedidos, setPedidos} = useContext(ItensCartContext)
 
     const close = () => {
         setHistoric(false)
@@ -26,11 +28,12 @@ const ModalHistoric = () => {
                 <div className='w-full h-full flex flex-col items-center '>
 
                     <div className="flex flex-row justify-between flex-wrap w-5/6 h-5/6 almostCellphone:flex-col almostCellphone:flex-nowrap almostCellphone:w-full almostCellphone:px-2">
+                    {pedidos.map((item, index) => {
+                        var sum = 0;
+                        item.pedido.forEach((i) => sum += parseInt(i.value))
+                        return <CardHistoric qtd={item.pedido.length} total={sum} numeroPedido={index+1} item={item}/>
+                    })}
 
-                    <CardHistoric />
-                    <CardHistoric />
-                    <CardHistoric />
-                    <CardHistoric />
    
                     </div>
 
