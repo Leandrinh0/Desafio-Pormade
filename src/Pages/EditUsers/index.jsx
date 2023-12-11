@@ -13,6 +13,7 @@ import { AuthenticateContext } from "../../Contexts/Authenticate";
 import ModalNewUser from "../../ComponentsAdmin/ModalNewUser";
 import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
+import ProtectedComponent from "../ProtectedComponent";
 
 
 
@@ -62,10 +63,10 @@ export default function EditUser() {
 
     }
 
+    const lowerSearch = search.toLowerCase()
+    const filterUser = userData.filter((user) => user.name.toLowerCase().startsWith(lowerSearch))
 
-    const filterUser = userData.filter((user) => user.name.startsWith(search))
-
-    return (
+    if(user.admin) return (
         <div className='w-full h-full flex flex-col items-center'>
             <div className='flex w-full h-14 justify-around mt-6 '>
                 <button
@@ -193,4 +194,6 @@ export default function EditUser() {
 
         </div>
     )
+
+    return <ProtectedComponent/>
 }

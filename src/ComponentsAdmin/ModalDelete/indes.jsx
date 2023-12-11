@@ -7,22 +7,11 @@ import { AuthenticateContext } from "../../Contexts/Authenticate";
 
 
 
-const ModalDelete = ({word, id, fetchData}) => {
+const ModalDelete = ({word, id, close}) => {
 
     const {deletar, setDeletar} = useContext(MenuContext)
-    const {user} = useContext(AuthenticateContext)
-
-    const close = async () => {
-        await api.delete("produtos", {
-            deletorCpf:user.cpf,
-            productId:parseInt(id)
-        })
-        .then(() => fetchData())
 
 
-    }
-
-    console.log(id)
 
     return (
         <div className={`fixed left-0 top-0 bottom-0 right-0  bg-white bg-opacity-20 transition-all ease-in-out duration-500 justify-center items-center overflow-y-auto ${deletar ? 'flex' : "hidden"}`}>
@@ -55,7 +44,7 @@ const ModalDelete = ({word, id, fetchData}) => {
                     <button className='flex w-60 bg-light_green h-4/6 rounded-xl text-center justify-center items-center mx-3  hover:bg-green_button
                         tablet:mx-4 tablet:h-2/5 tablet:w-72
                         almostCellphone:h-1/3 almostCellphone:rounded-lg'
-                        onClick={() => close()}
+                        onClick={close}
                     > Confirmar</button>
                 </div>
             </div>

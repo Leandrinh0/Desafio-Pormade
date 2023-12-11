@@ -47,7 +47,9 @@ const Home = () => {
         })
     })
 
-    const productsFilter = productData.filter((item) => item.name.startsWith(search))
+    const lowerBusca = search.toLowerCase()
+
+    const productsFilter = productData.filter((item) => item.name.toLowerCase().includes(lowerBusca))
 
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">

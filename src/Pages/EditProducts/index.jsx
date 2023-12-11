@@ -13,12 +13,14 @@ import api from "../../http/api";
 import ModalNewProduct from "../../ComponentsAdmin/ModalNewProduct";
 import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
+import { AuthenticateContext } from "../../Contexts/Authenticate";
 
 export default function EditProducts() {
 
     const { deletar, setDeletar } = useContext(MenuContext)
     const { newProduct, setNewProduct } = useContext(MenuContext)
     const [openEditForm, setOpenEditForm] = useState(false)
+    const {user} = useContext(AuthenticateContext)
     
     const params = useParams()
     const [allProduts, setAllProducts] = useState([])
@@ -61,7 +63,19 @@ export default function EditProducts() {
         setDeletar(!deletar)
     }
 
-    const filterProducts = productData.filter((item) => item.name.startsWith(search))
+    const close = async () => {
+        await api.delete("produtos", {
+            deletorCpf:"80034389938",
+            productId:parseInt(id)
+        })
+        .then(() => fetchData())
+        setDeletar(!deletar)
+    }
+
+
+
+    const lowerSearch = search.toLowerCase()
+    const filterProducts = productData.filter((item) => item.name.toLowerCase().startsWith(lowerSearch))
 
     return (
         <div className='w-full h-full flex flex-col items-center'>
@@ -179,7 +193,7 @@ export default function EditProducts() {
                 setDescription={setEditDescription} id={parseInt(id)}
                 fetchData={fetchData}
             />
-            <ModalDelete word='produto' id={id} fetchData={fetchData}/>
+            <ModalDelete word='produto' close={() => close()}/>
 
             <ModalNewProduct fetchData={fetchData}/>
 

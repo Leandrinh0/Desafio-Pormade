@@ -5,7 +5,7 @@ import { AuthenticateContext } from '../../Contexts/Authenticate'
 
 const Login = () => {
     const [cpfInput, setCpfInput] = useState('')
-    const {authenticate} = useContext(AuthenticateContext)
+    const {authenticate, saveData, setSaveData, user} = useContext(AuthenticateContext)
 
     const validateCPF = async (event) => {
         event.preventDefault();
@@ -17,6 +17,7 @@ const Login = () => {
 
     }
 
+    console.log(user)
     return (
         <div className="w-full h-screen flex justify-center">
             <div className='flex flex-col w-4/12 tablet:w-6/12 cellphone:w-8/12'>
@@ -36,7 +37,11 @@ const Login = () => {
                         onChange={(e) => setCpfInput(e.target.value)}
                     />
                     <div className='flex'>
-                        <input type='checkbox' className='mr-2'/>
+                        <input type='checkbox' 
+                            className='mr-2'
+                            checked={saveData}
+                            onChange={(e) => setSaveData(!saveData)}
+                        />
                         <p className='text-white_pormade my-2'>Manter-me Conectado</p>
                     </div>
                     <div className='flex flex-col items-center'>
