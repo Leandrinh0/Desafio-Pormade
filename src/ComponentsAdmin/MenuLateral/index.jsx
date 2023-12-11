@@ -47,6 +47,12 @@ export default function LateralMenu() {
         setShow(false)
     }
 
+    const addProducts = () => {
+        navigate('/home/1')
+        setOpenModal(!openModal)
+    }
+
+
 
     return (
         <>
@@ -123,7 +129,7 @@ export default function LateralMenu() {
                             </div>
                             <div className="text-green_pormade underline text-xl font-bold w-full h-1/6 text-center cursor-pointer items-center
                                 almostCellphone:hidden
-                            " onClick={() => setOpenModal(!openModal)}>Adicionar Produtos</div>
+                            " onClick={addProducts}>Adicionar Produtos</div>
                             <div className="text-center justify-center items-center w-full flex ">
                                 <MdOutlineRemoveShoppingCart className='text-white w-2/6 h-2/6
                                     tablet:w-1/2 tablet:h-1/2
