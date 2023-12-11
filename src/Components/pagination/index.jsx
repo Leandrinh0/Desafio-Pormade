@@ -10,7 +10,7 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
     const [firstNav, setFirstNav] = useState(convertedParams)
     const [secondNav, setSecondNav] = useState(convertedParams+1)
     const [thirdNav, setThirdNav] = useState(convertedParams+2)
-    const lastPage = Math.round(allItems.length/8)
+    const lastPage = Math.round((allItems.length/8) + 1)
     const {user} = useContext(AuthenticateContext)
 
     useEffect(() => {
@@ -19,7 +19,7 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
 
 
     const nextPage = () => {
-        if (parseInt(params.id) < Math.round(allItems.length/8)) {
+        if (parseInt(params.id) < Math.round((allItems.length/8 + 1))) {
             if(urlRequest === "produtos") {
                 navigate(`/${urlNavigate}/${convertedParams+1}`)
                 api.get(`/${urlRequest}/lista?pagina=${(convertedParams)}&&itens=8`)
@@ -93,7 +93,7 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
                 <button disabled={secondNav > lastPage} className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${secondNav === parseInt(params.id)? "bg-light_green" : ""} disabled:text-grey_pormade disabled:hover:bg-black`} onClick={() => nextPage()} >{secondNav}</button>
                 <button disabled={thirdNav > lastPage} className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${thirdNav === parseInt(params.id)? "bg-light_green" : ""} disabled:text-grey_pormade disabled:hover:bg-black`} onClick={() => nextPage()}>{thirdNav}</button>
                 <button className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</button>
-                <button className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round(allItems.length/8)}</button>
+                <button className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`} onClick={() => NavigateLastPage()}>{Math.round((allItems.length/8) + 1)}</button>
             </div>
             <IoIosArrowForward 
                 className='w-9 h-9 text-white_pormade cursor-pointer' 
