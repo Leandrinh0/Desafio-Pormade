@@ -10,6 +10,7 @@ body {
     background-repeat: no-repeat, no-repeat;
 }
 
+
 @media (max-width:960px) {
         body {
             background-image: url('./assets/images/folhaTabletL.png'), url('./assets//images/folhaTablet.png');
@@ -37,3 +38,10 @@ p, h1, h2, h3, h4, h5, label, input, span, tr, td {
     color:white;
 }
 
+* {
+  scrollbar-width: thin;
+  scrollbar-color: black;
+}
+*::-webkit-scrollbar {
+  width: 15px;
+}

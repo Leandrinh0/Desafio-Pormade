@@ -58,11 +58,22 @@ export default function Pagination ({convertedParams, params, allItems, ItemData
     }
     const NavigateLastPage = () => {
         if(convertedParams !== lastPage){
-            navigate(`/${urlNavigate}/${lastPage}`)
-            api.get(`/${urlRequest}/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
-            .then(response => setItemData(response.data.products))
-            .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
+
+            if(urlRequest === "produtos") {navigate(`/${urlNavigate}/${lastPage}`)
+                api.get(`/${urlRequest}/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`)
+                .then(response => setItemData(response.data.products))
+                .then(setFirstNav(convertedParams+(lastPage - 1)), setSecondNav(convertedParams+lastPage), setThirdNav(convertedParams+lastPage))
+            }
+            else {
+                    navigate(`/${urlNavigate}/${lastPage}`)
+                    api.post(`/${urlRequest}/lista?pagina=${(convertedParams+lastPage-2)}&&itens=8`,{
+                        cpf:user.cpf
+                    })
+                    .then(response => setItemData(response.data.persons))
+                    .then(setFirstNav(convertedParams), setSecondNav(convertedParams+1), setThirdNav(convertedParams+1))
+            }
         }
+
 
     }
 

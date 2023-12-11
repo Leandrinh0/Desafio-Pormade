@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { ItensCartContext } from "../../Contexts/ItensCartContex";
+import "../../index.css"
 
 
 export default function Modal ({isOpen, closeModal, children}) {
