@@ -1,9 +1,7 @@
 
 import { useEffect, useState, useContext } from "react"
 import { useParams } from "react-router-dom";
-
 import CardProduct from "../../Components/CardProduct";
-
 import { FaSearch } from "react-icons/fa";
 import api from "../../http/api";
 import Pagination from "../../Components/pagination";
@@ -16,28 +14,21 @@ const Home = () => {
 
     const [productData, setProductData] = useState([])
     const [allProduts, setAllProducts] = useState([])
-    const params = useParams()
     const {itensCart} = useContext(ItensCartContext)
     const [search, setSearch] = useState('')
 
 
-    const fetchData = async () => {
-        await api.get(`/produtos/lista?pagina=${(convertedParams-1)}&&itens=8`)
+    const fetchData = async (page) => {
+        await api.get(`/produtos/lista?pagina=${page}&&itens=8`)
             .then(response => setProductData(response.data.products))
 
         await api.get('/produtos/lista')
             .then(response => setAllProducts(response.data.products))
     }
 
-    useEffect(() =>{
-        fetchData()
-    }, [])
-
-    const convertedParams = parseInt(params.id)
     
 
 
-    // Filtro para manter os itens ativos ou não.
     var filterArray = []
     productData.forEach((i) => {
         itensCart.forEach((j) => {
@@ -49,7 +40,7 @@ const Home = () => {
 
     const lowerBusca = search.toLowerCase()
 
-    const productsFilter = productData.filter((item) => item.name.toLowerCase().includes(lowerBusca))
+    const productsFilter = allProduts.filter((item) => item.name.toLowerCase().includes(lowerBusca))
 
     return (
         <div className="w-full h-full flex flex-col justify-center items-center py-10 almostCellphone:mt-12">
@@ -70,7 +61,22 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='flex flex-row justify-center items-center flex-wrap w-10/12 almostCellphone:flex-col almostCellphone:w-full almostCellphone:p-2'>
-                    {productsFilter.map((item) => {
+                    {
+                    search ? 
+                        productsFilter.map((item) => {
+                        var filter = filterArray.filter((i) => {
+                            return i.id === item.id
+                        })
+                        if(filter.length === 1 ){
+                            return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite} id={item.id} cartActive={true}/>
+                        } else {
+                            return <CardProduct description={item.description} name={item.name} price={item.value} key={item.id} favorite={item.favorite} id={item.id} cartActive={false}/>
+                        }
+                    })
+                    
+                    :
+                    
+                    productData.map((item) => {
                         var filter = filterArray.filter((i) => {
                             return i.id === item.id
                         })
@@ -82,19 +88,23 @@ const Home = () => {
                     })}
                 </div>
                 <Pagination 
-                    convertedParams={convertedParams} params={params} 
                     fetchData={fetchData} 
                     ItemData={productData} setItemData={setProductData} 
-                    allItems={allProduts} setAllItems={setAllProducts}
+                    allItems={allProduts}
                     urlNavigate={"home"} urlRequest={"produtos"}
+                    search={search}
+                    page={"/home/"}
+                    setSearch={setSearch}
                 />
             </div>
             <PaginationMobile
-                convertedParams={convertedParams} params={params} 
                 fetchData={fetchData} 
                 ItemData={productData} setItemData={setProductData} 
-                allItems={allProduts} setAllItems={setAllProducts}
+                allItems={allProduts}
                 urlNavigate={"home"} urlRequest={"produtos"}
+                page={"/home/"}
+                search={search}
+                setSearch={setSearch}
             />
         </div>
 

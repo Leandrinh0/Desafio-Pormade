@@ -1,32 +1,29 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import api from "../../http/api";
-import { AuthenticateContext } from "../../Contexts/Authenticate";
+import { useNavigate, useParams} from "react-router-dom";
 
-export default function Pagination ({ allItems, ItemData, setItemData, fetchData, urlNavigate, urlRequest, }) {
+export default function Pagination ({ allItems, fetchData, urlNavigate, page, search, setSearch}) {
     
 
     const lastPage = Math.ceil((allItems.length/8))
-    const {user} = useContext(AuthenticateContext)
-    const location = useLocation()
     const navigate = useNavigate()
     const params = useParams()
-    const convertedParams = parseInt(params.id)
+
     const [actualPage, setActualPage] = useState(1)
-    const maxItens=8;
 
+    const qtdButton = 3
+    const maxLeft = (qtdButton -1) / 2
+    const firstPage = Math.max(actualPage - maxLeft, 1)
 
-    function fetchItens () {
-        api.get(`/produtos/lista?pagina=${actualPage}&&itens=${maxItens}`)
-        .then((res) => setItemData(res.data.products))
-        .catch(window.alert)
-    }
 
 
     useEffect(() => {
-        navigate(`/home/${actualPage}`)
-        fetchItens()
+        if(window.location.pathname === page + params.id){
+            navigate(`/${urlNavigate}/${actualPage}`)
+            fetchData(actualPage-1)
+            search? setSearch("") : ""
+        }
+
     },[actualPage])
 
     const previousPage = () => {
@@ -35,34 +32,52 @@ export default function Pagination ({ allItems, ItemData, setItemData, fetchData
         }
     }
 
+    const nextPage = () => {
+        if(actualPage < lastPage) {
+            setActualPage(actualPage + 1)
+        }
+    }
+
 
     return(
         <>
             
-                <div >
+                <div className='flex items-center justify-center tablet:hidden'>
                 <IoIosArrowBack 
                     className='w-9 h-9 text-white_pormade cursor-pointer' 
-                    onClick={() => previousPage}
+                    onClick={() => previousPage()}
                 />
-                {Array(5).fill('').map((_,index) => {
+                {Array(qtdButton).fill('').map((_,index) => {
+                    index + firstPage
+                })
+                .map((page, index) => { 
+                    page = index + firstPage
+
                     return (
                         <button 
                             key={index}
-                            className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 `}
-                            onClick={() => setActualPage(index + 1)}
+                            className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${page === parseInt(params.id)? "bg-light_green" : ""} disabled:text-grey_pormade disabled:hover:bg-black `}
+                            onClick={() => setActualPage(page)}
+                            disabled={page > lastPage}
                             >
-                            {index + 1}
+                            {page}
                         </button>
                     )
+
                 })
                 }
+                <button className={`text-4xl text-white_pormade hover:bg-green_pormade px-2`}>...</button>
+                <button 
+                    className={`text-4xl text-white_pormade hover:bg-green_pormade px-2 ${lastPage === parseInt(params.id)? "bg-light_green" : ""}`} 
+                    onClick={() => setActualPage(Math.ceil(allItems.length/8))}
+                    >{lastPage}
+                </button>
                 <IoIosArrowForward 
                     className='w-9 h-9 text-white_pormade cursor-pointer' 
-                    onClick={() => setActualPage(actualPage + 1)}
+                    onClick={() => nextPage()}
                 />
 
                 </div>
-            
         </>
 
 

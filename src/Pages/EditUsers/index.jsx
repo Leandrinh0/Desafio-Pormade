@@ -15,12 +15,6 @@ import Pagination from "../../Components/pagination";
 import PaginationMobile from "../../Components/paginationMobile";
 import ProtectedComponent from "../ProtectedComponent";
 
-
-
-
-
-
-
 export default function EditUser() {
 
     const {newUser, setNewUser} = useContext(MenuContext)
@@ -33,8 +27,8 @@ export default function EditUser() {
     const convertedParams = parseInt(params.id)
     const [search, setSearch] = useState('')
 
-    const fetchData = (async() => {
-        await api.post(`pessoas/lista/?pagina=${parseInt(params.id)-1}&&itens=8`,{
+    const fetchData = (async(page) => {
+        await api.post(`pessoas/lista/?pagina=${page}&&itens=8`,{
             cpf:user.cpf
         })
         .then(response => setUserData(response.data.persons))
@@ -45,9 +39,6 @@ export default function EditUser() {
         .then((response) => setAllUsers(response.data.persons))
     })
     
-    useEffect(() => {
-        fetchData()
-    }, [])
 
     const [editName, setEditName] = useState('')
     const [editCpf, setEditCpf] = useState('')
@@ -64,7 +55,7 @@ export default function EditUser() {
     }
 
     const lowerSearch = search.toLowerCase()
-    const filterUser = userData.filter((user) => user.name.toLowerCase().startsWith(lowerSearch))
+    const filterUser = allUsers.filter((user) => user.name.toLowerCase().includes(lowerSearch))
 
     if(user.admin) return (
         <div className='w-full h-full flex flex-col items-center'>
@@ -103,48 +94,87 @@ export default function EditUser() {
                     </thead>
                     <tbody>
                         
-                            {filterUser.map((item, index) => {
-                                return(
-                                    <tr>
-                                    <td className='border-r border-t border-b px-2 border-light_green text-xl'>{index+1}</td>
-                            <td 
-                                className='border border-light_green text-xl py-2'
+                            {
+                            search?
+                                filterUser.map((item, index) => {
+                                    return(
+                                        <tr>
+                                        <td className='border-r border-t border-b px-2 border-light_green text-xl'>{index+1}</td>
+                                <td 
+                                    className='border border-light_green text-xl py-2'
+                                    >
+                                    <div className='flex items-center justify-between px-2 h-2'>
+                                    {item.name}
+                                    <MdOutlineAdminPanelSettings className={`w-10 h-10 text-yellow my-3 cursor-pointer ${item.admin? "" : "hidden"}`} />
+                                    </div>
+                                </td>
+                                <td className='border border-light_green text-xl py-2'>{item.cpf}</td>
+                                <td
+                                    className='border border-light_green text-xl py-2'
                                 >
-                                <div className='flex items-center justify-between px-2 h-2'>
-                                {item.name}
-                                <MdOutlineAdminPanelSettings className={`w-10 h-10 text-yellow my-3 cursor-pointer ${item.admin? "" : "hidden"}`} />
-                                </div>
-                            </td>
-                            <td className='border border-light_green text-xl py-2'>{item.cpf}</td>
-                            <td
-                                className='border border-light_green text-xl py-2'
-                            >
-                                <div className='flex justify-between items-center mx-3'>
-                                    <div className='flex justify-around w-2/6 items-center tablet:w-3/5 tablet:justify-between'>
-                                        <CgList className='w-10 h-10'/>
-                                        <ImPencil 
-                                            className='w-8 h-8 cursor-pointer tablet:mr-1'
-                                            onClick={() => AddInfoEditForm(item)}
+                                    <div className='flex justify-between items-center mx-3'>
+                                        <div className='flex justify-around w-2/6 items-center tablet:w-3/5 tablet:justify-between'>
+                                            <CgList className='w-10 h-10'/>
+                                            <ImPencil 
+                                                className='w-8 h-8 cursor-pointer tablet:mr-1'
+                                                onClick={() => AddInfoEditForm(item)}
+                                            />
+                                        </div>
+                                        <MdDeleteForever 
+                                            className='w-10 h-10 text-red-700 cursor-pointer'
+                                            onClick={() => setDeletar(!deletar)}
                                         />
                                     </div>
-                                    <MdDeleteForever 
-                                        className='w-10 h-10 text-red-700 cursor-pointer'
-                                        onClick={() => setDeletar(!deletar)}
-                                    />
-                                </div>
-                            </td>
-                            </tr>
-                                )
-                            })}
+                                </td>
+                                </tr>
+                                    )
+                                })
+
+                                :
+                                
+                                userData.map((item, index) => {
+                                    return(
+                                        <tr>
+                                        <td className='border-r border-t border-b px-2 border-light_green text-xl'>{index+1}</td>
+                                <td 
+                                    className='border border-light_green text-xl py-2'
+                                    >
+                                    <div className='flex items-center justify-between px-2 h-2'>
+                                    {item.name}
+                                    <MdOutlineAdminPanelSettings className={`w-10 h-10 text-yellow my-3 cursor-pointer ${item.admin? "" : "hidden"}`} />
+                                    </div>
+                                </td>
+                                <td className='border border-light_green text-xl py-2'>{item.cpf}</td>
+                                <td
+                                    className='border border-light_green text-xl py-2'
+                                >
+                                    <div className='flex justify-between items-center mx-3'>
+                                        <div className='flex justify-around w-2/6 items-center tablet:w-3/5 tablet:justify-between'>
+                                            <CgList className='w-10 h-10'/>
+                                            <ImPencil 
+                                                className='w-8 h-8 cursor-pointer tablet:mr-1'
+                                                onClick={() => AddInfoEditForm(item)}
+                                            />
+                                        </div>
+                                        <MdDeleteForever 
+                                            className='w-10 h-10 text-red-700 cursor-pointer'
+                                            onClick={() => setDeletar(!deletar)}
+                                        />
+                                    </div>
+                                </td>
+                                </tr>
+                                    )
+                                })}
                         
                     </tbody>
                 </table>
                 <Pagination
-                    convertedParams={convertedParams} params={params} 
                     fetchData={fetchData} 
-                    ItemData={userData} setItemData={setUserData} 
+                    ItemData={userData}
                     allItems={allUsers} setAllItems={setAllUsers}
-                    urlNavigate={"editarUsuarios"} urlRequest={"pessoas"}
+                    search={search} setSearch={setSearch}
+                    urlNavigate={"editarUsuarios"}
+                    page={"/editarUsuarios/"}
                 />
 
 
@@ -177,8 +207,10 @@ export default function EditUser() {
                 convertedParams={convertedParams} params={params} 
                 fetchData={fetchData} 
                 ItemData={userData} setItemData={setUserData} 
-                allItems={allUsers} setAllItems={setAllUsers}
-                urlNavigate={"editarUsuarios"} urlRequest={"pessoas"}
+                search={search} setSearch={setSearch}
+                allItems={allUsers}
+                urlNavigate={"editarUsuarios"} 
+                page={"/editarUsuarios/"}
             />
 
 

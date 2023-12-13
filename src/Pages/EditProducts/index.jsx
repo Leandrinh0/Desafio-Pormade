@@ -24,11 +24,10 @@ export default function EditProducts() {
     
     const params = useParams()
     const [allProduts, setAllProducts] = useState([])
-
     const [productData, setProductData] = useState([])
 
-    const fetchData = (async() => {
-        await api.get(`/produtos/lista?pagina=${params.id-1}&&itens=8`)
+    const fetchData = (async(page) => {
+        await api.get(`/produtos/lista?pagina=${page}&&itens=8`)
             .then(response => setProductData(response.data.products))
             
         await api.get('/produtos/lista')
@@ -36,10 +35,10 @@ export default function EditProducts() {
     })
 
     useEffect(() => {
-        fetchData()
-    }, [])
+        fetchData(parseInt(params.id)-1)
+    },[])
 
-    const convertedParams = parseInt(params.id)
+
     const [search, setSearch] = useState('')
 
     const [editName, setEditName] = useState('')
@@ -68,7 +67,7 @@ export default function EditProducts() {
             deletorCpf:"80034389938",
             productId:parseInt(id)
         })
-        .then(() => fetchData())
+        .then(() => fetchData(data))
         setDeletar(!deletar)
     }
 
@@ -142,11 +141,11 @@ export default function EditProducts() {
                     </tbody>
                 </table>
                 <Pagination 
-                    convertedParams={convertedParams} params={params} 
                     fetchData={fetchData} 
-                    ItemData={productData} setItemData={setProductData} 
+                    ItemData={productData}
                     allItems={allProduts} setAllItems={setAllProducts}
                     urlNavigate={"editarProdutos"} urlRequest={"produtos"}
+                    page={"/editarProdutos/"}
                 />
 
                 {/* Mobile */}
@@ -175,12 +174,12 @@ export default function EditProducts() {
             </div>
 
             {/* Celular -> */}
-            <PaginationMobile
-                convertedParams={convertedParams} params={params} 
+            <PaginationMobile 
                 fetchData={fetchData} 
-                ItemData={productData} setItemData={setProductData} 
+                ItemData={productData} 
                 allItems={allProduts} setAllItems={setAllProducts}
                 urlNavigate={"editarProdutos"} urlRequest={"produtos"}
+                page={"/editarProdutos/"}
             />
 
 
@@ -191,11 +190,11 @@ export default function EditProducts() {
                 setValue={setEditValue} description={editDescription} 
                 favorite={editFavorite} setFavorite={setEditFavorite}
                 setDescription={setEditDescription} id={parseInt(id)}
-                fetchData={fetchData}
+                fetchData={() => fetchData(parseInt(params.id)-1)}
             />
             <ModalDelete word='produto' close={() => close()}/>
 
-            <ModalNewProduct fetchData={fetchData}/>
+            <ModalNewProduct fetchData={() => fetchData(parseInt(params.id)-1)}/>
 
         </div>
     )
